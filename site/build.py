@@ -49,6 +49,13 @@ CHEVRON_RIGHT = 'm9 6 6 6-6 6'
 CHEVRON_LEFT = 'm15 6-6 6 6 6'
 ARROW_RIGHT = 'M5 12h14m-6-6 6 6-6 6'
 STAR = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z'
+HOME_SVG = ('<svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="'
+            'M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9'
+            'a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"/></svg>')
+_UNUSED_HOME = ('M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9'
+        'a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z')
+SLASH = ('<svg class="h-full w-6 shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">'
+         '<path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z"/></svg>')
 X = 'M6 6l12 12M18 6 6 18'
 
 
@@ -81,17 +88,28 @@ def logo(light=False):
 
 
 def breadcrumbs(items):
+    """Okruszki wg komponentu Tailwind UI „simple with slashes”.
+
+    items: [(etykieta, href)] — pierwszy element renderuje się jako ikona domu,
+    ostatni jako tekst bieżącej strony, element bez href jako nieklikalny poziom.
+    """
+    label_cls = 'ml-4 text-sm font-medium'
     parts = []
     for i, (label, href) in enumerate(items):
-        if i:
-            parts.append('<li aria-hidden="true">%s</li>' % svg(CHEVRON_RIGHT, 'h-4 w-4 text-gray-500'))
-        if i == len(items) - 1:
-            parts.append('<li aria-current="page" class="text-gray-900">%s</li>' % label)
+        last = i == len(items) - 1
+        if i == 0:
+            parts.append('<li><a href="%s" class="flex min-h-11 items-center text-gray-400 hover:text-gray-500">%s'
+                         '<span class="sr-only">%s</span></a></li>'
+                         % (href or '#', HOME_SVG, label))
+            continue
+        if last:
+            inner = '<span aria-current="page" class="%s text-gray-700">%s</span>' % (label_cls, label)
         elif href:
-            parts.append('<li><a href="%s" class="inline-flex min-h-11 items-center hover:underline">%s</a></li>' % (href, label))
+            inner = '<a href="%s" class="%s flex min-h-11 items-center text-gray-500 hover:text-gray-700">%s</a>' % (href, label_cls, label)
         else:
-            parts.append('<li>%s</li>' % label)
-    return ('<nav aria-label="Okruszki" class="container-page"><ol class="flex items-center gap-2 text-sm text-gray-600">%s</ol></nav>'
+            inner = '<span class="%s text-gray-500">%s</span>' % (label_cls, label)
+        parts.append('<li><div class="flex items-center">%s%s</div></li>' % (SLASH, inner))
+    return ('<nav aria-label="Okruszki" class="container-page pt-6"><ol role="list" class="flex items-center space-x-4">%s</ol></nav>'
             % ''.join(parts))
 
 

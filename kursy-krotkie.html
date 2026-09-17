@@ -101,13 +101,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
 <main>
 
 <!-- ============ breadcrumbs ============ -->
-<nav aria-label="Okruszki" class="bg-white">
-  <ol class="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 pt-6 text-sm text-gray-500 sm:px-6 lg:px-8">
-    <li><a href="wireframe-home.html" class="underline-offset-4 hover:text-gray-900 hover:underline">Strona główna</a></li>
-    <li aria-hidden="true">›</li>
-    <li id="crumb-all" aria-current="page" class="font-medium text-gray-900">Kursy krótkie</li><li id="crumb-sep" hidden aria-hidden="true">›</li><li id="crumb-cat" hidden aria-current="page" class="font-medium text-gray-900"></li>
-  </ol>
-</nav>
+<nav aria-label="Okruszki" class="bg-white"><ol role="list" class="mx-auto flex max-w-7xl items-center space-x-4 px-4 pt-6 sm:px-6 lg:px-8"><li><a href="wireframe-home.html" class="flex min-h-11 items-center text-gray-400 hover:text-gray-500"><svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"/></svg><span class="sr-only">Strona główna</span></a></li><li id="crumb-all"><div class="flex items-center"><svg class="h-full w-6 shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" aria-hidden="true"><path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z"/></svg><span class="ml-4 text-sm font-medium text-gray-500">Kursy krótkie</span></div></li><li id="crumb-cat" hidden><div class="flex items-center"><svg class="h-full w-6 shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" aria-hidden="true"><path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z"/></svg><span aria-current="page" class="ml-4 text-sm font-medium text-gray-700"></span></div></li></ol></nav>
 
 <!-- ============ hero + funding-status frame ============ -->
 <section class="bg-white">
@@ -352,11 +346,14 @@ function hero(cat){const d=HERO[cat]||HERO[''],on=!!cat;
  document.getElementById('hero-h').textContent=d.h;document.getElementById('hero-p').textContent=d.p;
  const b=document.getElementById('hero-badge');b.hidden=!on;b.textContent='Kursy krótkie · '+d.b;
  const all=document.getElementById('crumb-all'),c=document.getElementById('crumb-cat');
- all.innerHTML=on?'<a href="?" class="underline-offset-4 hover:text-gray-900 hover:underline">Kursy krótkie</a>':'Kursy krótkie';
- all.className=on?'':'font-medium text-gray-900';on?all.removeAttribute('aria-current'):all.setAttribute('aria-current','page');
- document.getElementById('crumb-sep').hidden=!on;c.hidden=!on;c.textContent=d.b;
+ const LBL='ml-4 text-sm font-medium';
+ all.querySelector('div').lastElementChild.outerHTML = on
+   ? '<a href="?" data-crumb-all class="'+LBL+' flex min-h-11 items-center text-gray-500 hover:text-gray-700">Kursy krótkie</a>'
+   : '<span aria-current="page" class="'+LBL+' text-gray-700">Kursy krótkie</span>';
+ c.hidden=!on;c.querySelector('span[aria-current]').textContent=d.b;
+ all.querySelector('[data-crumb-all]')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('.chip[data-cat=""]').click()});
  document.title='Lo-fi · '+d.h;
- all.querySelector('a')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('.chip[data-cat=""]').click()});}
+}
 function render(){const q=new URLSearchParams(location.search),cat=q.get('kategoria')||'',s=q.get('sort')||'date';sort.value=s;
  chips.forEach(c=>{const on=c.dataset.cat===cat;c.classList.toggle('bg-gray-900',on);c.classList.toggle('text-white',on);c.classList.toggle('border-gray-900',on);c.classList.toggle('bg-white',!on);on?c.setAttribute('aria-current','page'):c.removeAttribute('aria-current')});
  const cards=[...grid.children];cards.sort((a,b)=>s==='az'?a.dataset.name.localeCompare(b.dataset.name,'pl'):a.dataset.date.localeCompare(b.dataset.date)).forEach(c=>grid.appendChild(c));
