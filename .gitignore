@@ -1,0 +1,7 @@
+# system
+.DS_Store
+# python
+__pycache__/
+*.pyc
+# ustawienia lokalne Claude Code (launch.json zostaje w repo)
+.claude/settings.local.json

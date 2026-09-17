@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo-fi · Kadra</title>
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<style>
+  .ph{background:repeating-linear-gradient(45deg,#e5e7eb 0 10px,#f3f4f6 10px 20px)}
+  .tag{font:600 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+</style>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply text-base leading-normal; }
+    p { @apply text-base leading-normal; }
+  }
+</style>
+</head>
+<body class="bg-gray-100 text-gray-900 antialiased">
+<!-- ============ site-header (sticky, mega menu — wersja Marcina) ============ -->
+<header class="sticky top-0 z-50 border-b border-gray-300 bg-white">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="wireframe-home.html" class="flex items-center gap-2" aria-label="Publishing School, strona główna">
+      <div class="h-10 w-10 rounded-full bg-gray-400"></div>
+      <span class="text-xl font-bold leading-5">publishing<br>school</span>
+    </a>
+    <nav class="hidden items-center gap-8 font-medium lg:flex" aria-label="Główna">
+      <button data-menu="mm-kursy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-kursy">Kursy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button data-menu="mm-zapisy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-zapisy">Zapisy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="dla-firm.html" class="hover:text-gray-500">Dla firm</a>
+      <button data-menu="mm-onas" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-onas">O nas <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="blog.html" class="hover:text-gray-500">Blog</a>
+      <a href="kontakt.html" class="hover:text-gray-500">Kontakt</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-gray-900 px-5 font-semibold text-white hover:bg-gray-700 sm:px-6">Zapisz się</a>
+      <button class="rounded-md p-2 text-gray-600 lg:hidden" aria-label="Otwórz menu">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- panel: Kursy -->
+  <div id="mm-kursy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+          <p class="text-base text-gray-500">Kursy roczne</p>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika 3D</span><span class="text-sm text-gray-500">Modelowanie i rendering · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Web Designer UI/UX</span><span class="text-sm text-gray-500">Projekt interfejsów w Figmie · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika DTP</span><span class="text-sm text-gray-500">Publikacje do druku · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Graphic Designer</span><span class="text-sm text-gray-500">Identyfikacja i reklama · wrzesień–czerwiec</span></span></a></li>
+          </ul>
+        </div>
+        <div class="lg:border-l lg:border-gray-200 lg:pl-10">
+          <p class="text-base text-gray-500">Kursy krótkie</p>
+          <ul class="mt-4 space-y-2">
+            <li><a href="kursy-krotkie.html?sort=date" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Aktualne terminy</span><span class="text-sm text-gray-500">Grupy z potwierdzonym startem</span></a></li>
+            <li><a href="kursy-krotkie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Katalog kursów</span><span class="text-sm text-gray-500">Wszystkie tematy</span></a></li>
+            <li><a href="dla-firm.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kurs w Twoim terminie</span><span class="text-sm text-gray-500">Indywidualnie lub dla zespołu</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-gray-100 px-5 py-4">
+        <p><span class="font-semibold">Nabór 2026/27 otwarty</span> <span class="text-gray-600">· nie wiesz, który kurs wybrać?</span></p>
+        <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center rounded-full border border-gray-900 px-5 font-semibold hover:bg-gray-900 hover:text-white">Porównaj kursy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- panel: Zapisy -->
+  <div id="mm-zapisy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="jak-sie-zapisac.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Nabór</span><span class="text-sm text-gray-500">Terminy, wymagania, jak się zapisać</span></a></li>
+      <li><a href="dofinansowanie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Dofinansowania</span><span class="text-sm text-gray-500">Urząd Pracy, KFS, pożyczka</span></a></li>
+    </ul>
+  </div>
+
+  <!-- panel: O nas -->
+  <div id="mm-onas" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="o-szkole.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">O szkole</span><span class="text-sm text-gray-500">Historia, uprawnienia, siedziba</span></a></li>
+      <li><a href="kadra.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kadra</span><span class="text-sm text-gray-500">Kto prowadzi zajęcia</span></a></li>
+      <li><a href="prace-absolwentow.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Prace absolwentów</span><span class="text-sm text-gray-500">Galeria portfolio</span></a></li>
+    </ul>
+  </div>
+</header>
+<script>
+(()=>{const btns=[...document.querySelectorAll('[data-menu]')];
+const close=()=>btns.forEach(b=>{document.getElementById(b.dataset.menu).hidden=true;b.setAttribute('aria-expanded','false');b.querySelector('[data-chev]').style.transform=''});
+btns.forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const p=document.getElementById(b.dataset.menu),open=p.hidden;close();if(open){p.hidden=false;b.setAttribute('aria-expanded','true');b.querySelector('[data-chev]').style.transform='rotate(180deg)'}}));
+document.addEventListener('click',e=>{if(!e.target.closest('[data-panel]'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
+</script>
+
+<main>
+<!-- ============ breadcrumbs ============ -->
+<nav aria-label="Okruszki" class="bg-white"><ol class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-2 pt-6 text-sm text-gray-500"><li><a href="wireframe-home.html" class="underline-offset-4 hover:text-gray-900 hover:underline">Strona główna</a></li><li aria-hidden="true">›</li><li aria-current="page" class="font-medium text-gray-900">Kadra</li></ol></nav>
+<!-- ============ hero ============ -->
+<section class="bg-white"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid items-center gap-12 py-12 lg:grid-cols-[48fr_52fr] lg:py-16">
+  <div><p class="tag text-gray-400">hero</p><div class="mt-3"></div>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Uczą praktycy</h1>
+    <p class="mt-6 text-base leading-normal text-gray-600">Graficy, projektanci, programiści i poligrafowie, którzy pracują w zawodzie. Uczysz się od ludzi, którzy na co dzień robią to, czego uczą.</p></div>
+  <div class="ph flex aspect-[4/3] items-center justify-center rounded-2xl border border-gray-300"><span class="tag text-gray-500">obraz 52%</span></div>
+</div></section>
+<section class="bg-gray-50 py-12"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><p class="tag text-gray-400">filtr po kierunku</p><div class="mt-4"><nav aria-label="Filtr" data-filter="kierunek" data-target="#people" data-default=""><ul class="flex flex-wrap justify-center gap-3"><li><a href="?kierunek=" data-cat="" class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Wszystkie</a></li><li><a href="?kierunek=dtp" data-cat="dtp" class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">DTP</a></li><li><a href="?kierunek=web" data-cat="web" class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Web</a></li><li><a href="?kierunek=3d" data-cat="3d" class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">3D</a></li><li><a href="?kierunek=graphic" data-cat="graphic" class="inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Graphic</a></li></ul></nav></div><ul id="people" class="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4"><li data-cat="dtp"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr Ludmiła Mikołajczyk</p><p class="text-base text-gray-500">Grafik DTP · InDesign</p><p class="mt-2 text-base text-gray-600">Kursy: DTP</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="web"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">dr Justyna Kraszewska-Kozik</p><p class="text-base text-gray-500">UX designer · UI/UX</p><p class="mt-2 text-base text-gray-600">Kursy: Web</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="3d"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr Anastasiia Dudina</p><p class="text-base text-gray-500">Grafik 3D · Blender</p><p class="mt-2 text-base text-gray-600">Kursy: 3D</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="graphic"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr Natalia Mazurkiewicz-Szafarska</p><p class="text-base text-gray-500">Grafik reklamowy · media cyfrowe</p><p class="mt-2 text-base text-gray-600">Kursy: Graphic</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="web dtp"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr inż. Jan Ślebodziński</p><p class="text-base text-gray-500">Web designer · Webflow, WordPress</p><p class="mt-2 text-base text-gray-600">Kursy: Web, DTP</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="3d"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr Karolina Gorączko</p><p class="text-base text-gray-500">Grafik 3D · wizualizacje i animacje</p><p class="mt-2 text-base text-gray-600">Kursy: 3D</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="graphic"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">dr hab. Magda Szplit-Królikowska</p><p class="text-base text-gray-500">Artystka grafik · animacja 2D</p><p class="mt-2 text-base text-gray-600">Kursy: Graphic</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li><li data-cat="dtp"><a href="kadra.html" class="block rounded-2xl border border-gray-300 bg-white p-4 hover:border-gray-900"><div class="ph aspect-[4/5] rounded-lg"></div><p class="mt-3 font-semibold">mgr Agnieszka Sieprawska</p><p class="text-base text-gray-500">Grafik DTP · opakowania</p><p class="mt-2 text-base text-gray-600">Kursy: DTP</p><span class="mt-3 inline-block text-sm font-semibold underline">Biogram ›</span></a></li></ul></div></section>
+
+</main>
+<script>
+document.querySelectorAll('[data-filter]').forEach(nav=>{
+ const key=nav.dataset.filter,def=nav.dataset.default||'',chips=[...nav.querySelectorAll('a[data-cat]')],items=[...document.querySelectorAll(nav.dataset.target+' [data-cat]')];
+ function render(){const v=new URLSearchParams(location.search).get(key)||def;
+  chips.forEach(c=>{const on=c.dataset.cat===v;c.classList.toggle('bg-gray-900',on);c.classList.toggle('text-white',on);c.classList.toggle('border-gray-900',on);c.classList.toggle('bg-white',!on);on?c.setAttribute('aria-current','true'):c.removeAttribute('aria-current')});
+  let n=0;items.forEach(i=>{const s=v===''||i.dataset.cat.split(' ').includes(v);i.hidden=!s;n+=s});
+  const cnt=document.querySelector(nav.dataset.target+'-count');if(cnt)cnt.textContent=n;}
+ chips.forEach(c=>c.addEventListener('click',e=>{e.preventDefault();const q=new URLSearchParams(location.search);c.dataset.cat?q.set(key,c.dataset.cat):q.delete(key);history.pushState(null,'','?'+q);render()}));
+ addEventListener('popstate',render);render();});
+</script>
+
+<!-- ============ site-footer (wersja Marcina) ============ -->
+<footer class="bg-gray-800 text-gray-300">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-3"><div class="h-12 w-12 rounded-full bg-gray-500"></div><span class="text-2xl font-bold text-white">publishing school</span></div>
+        <p class="mt-2 text-gray-400">Szkoła grafiki komputerowej</p>
+      </div>
+      <a href="https://www.facebook.com/" class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600" aria-label="Facebook">f</a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-y border-gray-600 py-6">
+      <p class="text-base text-white">Prowadzisz firmę? Zobacz ofertę szkoleń dla zespołów</p>
+      <a href="dla-firm.html" class="rounded-full bg-white px-6 py-3 font-semibold text-gray-900 hover:bg-gray-200">Dla firm (B2B)</a>
+    </div>
+
+    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+      <address class="not-italic leading-7 lg:col-span-2">
+        „Publishing School” Placówka Kształcenia Ustawicznego<br>
+        31-572 Kraków<br>ul. Kosynierów 15B, II piętro
+        <p class="mt-4">Sekretariat: pon–pt, 12:30–18:30<br>Telefon: codziennie, 9:00–20:00</p>
+        <p class="mt-4"><a href="mailto:sekretariat@publishingschool.pl" class="text-white underline underline-offset-4">sekretariat@publishingschool.pl</a></p>
+        <p><a href="tel:+48504068626" class="text-white underline underline-offset-4">+48 504 068 626</a></p>
+      </address>
+      <nav aria-label="Kursy"><h3 class="font-semibold text-white">Kursy</h3>
+        <ul class="mt-4 space-y-3"><li><a href="kurs-roczny.html" class="hover:text-white">Grafika 3D</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Web Designer UI/UX</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafika DTP</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafik reklamy</a></li><li><a href="kursy-krotkie.html" class="hover:text-white">Kursy krótkie</a></li></ul></nav>
+      <nav aria-label="Rekrutacja"><h3 class="font-semibold text-white">Rekrutacja</h3>
+        <ul class="mt-4 space-y-3"><li><a href="jak-sie-zapisac.html" class="hover:text-white">Jak się zapisać</a></li><li><a href="jak-sie-zapisac.html" class="hover:text-white">Formularz zapisu</a></li><li><a href="dofinansowanie.html" class="hover:text-white">Dofinansowanie kursów</a></li></ul></nav>
+      <nav aria-label="O nas"><h3 class="font-semibold text-white">O nas</h3>
+        <ul class="mt-4 space-y-3"><li><a href="o-szkole.html" class="hover:text-white">O szkole</a></li><li><a href="kadra.html" class="hover:text-white">Kadra</a></li><li><a href="prace-absolwentow.html" class="hover:text-white">Prace absolwentów</a></li><li><a href="blog.html" class="hover:text-white">Blog</a></li><li><a href="kontakt.html" class="hover:text-white">Kontakt</a></li></ul></nav>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-between gap-4 border-t border-gray-700 pt-6 text-sm text-gray-400">
+      <p>© 2026 Publishing School · Rejestr MEN nr 277460</p>
+      <div class="flex flex-wrap gap-6"><a href="mapa-makiet.html" class="hover:text-white">Mapa makiet</a><a href="mapa-makiet.html" class="hover:text-white">Polityka prywatności</a><a href="mapa-makiet.html" class="hover:text-white">RODO</a><a href="mapa-makiet.html" class="hover:text-white">Procedura reklamacyjna</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

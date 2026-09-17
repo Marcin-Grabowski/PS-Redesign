@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo-fi · Katalog kursów krótkich</title>
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<style>
+  .ph{background:repeating-linear-gradient(45deg,#e5e7eb 0 10px,#f3f4f6 10px 20px)}
+  .tag{font:600 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  [hidden]{display:none!important}
+</style>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply text-base leading-normal; }
+    p { @apply text-base leading-normal; }
+  }
+</style>
+</head>
+<body class="bg-gray-100 text-gray-900 antialiased">
+
+<!-- ============ site-header (sticky, mega menu — wersja Marcina) ============ -->
+<header class="sticky top-0 z-50 border-b border-gray-300 bg-white">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="wireframe-home.html" class="flex items-center gap-2" aria-label="Publishing School, strona główna">
+      <div class="h-10 w-10 rounded-full bg-gray-400"></div>
+      <span class="text-xl font-bold leading-5">publishing<br>school</span>
+    </a>
+    <nav class="hidden items-center gap-8 font-medium lg:flex" aria-label="Główna">
+      <button data-menu="mm-kursy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-kursy">Kursy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button data-menu="mm-zapisy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-zapisy">Zapisy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="dla-firm.html" class="hover:text-gray-500">Dla firm</a>
+      <button data-menu="mm-onas" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-onas">O nas <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="blog.html" class="hover:text-gray-500">Blog</a>
+      <a href="kontakt.html" class="hover:text-gray-500">Kontakt</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-gray-900 px-5 font-semibold text-white hover:bg-gray-700 sm:px-6">Zapisz się</a>
+      <button class="rounded-md p-2 text-gray-600 lg:hidden" aria-label="Otwórz menu">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- panel: Kursy -->
+  <div id="mm-kursy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+          <p class="text-base text-gray-500">Kursy roczne</p>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika 3D</span><span class="text-sm text-gray-500">Modelowanie i rendering · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Web Designer UI/UX</span><span class="text-sm text-gray-500">Projekt interfejsów w Figmie · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika DTP</span><span class="text-sm text-gray-500">Publikacje do druku · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Graphic Designer</span><span class="text-sm text-gray-500">Identyfikacja i reklama · wrzesień–czerwiec</span></span></a></li>
+          </ul>
+        </div>
+        <div class="lg:border-l lg:border-gray-200 lg:pl-10">
+          <p class="text-base text-gray-500">Kursy krótkie</p>
+          <ul class="mt-4 space-y-2">
+            <li><a href="kursy-krotkie.html?sort=date" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Aktualne terminy</span><span class="text-sm text-gray-500">Grupy z potwierdzonym startem</span></a></li>
+            <li><a href="kursy-krotkie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Katalog kursów</span><span class="text-sm text-gray-500">Wszystkie tematy</span></a></li>
+            <li><a href="dla-firm.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kurs w Twoim terminie</span><span class="text-sm text-gray-500">Indywidualnie lub dla zespołu</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-gray-100 px-5 py-4">
+        <p><span class="font-semibold">Nabór 2026/27 otwarty</span> <span class="text-gray-600">· nie wiesz, który kurs wybrać?</span></p>
+        <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center rounded-full border border-gray-900 px-5 font-semibold hover:bg-gray-900 hover:text-white">Porównaj kursy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- panel: Zapisy -->
+  <div id="mm-zapisy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="jak-sie-zapisac.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Nabór</span><span class="text-sm text-gray-500">Terminy, wymagania, jak się zapisać</span></a></li>
+      <li><a href="dofinansowanie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Dofinansowania</span><span class="text-sm text-gray-500">Urząd Pracy, KFS, pożyczka</span></a></li>
+    </ul>
+  </div>
+
+  <!-- panel: O nas -->
+  <div id="mm-onas" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="o-szkole.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">O szkole</span><span class="text-sm text-gray-500">Historia, uprawnienia, siedziba</span></a></li>
+      <li><a href="kadra.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kadra</span><span class="text-sm text-gray-500">Kto prowadzi zajęcia</span></a></li>
+      <li><a href="prace-absolwentow.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Prace absolwentów</span><span class="text-sm text-gray-500">Galeria portfolio</span></a></li>
+    </ul>
+  </div>
+</header>
+<script>
+(()=>{const btns=[...document.querySelectorAll('[data-menu]')];
+const close=()=>btns.forEach(b=>{document.getElementById(b.dataset.menu).hidden=true;b.setAttribute('aria-expanded','false');b.querySelector('[data-chev]').style.transform=''});
+btns.forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const p=document.getElementById(b.dataset.menu),open=p.hidden;close();if(open){p.hidden=false;b.setAttribute('aria-expanded','true');b.querySelector('[data-chev]').style.transform='rotate(180deg)'}}));
+document.addEventListener('click',e=>{if(!e.target.closest('[data-panel]'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
+</script>
+
+
+
+<main>
+
+<!-- ============ breadcrumbs ============ -->
+<nav aria-label="Okruszki" class="bg-white">
+  <ol class="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 pt-6 text-sm text-gray-500 sm:px-6 lg:px-8">
+    <li><a href="wireframe-home.html" class="underline-offset-4 hover:text-gray-900 hover:underline">Strona główna</a></li>
+    <li aria-hidden="true">›</li>
+    <li id="crumb-all" aria-current="page" class="font-medium text-gray-900">Kursy krótkie</li><li id="crumb-sep" hidden aria-hidden="true">›</li><li id="crumb-cat" hidden aria-current="page" class="font-medium text-gray-900"></li>
+  </ol>
+</nav>
+
+<!-- ============ hero + funding-status frame ============ -->
+<section class="bg-white">
+  <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 lg:px-8">
+    <span id="hero-badge" hidden class="inline-block rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Kursy krótkie</span>
+    <h1 id="hero-h" class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Kursy krótkie</h1>
+    <p id="hero-p" class="mt-5 text-base leading-normal text-gray-600">Jeden temat, kilka dni nauki, certyfikat na koniec. Wybierz kategorię i zacznij w najbliższy weekend.</p>
+
+    <!-- funding frame: status sterowany z CMS
+         warianty statusu: "Nabór otwarty" (kropka pełna) · "Nabór wkrótce" (kropka obrys) · "Nabór zamknięty" (kropka przekreślona) -->
+    <aside aria-labelledby="fund-h" class="mx-auto mt-10 flex flex-col gap-4 rounded-2xl border border-gray-300 bg-gray-50 p-5 text-left sm:flex-row sm:items-center sm:justify-between sm:p-6">
+      <div>
+        <p class="inline-flex items-center gap-2 rounded-full bg-gray-900 px-3 py-1 text-base font-semibold text-white">
+          <span class="h-2 w-2 rounded-full bg-white" aria-hidden="true"></span>Status: nabór KFS 2026 otwarty
+        </p>
+        <h2 id="fund-h" class="mt-3 text-lg font-semibold">Kurs może opłacić pracodawca albo urząd pracy</h2>
+        <p class="mt-1 text-base text-gray-600">Sprawdź, czy się kwalifikujesz. Dokumenty do wniosku przygotujemy w 24 h.</p>
+      </div>
+      <a href="dofinansowanie.html" class="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border border-gray-900 bg-white px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Sprawdź dofinansowanie ›</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ category-chips: osobna sekcja + sort ============ -->
+<section aria-labelledby="cat-h" class="border-y border-gray-200 bg-gray-50 py-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 id="cat-h" class="text-center text-2xl font-bold tracking-tight">Wybierz rodzaj kursu</h2>
+    <p class="mt-2 text-center text-gray-600">6 kategorii, ponad 30 tematów.</p>
+    <div class="mt-6">
+    <nav aria-label="Kategorie kursów">
+      <ul class="flex flex-wrap justify-center gap-3">
+      <li><a href="?" data-cat="" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Wszystkie</a></li>
+      <li><a href="?kategoria=3d" data-cat="3d" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Grafika 3D i animacja</a></li>
+      <li><a href="?kategoria=uiux" data-cat="uiux" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Web i UX</a></li>
+      <li><a href="?kategoria=dtp" data-cat="dtp" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Druk i DTP</a></li>
+      <li><a href="?kategoria=adobe" data-cat="adobe" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Grafika i Adobe</a></li>
+      <li><a href="?kategoria=social" data-cat="social" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Social media i marketing</a></li>
+      <li><a href="?kategoria=wideo" data-cat="wideo" class="chip inline-flex min-h-11 items-center rounded-full border border-gray-300 bg-white px-5 text-sm font-medium hover:border-gray-900">Wideo i gry</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-base text-gray-600" aria-live="polite"><span id="count" class="font-semibold text-gray-900">10</span> kursów</p>
+      <label class="flex items-center gap-2 text-sm">
+        <span class="text-gray-600">Sortuj:</span>
+        <select id="sort" class="min-h-11 rounded-lg border border-gray-300 bg-white px-3 font-medium">
+          <option value="date">Najbliższy termin</option>
+          <option value="az">Nazwa A–Z</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ============ course-grid ============ -->
+<section class="bg-gray-50 py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <ul id="grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <li data-cat="dtp" data-date="2026-09-16" data-name="Techniki drukowania i drukarnie bez tajemnic" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Druk i DTP</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Techniki drukowania i drukarnie bez tajemnic</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">16.09.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="adobe" data-date="2026-09-18" data-name="Illustrator od podstaw" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Grafika i Adobe</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Illustrator od podstaw</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">18.09.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="social" data-date="2026-09-23" data-name="Canva: grafiki, rolki i animacje do social mediów" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Social media i marketing</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Canva: grafiki, rolki i animacje do social mediów</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">23.09.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="dtp" data-date="2026-09-24" data-name="Typografia w pracy grafika komputerowego" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Druk i DTP</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Typografia w pracy grafika komputerowego</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">24.09.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="adobe" data-date="2026-10-02" data-name="Photoshop dla początkujących" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Grafika i Adobe</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Photoshop dla początkujących</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">02.10.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="social" data-date="2026-10-05" data-name="Copywriting w praktyce" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Social media i marketing</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Copywriting w praktyce</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">05.10.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="3d" data-date="2026-10-17" data-name="Blender 3D od podstaw" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Grafika 3D i animacja</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Blender 3D od podstaw</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">17.10.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">870 zł</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="adobe" data-date="2026-10-17" data-name="InDesign dla początkujących" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Grafika i Adobe</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">InDesign dla początkujących</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">17.10.2026</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">760 zł</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zobacz szczegóły</a>
+        </article>
+      </li>
+      <li data-cat="uiux" data-date="9999-01-01" data-name="Kurs UX: User Experience" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Web i UX</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Kurs UX: User Experience</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">Zapytaj o termin</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">530 zł</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zapytaj o termin</a>
+        </article>
+      </li>
+      <li data-cat="wideo" data-date="9999-01-02" data-name="Unreal Engine 5: tworzenie gier" class="card relative">
+        <article class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 hover:border-gray-900">
+          <div class="ph aspect-[3/2] rounded-lg"></div>
+          <span class="mt-4 w-fit rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Wideo i gry</span>
+          <h3 class="mt-3 text-lg font-semibold"><a href="kurs-krotki.html" class="after:absolute after:inset-0">Unreal Engine 5: tworzenie gier</a></h3>
+          <dl class="mt-3 flex-1 space-y-1 text-sm text-gray-600">
+            <div class="flex justify-between gap-4"><dt>Najbliższy termin</dt><dd class="font-medium text-gray-900">Zapytaj o termin</dd></div>
+            <div class="flex justify-between gap-4"><dt>Cena</dt><dd class="font-medium text-gray-900">Zapytaj o cenę</dd></div>
+          </dl>
+          <a href="kurs-krotki.html" class="relative z-10 mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-gray-900 px-5 text-sm font-semibold hover:bg-gray-900 hover:text-white">Zapytaj o termin</a>
+        </article>
+      </li>
+    </ul>
+    <p id="empty" hidden class="py-16 text-center text-gray-600">Brak kursów w tej kategorii. <a href="?" class="font-semibold underline underline-offset-4">Pokaż wszystkie</a></p>
+  </div>
+</section>
+
+<!-- ============ funding-strip ============ -->
+<section class="bg-white py-10">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 text-center sm:px-6 lg:px-8">
+    <p class="text-base">Kurs krótki może opłacić Twój pracodawca z <strong>KFS</strong> albo urząd pracy.</p>
+    <a href="dofinansowanie.html" class="font-semibold underline underline-offset-4">Sprawdź możliwe dofinansowania ›</a>
+  </div>
+</section>
+
+<!-- ============ about: zaufanie przed CTA ============ -->
+<section aria-labelledby="about-h" class="border-t border-gray-200 bg-white py-20">
+  <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+    <div class="ph flex aspect-[4/3] items-center justify-center rounded-2xl border border-gray-300" role="img" aria-label="Zdjęcie z zajęć w pracowni">
+      <span class="tag text-gray-500">zdjęcie z zajęć</span>
+    </div>
+    <div>
+      <span class="inline-block rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">O szkole</span>
+      <h2 id="about-h" class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Uczysz się u praktyków, w małych grupach</h2>
+      <p class="mt-5 text-base text-gray-600">Od 1998 roku szkolimy grafików w Krakowie. Zajęcia prowadzą projektanci, którzy pracują w zawodzie, a każdy kurs kończy się pracą, którą pokażesz w portfolio albo wykorzystasz w firmie.</p>
+      <dl class="mt-8 grid grid-cols-3 gap-4 border-y border-gray-200 py-6">
+        <div><dt class="text-sm text-gray-500">Doświadczenie</dt><dd class="mt-1 text-2xl font-bold">28 lat</dd></div>
+        <div><dt class="text-sm text-gray-500">Wyróżnienie</dt><dd class="mt-1 text-2xl font-bold">Orły Edukacji</dd></div>
+        <div><dt class="text-sm text-gray-500">Certyfikat</dt><dd class="mt-1 text-2xl font-bold">Z hologramem</dd></div>
+      </dl>
+      <ul class="mt-6 space-y-2 text-gray-700">
+        <li class="flex gap-3"><span aria-hidden="true">✓</span>Certyfikat z hologramem szkoły po każdym kursie</li>
+        <li class="flex gap-3"><span aria-hidden="true">✓</span>Zajęcia w weekendy, online albo w Krakowie</li>
+      </ul>
+      <a href="o-szkole.html" class="mt-8 inline-block font-semibold underline underline-offset-4">Poznaj szkołę i kadrę ›</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ cta-final (kontakt dla niezdecydowanych, styl jak home) ============ -->
+<section class="bg-white pb-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-gray-200 px-6 py-10 text-center sm:px-12">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Nie wiesz, który kurs wybrać?</h2>
+      <p class="mx-auto mt-4 max-w-3xl text-base text-gray-700">Sekretariat pomoże dobrać kurs do Twojego poziomu i ustali termin dla Ciebie lub zespołu.</p>
+      <p class="mt-6 text-gray-700">Masz pytania? Zadzwoń: <a href="tel:+48504068626" class="font-semibold text-gray-900 underline-offset-4 hover:underline">+48 504 068 626</a></p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <a href="kontakt.html" class="inline-flex min-h-11 items-center rounded-full bg-gray-900 px-6 py-3 font-semibold text-white hover:bg-gray-700">Zadaj pytanie</a>
+        <a href="dla-firm.html" class="inline-flex min-h-11 items-center rounded-full border border-gray-900 px-6 py-3 font-semibold text-gray-900 hover:bg-gray-900 hover:text-white">Zamów kurs w swoim terminie</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<script>
+(()=>{const grid=document.getElementById('grid'),chips=[...document.querySelectorAll('.chip')],sort=document.getElementById('sort');
+const HERO={'':{b:'',h:'Kursy krótkie',p:'Jeden temat, kilka dni nauki, certyfikat na koniec. Wybierz kategorię i zacznij w najbliższy weekend.'},
+ '3d':{b:'Grafika 3D i animacja',h:'Kursy grafiki 3D i animacji',p:'Modelowanie w Blenderze, rzeźbienie postaci w Mudboxie i animacja w After Effects. Od pierwszej bryły do renderu w portfolio.'},
+ 'uiux':{b:'Web i UX',h:'Kursy UX, UI i stron www',p:'Badania z użytkownikami, projekt interfejsu i strona w Webflow albo WordPressie. Umiejętności, których szukają software house’y i agencje.'},
+ 'dtp':{b:'Druk i DTP',h:'Kursy DTP i przygotowania do druku',p:'Typografia, materiały i techniki druku. Przygotujesz pliki, które drukarnia przyjmie bez poprawek.'},
+ 'adobe':{b:'Grafika i Adobe',h:'Kursy Photoshop, Illustrator i InDesign',p:'Od pierwszej retuszowanej fotografii po skład książki. Wybierz program i poziom: od początkującego do zaawansowanego.'},
+ 'social':{b:'Social media i marketing',h:'Kursy grafiki do social mediów i marketingu',p:'Grafiki i rolki w Canvie, teksty, które sprzedają, i podstawy marketingu. Na efekty nie czekasz miesiącami.'},
+ 'wideo':{b:'Wideo i gry',h:'Kursy wideo i tworzenia gier',p:'Montaż w Final Cut Pro X i pierwsza gra w Unreal Engine 5. Ucz się narzędzi, w których powstają filmy i gry.'}};
+function hero(cat){const d=HERO[cat]||HERO[''],on=!!cat;
+ document.getElementById('hero-h').textContent=d.h;document.getElementById('hero-p').textContent=d.p;
+ const b=document.getElementById('hero-badge');b.hidden=!on;b.textContent='Kursy krótkie · '+d.b;
+ const all=document.getElementById('crumb-all'),c=document.getElementById('crumb-cat');
+ all.innerHTML=on?'<a href="?" class="underline-offset-4 hover:text-gray-900 hover:underline">Kursy krótkie</a>':'Kursy krótkie';
+ all.className=on?'':'font-medium text-gray-900';on?all.removeAttribute('aria-current'):all.setAttribute('aria-current','page');
+ document.getElementById('crumb-sep').hidden=!on;c.hidden=!on;c.textContent=d.b;
+ document.title='Lo-fi · '+d.h;
+ all.querySelector('a')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('.chip[data-cat=""]').click()});}
+function render(){const q=new URLSearchParams(location.search),cat=q.get('kategoria')||'',s=q.get('sort')||'date';sort.value=s;
+ chips.forEach(c=>{const on=c.dataset.cat===cat;c.classList.toggle('bg-gray-900',on);c.classList.toggle('text-white',on);c.classList.toggle('border-gray-900',on);c.classList.toggle('bg-white',!on);on?c.setAttribute('aria-current','page'):c.removeAttribute('aria-current')});
+ const cards=[...grid.children];cards.sort((a,b)=>s==='az'?a.dataset.name.localeCompare(b.dataset.name,'pl'):a.dataset.date.localeCompare(b.dataset.date)).forEach(c=>grid.appendChild(c));
+ let n=0;cards.forEach(c=>{const v=!cat||c.dataset.cat===cat;c.hidden=!v;n+=v});
+ document.getElementById('count').textContent=n;document.getElementById('empty').hidden=n>0;hero(cat);}
+function go(params){const q=new URLSearchParams(location.search);for(const k in params)params[k]?q.set(k,params[k]):q.delete(k);history.pushState(null,'','?'+q);render()}
+chips.forEach(c=>c.addEventListener('click',e=>{e.preventDefault();go({kategoria:c.dataset.cat})}));
+sort.addEventListener('change',()=>go({sort:sort.value}));
+addEventListener('popstate',render);render();})();
+</script>
+
+
+<!-- ============ site-footer (wersja Marcina) ============ -->
+<footer class="bg-gray-800 text-gray-300">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-3"><div class="h-12 w-12 rounded-full bg-gray-500"></div><span class="text-2xl font-bold text-white">publishing school</span></div>
+        <p class="mt-2 text-gray-400">Szkoła grafiki komputerowej</p>
+      </div>
+      <a href="https://www.facebook.com/" class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600" aria-label="Facebook">f</a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-y border-gray-600 py-6">
+      <p class="text-base text-white">Prowadzisz firmę? Zobacz ofertę szkoleń dla zespołów</p>
+      <a href="dla-firm.html" class="rounded-full bg-white px-6 py-3 font-semibold text-gray-900 hover:bg-gray-200">Dla firm (B2B)</a>
+    </div>
+
+    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+      <address class="not-italic leading-7 lg:col-span-2">
+        „Publishing School” Placówka Kształcenia Ustawicznego<br>
+        31-572 Kraków<br>ul. Kosynierów 15B, II piętro
+        <p class="mt-4">Sekretariat: pon–pt, 12:30–18:30<br>Telefon: codziennie, 9:00–20:00</p>
+        <p class="mt-4"><a href="mailto:sekretariat@publishingschool.pl" class="text-white underline underline-offset-4">sekretariat@publishingschool.pl</a></p>
+        <p><a href="tel:+48504068626" class="text-white underline underline-offset-4">+48 504 068 626</a></p>
+      </address>
+      <nav aria-label="Kursy"><h3 class="font-semibold text-white">Kursy</h3>
+        <ul class="mt-4 space-y-3"><li><a href="kurs-roczny.html" class="hover:text-white">Grafika 3D</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Web Designer UI/UX</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafika DTP</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafik reklamy</a></li><li><a href="kursy-krotkie.html" class="hover:text-white">Kursy krótkie</a></li></ul></nav>
+      <nav aria-label="Rekrutacja"><h3 class="font-semibold text-white">Rekrutacja</h3>
+        <ul class="mt-4 space-y-3"><li><a href="jak-sie-zapisac.html" class="hover:text-white">Jak się zapisać</a></li><li><a href="jak-sie-zapisac.html" class="hover:text-white">Formularz zapisu</a></li><li><a href="dofinansowanie.html" class="hover:text-white">Dofinansowanie kursów</a></li></ul></nav>
+      <nav aria-label="O nas"><h3 class="font-semibold text-white">O nas</h3>
+        <ul class="mt-4 space-y-3"><li><a href="o-szkole.html" class="hover:text-white">O szkole</a></li><li><a href="kadra.html" class="hover:text-white">Kadra</a></li><li><a href="prace-absolwentow.html" class="hover:text-white">Prace absolwentów</a></li><li><a href="blog.html" class="hover:text-white">Blog</a></li><li><a href="kontakt.html" class="hover:text-white">Kontakt</a></li></ul></nav>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-between gap-4 border-t border-gray-700 pt-6 text-sm text-gray-400">
+      <p>© 2026 Publishing School · Rejestr MEN nr 277460</p>
+      <div class="flex flex-wrap gap-6"><a href="mapa-makiet.html" class="hover:text-white">Mapa makiet</a><a href="mapa-makiet.html" class="hover:text-white">Polityka prywatności</a><a href="mapa-makiet.html" class="hover:text-white">RODO</a><a href="mapa-makiet.html" class="hover:text-white">Procedura reklamacyjna</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

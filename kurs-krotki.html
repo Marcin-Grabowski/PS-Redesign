@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo-fi · Kurs krótki (Szablon B)</title>
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<style>
+  .ph{background:repeating-linear-gradient(45deg,#e5e7eb 0 10px,#f3f4f6 10px 20px)}
+  .tag{font:600 10px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+</style>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply text-base leading-normal; }
+    p { @apply text-base leading-normal; }
+  }
+</style>
+</head>
+<body class="bg-gray-100 text-gray-900 antialiased">
+<!-- ============ site-header (sticky, mega menu — wersja Marcina) ============ -->
+<header class="sticky top-0 z-50 border-b border-gray-300 bg-white">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="wireframe-home.html" class="flex items-center gap-2" aria-label="Publishing School, strona główna">
+      <div class="h-10 w-10 rounded-full bg-gray-400"></div>
+      <span class="text-xl font-bold leading-5">publishing<br>school</span>
+    </a>
+    <nav class="hidden items-center gap-8 font-medium lg:flex" aria-label="Główna">
+      <button data-menu="mm-kursy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-kursy">Kursy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button data-menu="mm-zapisy" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-zapisy">Zapisy <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="dla-firm.html" class="hover:text-gray-500">Dla firm</a>
+      <button data-menu="mm-onas" class="flex items-center gap-2 aria-expanded:text-gray-500" aria-expanded="false" aria-controls="mm-onas">O nas <svg data-chev class="h-4 w-4 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <a href="blog.html" class="hover:text-gray-500">Blog</a>
+      <a href="kontakt.html" class="hover:text-gray-500">Kontakt</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-gray-900 px-5 font-semibold text-white hover:bg-gray-700 sm:px-6">Zapisz się</a>
+      <button class="rounded-md p-2 text-gray-600 lg:hidden" aria-label="Otwórz menu">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- panel: Kursy -->
+  <div id="mm-kursy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+          <p class="text-base text-gray-500">Kursy roczne</p>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika 3D</span><span class="text-sm text-gray-500">Modelowanie i rendering · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Web Designer UI/UX</span><span class="text-sm text-gray-500">Projekt interfejsów w Figmie · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Grafika DTP</span><span class="text-sm text-gray-500">Publikacje do druku · wrzesień–czerwiec</span></span></a></li>
+            <li><a href="kurs-roczny.html" class="flex gap-4 rounded-xl p-3 hover:bg-gray-100"><span class="h-12 w-12 shrink-0 rounded-lg bg-gray-300"></span><span><span class="block font-semibold">Graphic Designer</span><span class="text-sm text-gray-500">Identyfikacja i reklama · wrzesień–czerwiec</span></span></a></li>
+          </ul>
+        </div>
+        <div class="lg:border-l lg:border-gray-200 lg:pl-10">
+          <p class="text-base text-gray-500">Kursy krótkie</p>
+          <ul class="mt-4 space-y-2">
+            <li><a href="kursy-krotkie.html?sort=date" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Aktualne terminy</span><span class="text-sm text-gray-500">Grupy z potwierdzonym startem</span></a></li>
+            <li><a href="kursy-krotkie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Katalog kursów</span><span class="text-sm text-gray-500">Wszystkie tematy</span></a></li>
+            <li><a href="dla-firm.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kurs w Twoim terminie</span><span class="text-sm text-gray-500">Indywidualnie lub dla zespołu</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-gray-100 px-5 py-4">
+        <p><span class="font-semibold">Nabór 2026/27 otwarty</span> <span class="text-gray-600">· nie wiesz, który kurs wybrać?</span></p>
+        <a href="jak-sie-zapisac.html" class="inline-flex min-h-11 items-center rounded-full border border-gray-900 px-5 font-semibold hover:bg-gray-900 hover:text-white">Porównaj kursy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- panel: Zapisy -->
+  <div id="mm-zapisy" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="jak-sie-zapisac.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Nabór</span><span class="text-sm text-gray-500">Terminy, wymagania, jak się zapisać</span></a></li>
+      <li><a href="dofinansowanie.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Dofinansowania</span><span class="text-sm text-gray-500">Urząd Pracy, KFS, pożyczka</span></a></li>
+    </ul>
+  </div>
+
+  <!-- panel: O nas -->
+  <div id="mm-onas" data-panel hidden class="absolute inset-x-0 top-full border-b border-gray-300 bg-white shadow-xl">
+    <ul class="mx-auto grid max-w-7xl gap-2 px-4 py-8 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <li><a href="o-szkole.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">O szkole</span><span class="text-sm text-gray-500">Historia, uprawnienia, siedziba</span></a></li>
+      <li><a href="kadra.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Kadra</span><span class="text-sm text-gray-500">Kto prowadzi zajęcia</span></a></li>
+      <li><a href="prace-absolwentow.html" class="block rounded-xl p-3 hover:bg-gray-100"><span class="block font-semibold">Prace absolwentów</span><span class="text-sm text-gray-500">Galeria portfolio</span></a></li>
+    </ul>
+  </div>
+</header>
+<script>
+(()=>{const btns=[...document.querySelectorAll('[data-menu]')];
+const close=()=>btns.forEach(b=>{document.getElementById(b.dataset.menu).hidden=true;b.setAttribute('aria-expanded','false');b.querySelector('[data-chev]').style.transform=''});
+btns.forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const p=document.getElementById(b.dataset.menu),open=p.hidden;close();if(open){p.hidden=false;b.setAttribute('aria-expanded','true');b.querySelector('[data-chev]').style.transform='rotate(180deg)'}}));
+document.addEventListener('click',e=>{if(!e.target.closest('[data-panel]'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
+</script>
+
+<main>
+<!-- ============ breadcrumbs ============ -->
+<nav aria-label="Okruszki" class="bg-white"><ol class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-2 pt-6 text-sm text-gray-500"><li><a href="wireframe-home.html" class="underline-offset-4 hover:text-gray-900 hover:underline">Strona główna</a></li><li aria-hidden="true">›</li><li><a href="kursy-krotkie.html" class="underline-offset-4 hover:text-gray-900 hover:underline">Kursy krótkie</a></li><li aria-hidden="true">›</li><li><a href="kursy-krotkie.html?kategoria=3d" class="underline-offset-4 hover:text-gray-900 hover:underline">Grafika 3D i animacja</a></li><li aria-hidden="true">›</li><li aria-current="page" class="font-medium text-gray-900">Blender 3D od podstaw</li></ol></nav>
+<!-- ============ hero-course ============ -->
+<section class="bg-white"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid items-center gap-12 py-12 lg:grid-cols-[48fr_52fr] lg:py-16">
+  <div><p class="tag text-gray-400">hero-course</p><div class="mt-3"><span class="inline-block rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">Grafika 3D i animacja</span></div>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Blender 3D od podstaw</h1>
+    <p class="mt-6 text-base leading-normal text-gray-600">W trzy dni przejdziesz od pierwszego uruchomienia Blendera do gotowego renderu. Wymodelujesz, oteksturujesz i oświetlisz własną scenę, którą dodasz do portfolio.</p><div class="mt-6 flex flex-wrap gap-2 text-sm"><span class="rounded-full bg-gray-900 px-3 py-1 text-white">17.10.2026</span><span class="rounded-full bg-gray-200 px-3 py-1">Online · sob–nie 9:00–13:30</span></div><div class="mt-8"><a href="#zapis" class="inline-flex min-h-11 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white hover:bg-gray-700">Zapisz się na kurs</a></div></div>
+  <div class="ph flex aspect-[4/3] items-center justify-center rounded-2xl border border-gray-300"><span class="tag text-gray-500">obraz 52%</span></div>
+</div></section>
+<section class="border-y border-gray-300 bg-gray-50"><dl class="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-gray-300 sm:grid-cols-3 lg:grid-cols-5"><div class="bg-gray-50 px-6 py-6"><dt class="text-sm text-gray-500">Tryb</dt><dd class="mt-1 text-xl font-bold">Online</dd></div><div class="bg-gray-50 px-6 py-6"><dt class="text-sm text-gray-500">Czas trwania</dt><dd class="mt-1 text-xl font-bold">3 dni · 16 h</dd></div><div class="bg-gray-50 px-6 py-6"><dt class="text-sm text-gray-500">Cena</dt><dd class="mt-1 text-xl font-bold">870 zł</dd></div><div class="bg-gray-50 px-6 py-6"><dt class="text-sm text-gray-500">Poziom</dt><dd class="mt-1 text-xl font-bold">Od podstaw</dd></div><div class="bg-gray-50 px-6 py-6"><dt class="text-sm text-gray-500">Termin</dt><dd class="mt-1 text-xl font-bold">17.10.2026</dd></div></dl></section>
+<nav aria-label="Na tej stronie" class="sticky top-20 z-40 border-b border-gray-300 bg-white/95 backdrop-blur"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 overflow-x-auto"><ul class="flex gap-6 text-sm font-medium">
+<li><a href="#program" class="block border-b-2 border-gray-900 py-4">Program</a></li><li><a href="#dla-kogo" class="block py-4 text-gray-500 hover:text-gray-900">Dla kogo</a></li><li><a href="#cena" class="block py-4 text-gray-500 hover:text-gray-900">Cena</a></li><li><a href="#zapis" class="block py-4 text-gray-500 hover:text-gray-900">Zapis</a></li></ul></div></nav>
+<!-- ============ dla-kogo ============ -->
+<section id="dla-kogo" class="scroll-mt-36 bg-white py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><p class="tag text-gray-400">dla-kogo</p>
+  <h2 class="mt-2 text-3xl font-bold tracking-tight">Dla kogo jest ten kurs</h2>
+  <ul class="mt-8 grid gap-6 sm:grid-cols-3"><li class="flex gap-4"><span class="mt-1 h-7 w-7 shrink-0 rounded bg-gray-300"></span><div><p class="font-semibold">Zaczynasz od zera</p><p class="mt-1 text-gray-600">Nie potrzebujesz doświadczenia w grafice 3D</p></div></li><li class="flex gap-4"><span class="mt-1 h-7 w-7 shrink-0 rounded bg-gray-300"></span><div><p class="font-semibold">Chcesz pokazać produkt w 3D</p><p class="mt-1 text-gray-600">Wizualizacje do sklepu, social mediów i prezentacji</p></div></li><li class="flex gap-4"><span class="mt-1 h-7 w-7 shrink-0 rounded bg-gray-300"></span><div><p class="font-semibold">Myślisz o pracy grafika 3D</p><p class="mt-1 text-gray-600">Kurs to pierwszy krok i pierwsza praca w portfolio</p></div></li></ul>
+</div></section>
+<!-- ============ program · split 36/64 ============ -->
+<section id="program" class="scroll-mt-36 bg-gray-50 py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[36fr_64fr]">
+  <div><p class="tag text-gray-400">program</p><h2 class="mt-2 text-3xl font-bold tracking-tight">Program</h2><p class="mt-4 text-gray-600">3 moduły · 16 h</p></div>
+  <div><div class="divide-y divide-gray-300 border-y border-gray-300"><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Moduł 1 · Interfejs i modelowanie <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-800 text-white transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Poruszanie się po programie i modelowanie low poly. Budujesz pierwsze obiekty sceny.</p></details><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Moduł 2 · Materiały i światło <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-800 text-white transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Teksturowanie, shadery i oświetlenie. Scena zaczyna wyglądać realistycznie.</p></details><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Moduł 3 · Kamera i render <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-800 text-white transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Ustawienie kamery, parametry renderu i finalizacja. Kończysz z gotową pracą do portfolio.</p></details></div></div>
+</div></section>
+<!-- ============ pricing · cena całkowita wiodąca · split 36/64 ============ -->
+<section id="cena" class="scroll-mt-36 bg-white py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[36fr_64fr]">
+  <div><p class="tag text-gray-400">pricing · cena całkowita wiodąca</p><h2 class="mt-2 text-3xl font-bold tracking-tight">Cena</h2><p class="mt-4 text-base text-gray-600">Kurs możesz sfinansować z KFS. <a href="dofinansowanie.html" class="font-semibold underline">Sprawdź</a></p></div>
+  <div><div class="rounded-2xl border border-gray-300 p-6"><p><span class="text-5xl font-bold">870 zł</span> <span class="text-gray-500">za cały kurs</span></p><p class="mt-2 text-gray-600">16 h · ok. 54 zł / h · hologramowany certyfikat w języku polskim w cenie</p><a href="#zapis" class="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white hover:bg-gray-700">Zapisz się</a></div></div>
+</div></section>
+<!-- ============ kadra ============ -->
+<section class="scroll-mt-36 bg-gray-50 py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><p class="tag text-gray-400">kadra</p>
+  <h2 class="mt-2 text-3xl font-bold tracking-tight">Prowadzący</h2>
+  <div class="mt-8 flex max-w-xl gap-6 rounded-2xl border border-gray-300 p-6"><div class="ph aspect-[4/5] w-28 shrink-0 rounded-lg"></div><div><p class="text-base font-semibold">mgr Anastasiia Dudina</p><p class="text-base text-gray-500">Graficzka 3D, specjalistka Blendera</p><p class="mt-3 text-gray-600">Absolwentka grafiki 3D w Publishing School. Pracuje jako freelancerka i tworzy modele oraz wizualizacje w Blenderze.</p><a href="kadra.html" class="mt-3 inline-block text-sm font-semibold underline">Pełny biogram</a></div></div>
+</div></section>
+<!-- ============ faq · split 36/64 ============ -->
+<section class="scroll-mt-36 bg-white py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[36fr_64fr]">
+  <div><p class="tag text-gray-400">faq</p><h2 class="mt-2 text-3xl font-bold tracking-tight">Zanim się zapiszesz</h2></div>
+  <div><div class="divide-y divide-gray-300 border-y border-gray-300"><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Czy potrzebuję własnego laptopa? <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Tak, z zainstalowanym Blenderem. Program jest darmowy, a na zajęcia łączysz się przez Jitsi, bez zakładania konta.</p></details><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Co jeśli grupa się nie zbierze? <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Zaproponujemy Ci najbliższy termin tego samego kursu albo zwrot wpłaty.</p></details><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Czy dostanę fakturę? <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Tak. Kurs opłacasz z góry, a fakturę lub potwierdzenie płatności wysyłamy e-mailem.</p></details><details class="group py-5"><summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">Czy mogę zrezygnować? <span class="transition group-open:rotate-180" aria-hidden="true">⌄</span></summary><p class="mt-3 text-gray-600">Napisz do sekretariatu przed startem kursu. Przeniesiemy Cię na inny termin.</p></details></div></div>
+</div></section>
+<!-- ============ enrollment-form inline #zapis ============ -->
+<section id="zapis" class="scroll-mt-36 bg-gray-50 py-20"><div class="mx-auto max-w-3xl px-4 sm:px-6"><p class="tag text-gray-400">enrollment-form inline</p><h2 class="mt-2 text-3xl font-bold tracking-tight">Zapisz się: Blender 3D od podstaw, 17.10.2026</h2><p class="mt-3 text-gray-600">Po wysłaniu dostaniesz e-mail z danymi do płatności. Miejsce rezerwujemy po opłaceniu kursu z góry.</p><div class="mt-8">
+<form class="grid gap-5 rounded-2xl border border-gray-300 bg-white p-6 sm:grid-cols-2 sm:p-8" onsubmit="event.preventDefault()"><label class="block text-sm font-medium">Imię i nazwisko <span class="text-gray-500">(wymagane)</span><input type="text" class="mt-2 block min-h-11 w-full rounded-lg border border-gray-300 bg-white px-3 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900" required></label><label class="block text-sm font-medium">E-mail <span class="text-gray-500">(wymagane)</span><input type="email" class="mt-2 block min-h-11 w-full rounded-lg border border-gray-300 bg-white px-3 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900" required></label><label class="block text-sm font-medium">Telefon <span class="text-gray-500">(wymagane)</span><input type="tel" class="mt-2 block min-h-11 w-full rounded-lg border border-gray-300 bg-white px-3 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900" required></label><label class="block text-sm font-medium">Termin <span class="text-gray-500">(wymagane)</span><select class="mt-2 block min-h-11 w-full rounded-lg border border-gray-300 bg-white px-3 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"><option>17.10.2026</option><option>24.10.2026</option></select></label><label class="block text-sm font-medium sm:col-span-2">Dodatkowe informacje <span class="text-gray-500">(opcjonalne)</span><textarea rows="4" class="mt-2 block min-h-11 w-full rounded-lg border border-gray-300 bg-white px-3 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 py-2"></textarea></label><label class="flex gap-3 text-sm text-gray-700 sm:col-span-2"><input type="checkbox" class="mt-1 h-5 w-5 shrink-0" required> Wyrażam zgodę na przetwarzanie danych w celu obsługi zgłoszenia. <a href="mapa-makiet.html" class="underline">Polityka prywatności</a></label><div class="flex flex-wrap items-center gap-4 sm:col-span-2"><button class="inline-flex min-h-11 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white hover:bg-gray-700">Wyślij zgłoszenie i przejdź do płatności</button></div></form>
+</div></div></section>
+<div class="h-20"></div>
+<aside class="fixed inset-x-0 bottom-0 z-40 border-t border-gray-300 bg-white/95 backdrop-blur" aria-label="Zapis"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 py-3"><p class="text-base"><span class="font-semibold">Blender 3D od podstaw</span> <span class="text-gray-600">· 17–24.10 · 870 zł</span></p><a href="#zapis" class="inline-flex min-h-11 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white hover:bg-gray-700">Zapisz się</a></div></aside>
+
+</main>
+
+
+<!-- ============ site-footer (wersja Marcina) ============ -->
+<footer class="bg-gray-800 text-gray-300">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-3"><div class="h-12 w-12 rounded-full bg-gray-500"></div><span class="text-2xl font-bold text-white">publishing school</span></div>
+        <p class="mt-2 text-gray-400">Szkoła grafiki komputerowej</p>
+      </div>
+      <a href="https://www.facebook.com/" class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600" aria-label="Facebook">f</a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-y border-gray-600 py-6">
+      <p class="text-base text-white">Prowadzisz firmę? Zobacz ofertę szkoleń dla zespołów</p>
+      <a href="dla-firm.html" class="rounded-full bg-white px-6 py-3 font-semibold text-gray-900 hover:bg-gray-200">Dla firm (B2B)</a>
+    </div>
+
+    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+      <address class="not-italic leading-7 lg:col-span-2">
+        „Publishing School” Placówka Kształcenia Ustawicznego<br>
+        31-572 Kraków<br>ul. Kosynierów 15B, II piętro
+        <p class="mt-4">Sekretariat: pon–pt, 12:30–18:30<br>Telefon: codziennie, 9:00–20:00</p>
+        <p class="mt-4"><a href="mailto:sekretariat@publishingschool.pl" class="text-white underline underline-offset-4">sekretariat@publishingschool.pl</a></p>
+        <p><a href="tel:+48504068626" class="text-white underline underline-offset-4">+48 504 068 626</a></p>
+      </address>
+      <nav aria-label="Kursy"><h3 class="font-semibold text-white">Kursy</h3>
+        <ul class="mt-4 space-y-3"><li><a href="kurs-roczny.html" class="hover:text-white">Grafika 3D</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Web Designer UI/UX</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafika DTP</a></li><li><a href="kurs-roczny.html" class="hover:text-white">Grafik reklamy</a></li><li><a href="kursy-krotkie.html" class="hover:text-white">Kursy krótkie</a></li></ul></nav>
+      <nav aria-label="Rekrutacja"><h3 class="font-semibold text-white">Rekrutacja</h3>
+        <ul class="mt-4 space-y-3"><li><a href="jak-sie-zapisac.html" class="hover:text-white">Jak się zapisać</a></li><li><a href="jak-sie-zapisac.html" class="hover:text-white">Formularz zapisu</a></li><li><a href="dofinansowanie.html" class="hover:text-white">Dofinansowanie kursów</a></li></ul></nav>
+      <nav aria-label="O nas"><h3 class="font-semibold text-white">O nas</h3>
+        <ul class="mt-4 space-y-3"><li><a href="o-szkole.html" class="hover:text-white">O szkole</a></li><li><a href="kadra.html" class="hover:text-white">Kadra</a></li><li><a href="prace-absolwentow.html" class="hover:text-white">Prace absolwentów</a></li><li><a href="blog.html" class="hover:text-white">Blog</a></li><li><a href="kontakt.html" class="hover:text-white">Kontakt</a></li></ul></nav>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-between gap-4 border-t border-gray-700 pt-6 text-sm text-gray-400">
+      <p>© 2026 Publishing School · Rejestr MEN nr 277460</p>
+      <div class="flex flex-wrap gap-6"><a href="mapa-makiet.html" class="hover:text-white">Mapa makiet</a><a href="mapa-makiet.html" class="hover:text-white">Polityka prywatności</a><a href="mapa-makiet.html" class="hover:text-white">RODO</a><a href="mapa-makiet.html" class="hover:text-white">Procedura reklamacyjna</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
