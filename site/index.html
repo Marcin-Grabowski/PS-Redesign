@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-<script src="assets/tailwind.config.js"></script>
+<script src="assets/tailwind.config.js?v=2"></script>
 <style type="text/tailwindcss">
 @layer components {
   .container-page { @apply mx-auto w-full max-w-7xl px-10; }
@@ -21,8 +21,14 @@
   .btn { @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2; }
   .btn-primary { @apply bg-gray-500 text-white hover:bg-gray-600; }
   .btn-secondary { @apply border border-gray-400 bg-white text-gray-900 hover:border-gray-900; }
-  .btn-brand { @apply bg-fuchsia-700 text-white hover:bg-fuchsia-800; }
-  .btn-brand-outline { @apply border border-fuchsia-700 bg-white text-fuchsia-700 hover:bg-fuchsia-50; }
+  .btn-brand { @apply min-h-12 bg-brand px-4 text-base text-white hover:bg-brand-dark; }
+  .btn-brand-outline { @apply min-h-12 border border-brand bg-transparent px-4 text-base text-brand hover:bg-brand-soft; }
+  .btn-ghost { @apply min-h-12 border border-neutral-500 bg-transparent px-4 text-base text-neutral-600 hover:border-ink hover:text-ink; }
+  .btn-solid { @apply min-h-12 border border-neutral-500 bg-neutral-500 px-4 text-base text-white hover:bg-neutral-600; }
+  .eyebrow { @apply text-sm uppercase text-neutral-600; }
+  .ps-h2 { @apply text-4xl font-medium leading-10 text-ink; }
+  .ps-card { @apply flex flex-col gap-6 rounded-card border border-neutral-500 p-6 text-olive shadow-[0_1px_1px_rgba(0,0,0,0.05)]; }
+  .ps-link { @apply inline-flex min-h-11 items-center gap-3 text-base font-medium text-olive hover:underline; }
   .btn-on-dark { @apply border border-white bg-white text-gray-900 hover:bg-gray-100; }
   .badge { @apply inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-700; }
   .badge-dark { @apply bg-gray-500 text-white; }
@@ -36,170 +42,177 @@
 }
 </style>
 <style>[hidden]{display:none!important}</style>
+
 </head>
-<body class="min-w-[1280px] bg-white font-sans text-gray-900 antialiased">
-<header class="sticky top-0 z-40 border-b border-gray-200 bg-white"><div class="container-page flex h-20 items-center justify-between"><a href="index.html" aria-label="Publishing School, strona główna"><span class="flex items-center gap-1.5" aria-hidden="true"><svg class="h-9 w-10" viewBox="0 0 40 36"><circle cx="11" cy="11" r="10" fill="#a21caf"/><circle cx="27" cy="19" r="7" fill="#a3e635"/><circle cx="13" cy="27" r="6" fill="#22d3ee"/></svg><span class="text-lg font-bold leading-[0.95] text-gray-900">publishing<br>school</span></span></a><nav aria-label="Główna"><ul class="flex items-center gap-7 text-sm text-gray-900"><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">Kurs<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Kursy roczne</p><ul class="mt-2 space-y-1"><li><a href="kurs-roczny.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Grafika 3D</a></li><li><a href="kurs-roczny.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Web Designer UI/UX</a></li><li><a href="kurs-roczny.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Grafika DTP</a></li><li><a href="kurs-roczny.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Graphic Designer</a></li></ul></div><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Kursy krótkie</p><ul class="mt-2 space-y-1"><li><a href="kursy-krotkie.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Katalog kursów</a></li><li><a href="kurs-krotki.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Blender 3D od podstaw</a></li></ul></div></div></li><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">Zapisy<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Rekrutacja</p><ul class="mt-2 space-y-1"><li><a href="jak-sie-zapisac.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Jak się zapisać</a></li><li><a href="dofinansowanie.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Dofinansowanie</a></li></ul></div></div></li><li><a href="dla-firm.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Dla firm</a></li><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">O nas<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Szkoła</p><ul class="mt-2 space-y-1"><li><a href="o-szkole.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">O szkole</a></li><li><a href="kadra.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Kadra</a></li><li><a href="prace-absolwentow.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Prace absolwentów</a></li></ul></div></div></li><li><a href="blog.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Blog</a></li><li><a href="kontakt.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Kontakt</a></li></ul></nav><a href="jak-sie-zapisac.html" class="btn btn-brand-outline " >Zapisz się</a></div></header>
+<body class="min-w-[1280px] bg-page font-sans text-gray-900 antialiased">
+<div aria-hidden="true" class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[720px] overflow-hidden" style="mask-image:linear-gradient(to bottom, black, transparent);-webkit-mask-image:linear-gradient(to bottom, black, transparent)"><div class="absolute -left-24 -top-28 h-[340px] w-[340px] rounded-full bg-fuchsia-400/10 blur-[90px]"></div><div class="absolute right-[-80px] top-16 h-[300px] w-[300px] rounded-full bg-cyan-300/10 blur-[90px]"></div><div class="absolute left-[42%] top-[360px] h-[260px] w-[260px] rounded-full bg-lime-300/10 blur-[80px]"></div></div>
+<header class="sticky top-0 z-40 bg-page/95 backdrop-blur"><div class="container-page flex h-20 items-center justify-between"><a href="index.html" aria-label="Publishing School, strona główna"><span class="relative block shrink-0 h-12 w-40" aria-hidden="true"><img src="assets/figma/logo-magenta.svg" alt="" class="absolute block max-w-none" style="top:1.67%;left:0.45%"><img src="assets/figma/logo-lime.svg" alt="" class="absolute block max-w-none" style="top:29.82%;left:17.33%"><img src="assets/figma/logo-cyan.svg" alt="" class="absolute block max-w-none" style="top:62%;left:6.32%"><img src="assets/figma/logo-text.svg" alt="" class="absolute block max-w-none" style="top:14.68%;left:35.65%"></span></a><nav aria-label="Główna"><ul class="flex items-center gap-6 text-base font-medium text-ink"><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">Kurs<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Kursy roczne</p><ul class="mt-2 space-y-1"><li><a href="kurs-grafika-3d.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Grafika 3D</a></li><li><a href="kurs-web-designer.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Web Designer UI/UX</a></li><li><a href="kurs-grafika-dtp.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Grafika DTP</a></li><li><a href="kurs-graphic-designer.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Graphic Designer</a></li></ul></div><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Kursy krótkie</p><ul class="mt-2 space-y-1"><li><a href="kursy-krotkie.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Katalog kursów</a></li><li><a href="kurs-krotki.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Blender 3D od podstaw</a></li></ul></div></div></li><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">Zapisy<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Rekrutacja</p><ul class="mt-2 space-y-1"><li><a href="jak-sie-zapisac.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Jak się zapisać</a></li><li><a href="dofinansowanie.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Dofinansowanie</a></li></ul></div></div></li><li><a href="dla-firm.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Dla firm</a></li><li class="relative" data-dropdown><button type="button" aria-expanded="false" class="inline-flex min-h-11 items-center gap-1 hover:text-gray-600">O nas<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button><div data-dropdown-panel hidden class="absolute left-1/2 top-full z-50 flex w-max -translate-x-1/2 gap-8 rounded-card border border-gray-200 bg-white p-5 shadow-lg"><div><p class="text-xs font-medium uppercase tracking-wide text-gray-500">Szkoła</p><ul class="mt-2 space-y-1"><li><a href="o-szkole.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">O szkole</a></li><li><a href="kadra.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Kadra</a></li><li><a href="prace-absolwentow.html" class="block rounded-lg px-2 py-2 hover:bg-gray-100">Prace absolwentów</a></li></ul></div></div></li><li><a href="blog.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Blog</a></li><li><a href="kontakt.html" class="inline-flex min-h-11 items-center hover:text-gray-600">Kontakt</a></li></ul></nav><a href="kontakt.html" class="btn btn-brand " >Zapytaj o kurs</a></div></header>
 <main>
-<section class="container-page grid grid-cols-2 items-center gap-12 pb-16 pt-12">
-  <div>
-    <div class="flex gap-2"><span class="badge badge-dark">Nabór 2026/27</span><span class="badge badge-dark">Online / Kraków</span></div>
-    <h1 class="h1 mt-4">Zostań grafikiem. Od podstaw do portfolio</h1>
-    <p class="lead mt-4 max-w-xl">Kursy roczne przygotowują do pracy w grafice 3D, DTP, web designie i reklamie. Uczysz się w weekendy, online albo w Krakowie, u praktyków, którzy pracują w zawodzie.</p>
-    <div class="mt-4 flex flex-wrap gap-2"><span class="badge ">Wrzesień – czerwiec</span><span class="badge ">Co 2 weekend</span></div>
-    <div class="mt-6 flex flex-wrap items-center gap-3"><a href="#kursy-roczne" class="btn btn-primary " >Zobacz kierunki roczne</a><a href="kursy-krotkie.html" class="btn btn-secondary " >Przeglądaj kursy krótkie</a></div>
-    <p class="mt-3 text-xs text-gray-600">Nie wiesz, który kurs wybrać? <a href="kontakt.html" class="underline">Zadzwoń do sekretariatu</a></p>
-  </div>
-  <div class="ph flex aspect-[4/3] items-center justify-center rounded-card border border-gray-200 " role="img" aria-label="Zdjęcie 4:3"><span class="font-mono text-xs uppercase tracking-widest text-gray-500">Zdjęcie 4:3</span></div>
-</section><section aria-label="Najważniejsze informacje" class="container-page pb-6"><dl class="grid gap-4" style="grid-template-columns:repeat(5,minmax(0,1fr))"><div class="rounded-xl bg-white px-4 py-5 text-center shadow-proof"><dt class="sr-only">Doświadczenia</dt><dd class="break-words text-lg font-semibold text-gray-900">28 lat</dd><dd class="mt-1 text-sm text-gray-600">Doświadczenia</dd></div><div class="rounded-xl bg-white px-4 py-5 text-center shadow-proof"><dt class="sr-only">2019–2025</dt><dd class="break-words text-lg font-semibold text-gray-900">Orły Edukacji</dd><dd class="mt-1 text-sm text-gray-600">2019–2025</dd></div><div class="rounded-xl bg-white px-4 py-5 text-center shadow-proof"><dt class="sr-only">Honorowany urzędy pracy</dt><dd class="break-words text-lg font-semibold text-gray-900">Status słuchacza</dd><dd class="mt-1 text-sm text-gray-600">Honorowany urzędy pracy</dd></div><div class="rounded-xl bg-white px-4 py-5 text-center shadow-proof"><dt class="sr-only">Rejestr MEN</dt><dd class="break-words text-lg font-semibold text-gray-900">nr 277460</dd><dd class="mt-1 text-sm text-gray-600">Rejestr MEN</dd></div><div class="rounded-xl bg-white px-4 py-5 text-center shadow-proof"><dt class="sr-only">Legitymacja i zaświadczenia</dt><dd class="break-words text-lg font-semibold text-gray-900">Dyplom PL/EN</dd><dd class="mt-1 text-sm text-gray-600">Legitymacja i zaświadczenia</dd></div></dl></section><section class="container-page section" id="kursy-roczne">
-  <div class=""><span class="badge ">Kursy roczne</span> <h2 class="h2 mt-3">Zmień zawód, pogłęb konkretną umiejętność</h2><p class="lead mt-3 max-w-3xl">Kurs roczny to pełne przygotowanie do pracy jako <strong class="text-gray-900">Grafik 3D, Graphic Designer, Web Designer UI/UX albo Junior UI Designer</strong>. Program prowadzi od podstaw do gotowego portfolio.</p></div>
-  <div class="mt-8 grid grid-cols-2 gap-5"><article class="card flex flex-col ">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Grafika 3D</h3>
-  <p class="mt-2 text-sm text-gray-600">Modelowanie, animacja i wizualizacje w Blenderze, Mayi i 3ds Max — kończysz z portfolio realnych projektów.</p>
-  <p class="mt-3 text-xs text-gray-600">Wrzesień – czerwiec · online / stacjonarnie</p>
-  <div class="mt-auto pt-6 "><a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article><article class="card flex flex-col ">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Web Designer UI/UX</h3>
-  <p class="mt-2 text-sm text-gray-600">Badania z użytkownikami, projekt interfejsu w Figmie i strony www — kończysz z case study.</p>
-  <p class="mt-3 text-xs text-gray-600">Wrzesień – czerwiec · online / stacjonarnie</p>
-  <div class="mt-auto pt-6 "><a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article><article class="card flex flex-col ">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Grafika DTP</h3>
-  <p class="mt-2 text-sm text-gray-600">Skład, typografia i przygotowanie plików do druku — kończysz z portfolio realnych materiałów.</p>
-  <p class="mt-3 text-xs text-gray-600">Wrzesień – czerwiec · online / stacjonarnie</p>
-  <div class="mt-auto pt-6 "><a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article><article class="card flex flex-col ">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Graphic Designer</h3>
-  <p class="mt-2 text-sm text-gray-600">Identyfikacja wizualna i reklama do internetu i druku — kończysz z portfolio projektów.</p>
-  <p class="mt-3 text-xs text-gray-600">Wrzesień – czerwiec · online / stacjonarnie</p>
-  <div class="mt-auto pt-6 "><a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article></div>
-</section><section class="container-page section">
-  <div class=""><span class="badge ">Kursy krótkie</span> <h2 class="h2 mt-3">Krótkie kursy — pogłęb konkretną umiejętność</h2><p class="lead mt-3 max-w-3xl">Nie musisz zapisywać się na cały rok. Wybierz jeden temat lub narzędzie — bez oczekiwania na start roku szkolnego.</p></div>
-  <div class="mt-8 grid grid-cols-12 gap-5">
-    <article class="card flex flex-col col-span-6">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Blender 3D od podstaw</h3>
-  <p class="mt-2 text-sm text-gray-600">Modelowanie, teksturowanie i render — kończysz z gotową sceną do portfolio.</p>
-  <p class="mt-3 text-xs text-gray-600">17–24.10.2026 · online · 870 zł</p>
-  <div class="mt-auto pt-6 "><a href="kurs-krotki.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article>
-    <article class="card flex flex-col col-span-3">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Kurs w Twoim terminie</h3>
-  <p class="mt-2 text-sm text-gray-600">Ustal harmonogram dla siebie lub zespołu, bez czekania na start grupy.</p>
-  
-  <div class="mt-auto pt-6 text-center"><a href="dla-firm.html" class="link-arrow">Ustal termin<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article>
-    <article class="card flex flex-col col-span-3">
-  <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gray-500 text-white" aria-hidden="true"><svg class="h-3/5 w-3/5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/></svg></span>
-  <h3 class="mt-4 text-xl text-gray-900">Katalog kursów</h3>
-  <p class="mt-2 text-sm text-gray-600">Ponad 30 tematów, od Canvy po Unreal Engine 5. Wybierz to, czego potrzebujesz w pracy.</p>
-  
-  <div class="mt-auto pt-6 text-center"><a href="kursy-krotkie.html" class="link-arrow">Sprawdź ofertę<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-</article>
-  </div>
-</section><section class="container-page section">
-  <div class="grid grid-cols-2 gap-12">
-    <div>
-      <div class=""><span class="badge ">Dofinansowanie</span> <h2 class="h2 mt-3">Nie musisz płacić z własnej kieszeni</h2><p class="lead mt-3 max-w-3xl">Sprawdź, z jakiego źródła możesz pokryć koszt kursu.</p></div>
-      <div class="mt-5"><a href="dofinansowanie.html" class="btn btn-secondary " >Sprawdź możliwe dofinansowania<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div>
-      <p class="mt-3 text-xs text-gray-600">Informacje ogólne, nie stanowią porady prawnej ani finansowej.</p>
+<section class="container-page pb-20 pt-12">
+  <div class="grid min-h-[582px] grid-cols-2 items-center gap-6">
+    <div class="max-w-[543px]">
+      <div class="flex gap-2">
+        <span class="rounded-full bg-info px-2 py-1 text-sm text-white">Nabór na kursy roczne do 30 września</span>
+        <span class="rounded-full border border-brand-dark px-2 py-1 text-sm text-brand-dark">Start: koniec września</span>
+      </div>
+      <h1 class="mt-4 text-5xl font-semibold leading-[3rem] text-ink">Zostań grafikiem. Od podstaw do portfolio</h1>
+      <p class="mt-4 text-base leading-6 text-ink">Kursy roczne przygotowują do pracy w grafice 3D, DTP, web designie i reklamie. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Płacisz w 11 ratach 0% — albo za kurs zapłaci urząd pracy lub KFS.</p>
+      <div class="mt-5 flex gap-2"><a href="#kursy-roczne" class="btn btn-brand " >Zobacz kierunki roczne</a><a href="kursy-krotkie.html" class="btn btn-brand-outline " >Przeglądaj kursy krótkie</a></div>
+      <p class="mt-3 text-sm text-ink">Wahasz się między kierunkami? Zadzwoń: <a href="tel:+48504068626" class="font-medium hover:underline">504 068 626</a> <span class="text-neutral-600">(codziennie 9:00–20:00)</span></p>
     </div>
-    <div class="border-t border-gray-300"><details class="group border-b border-gray-300" open><summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-3 text-sm text-gray-900 [&::-webkit-details-marker]:hidden">Dofinansowanie przez urząd pracy<svg class="h-4 w-4 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></summary><div class="px-3 pb-5 text-sm leading-relaxed text-gray-700">Bon szkoleniowy albo dofinansowanie dla osób bezrobotnych i szukających pracy. O skierowanie zapytaj w swoim urzędzie pracy.</div></details><details class="group border-b border-gray-300"><summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-3 text-sm text-gray-900 [&::-webkit-details-marker]:hidden">Krajowy Fundusz Szkoleniowy (KFS)<svg class="h-4 w-4 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></summary><div class="px-3 pb-5 text-sm leading-relaxed text-gray-700">Krajowy Fundusz Szkoleniowy dla osób zatrudnionych — wniosek składa pracodawca w urzędzie pracy właściwym dla regionu zarejestrowania siedziby firmy.</div></details><details class="group border-b border-gray-300"><summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-3 text-sm text-gray-900 [&::-webkit-details-marker]:hidden">Nieoprocentowana pożyczka na kształcenie<svg class="h-4 w-4 shrink-0 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></summary><div class="px-3 pb-5 text-sm leading-relaxed text-gray-700">Pożyczka bez odsetek z możliwością częściowego umorzenia, dla każdego, kto podnosi kwalifikacje.</div></details></div>
+    <div class="flex h-[582px] justify-center">
+      <img src="assets/img/hero-probnik-kolorow.webp" width="766" height="1164" alt="Kursantka przegląda wzorniki kolorów i katalog druku" class="h-full w-auto rounded-3xl object-cover" fetchpriority="high">
+    </div>
   </div>
-</section><section class="container-page section">
-  <div class="grid grid-cols-2 items-center gap-12"><div><div class="ph flex aspect-[4/3] items-center justify-center rounded-card border border-gray-200 " role="img" aria-label="Zdjęcie 4:3"><span class="font-mono text-xs uppercase tracking-widest text-gray-500">Zdjęcie 4:3</span></div></div><div><div class=""><span class="badge ">O szkole</span> <h2 class="h2 mt-3">Uczymy praktycznie, od pierwszych zajęć</h2><p class="lead mt-3 max-w-3xl">Uczą graficy, projektanci, programiści i poligrafowie, którzy na co dzień robią to, czego uczą. Dlatego kończysz kurs z pracami, które możesz pokazać pracodawcy.</p></div><div class="mt-6 grid grid-cols-2 gap-4"><div class="flex items-center gap-3 rounded-card bg-gray-100 p-4"><span class="text-lg font-semibold leading-tight text-gray-900">Orły Edukacji</span><span class="text-xs text-gray-600">Wyróżnienie 2019–2025</span></div><div class="flex items-center gap-3 rounded-card bg-gray-100 p-4"><span class="text-lg font-semibold leading-tight text-gray-900">28 lat</span><span class="text-xs text-gray-600">Uczymy od 1998 roku</span></div></div><div class="mt-6"><a href="o-szkole.html" class="btn btn-secondary " >Poznaj szkołę<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a></div></div></div>
-</section><section class="container-page section" data-carousel>
-  <div class=""><span class="badge ">Opinie</span> <h2 class="h2 mt-3">Opinie absolwentów i słuchaczy z Google</h2></div>
-  <div data-carousel-track class="mt-8 flex snap-x gap-6 overflow-x-hidden scroll-smooth"><article class="card w-[calc((100%-4.5rem)/4)] shrink-0 snap-start">
-  <p class="flex gap-1 text-gray-900" aria-label="Ocena 5 na 5"><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg></p>
-  <p class="mt-3 text-sm text-gray-700">Konkretnie i bez lania wody. Po dwóch weekendach sama przygotowuję grafiki do sklepu.</p>
-  <p class="mt-3 text-sm font-medium text-gray-900">Kursantka, Photoshop</p>
-  <a href="kursy-krotkie.html" class="link-arrow">Zobacz kurs<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
-</article><article class="card w-[calc((100%-4.5rem)/4)] shrink-0 snap-start">
-  <p class="flex gap-1 text-gray-900" aria-label="Ocena 5 na 5"><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg></p>
-  <p class="mt-3 text-sm text-gray-700">Najbardziej przydało mi się przygotowanie plików do druku. Drukarnia nie odsyła już poprawek.</p>
-  <p class="mt-3 text-sm font-medium text-gray-900">Absolwent, Grafika DTP</p>
-  <a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
-</article><article class="card w-[calc((100%-4.5rem)/4)] shrink-0 snap-start">
-  <p class="flex gap-1 text-gray-900" aria-label="Ocena 5 na 5"><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg></p>
-  <p class="mt-3 text-sm text-gray-700">Zaczynałam od zera, a na koniec miałam gotowy render do portfolio. Zajęcia online bez problemów.</p>
-  <p class="mt-3 text-sm font-medium text-gray-900">Kursantka, Blender 3D</p>
-  <a href="kurs-krotki.html" class="link-arrow">Zobacz kurs<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
-</article><article class="card w-[calc((100%-4.5rem)/4)] shrink-0 snap-start">
-  <p class="flex gap-1 text-gray-900" aria-label="Ocena 5 na 5"><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg></p>
-  <p class="mt-3 text-sm text-gray-700">Po roku miałam portfolio, z którym dostałam pierwszą pracę jako projektantka UI.</p>
-  <p class="mt-3 text-sm font-medium text-gray-900">Absolwentka, Web Designer UI/UX</p>
-  <a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
-</article><article class="card w-[calc((100%-4.5rem)/4)] shrink-0 snap-start">
-  <p class="flex gap-1 text-gray-900" aria-label="Ocena 5 na 5"><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg><svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8L12 2.5z"/></svg></p>
-  <p class="mt-3 text-sm text-gray-700">Małe grupy robią różnicę — prowadzący znał mój projekt i pomagał go dopracować.</p>
-  <p class="mt-3 text-sm font-medium text-gray-900">Absolwent, Graphic Designer</p>
-  <a href="kurs-roczny.html" class="link-arrow">Zobacz program<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
+</section><section aria-label="Najważniejsze informacje" class="bg-alt py-9"><dl class="container-page flex text-center text-ink"><div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">uczymy grafiki</dt><dd class="order-1 text-2xl font-semibold leading-8">Od 1998 r.</dd></div><div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">2019–2025</dt><dd class="order-1 text-2xl font-semibold leading-8">Orły Edukacji</dd></div><div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">ZUS, KRUS i UP</dt><dd class="order-1 text-2xl font-semibold leading-8">Status słuchacza</dd></div><div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">rejestr MEN</dt><dd class="order-1 text-2xl font-semibold leading-8">RSPO nr 277460</dd></div><div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">nr 2.12/00188/2021</dt><dd class="order-1 text-2xl font-semibold leading-8">Rejestr WUP</dd></div></dl></section><section class="container-page py-20" id="kursy-roczne">
+  <div class="flex flex-col gap-4 items-center text-center"><p class="eyebrow">Kursy roczne</p><h2 class="ps-h2">Kursy roczne — 9 miesięcy przygotowania do pracy w grafice</h2><p class="text-lg leading-7 text-ink">Wybierz specjalizację. 200 godzin zajęć w soboty i niedziele, od końca września do końca czerwca — online na żywo albo w Krakowie. Kończysz z portfolio i dyplomem polsko-angielskim.</p></div>
+  <div class="mt-10 grid grid-cols-2 gap-6"><article class="ps-card ">
+  <span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/icon-printer.svg" alt=""></span>
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Grafika 3D</h3><p class="text-base leading-6">Modelujesz, animujesz i renderujesz w Blenderze, Cinema 4D, Mai i ZBrushu — pod gry, reklamę i wizualizacje.</p></div>
+    <div class="pt-6"><a href="kurs-grafika-3d.html" class="ps-link">Zobacz program<span class="sr-only"> kursu Grafika 3D</span><img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
+</article><article class="ps-card ">
+  <span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/icon-printer.svg" alt=""></span>
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Grafika DTP</h3><p class="text-base leading-6">Składasz książki, katalogi i opakowania w InDesignie i przygotowujesz pliki, które drukarnia przyjmie bez poprawek.</p></div>
+    <div class="pt-6"><a href="kurs-grafika-dtp.html" class="ps-link">Zobacz program<span class="sr-only"> kursu Grafika DTP</span><img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
+</article><article class="ps-card ">
+  <span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/icon-uxui.svg" alt=""></span>
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Web Designer UI/UX</h3><p class="text-base leading-6">Projektujesz strony i aplikacje w Figmie, budujesz je w WordPressie i Webflow, kodujesz w HTML i CSS.</p></div>
+    <div class="pt-6"><a href="kurs-web-designer.html" class="ps-link">Zobacz program<span class="sr-only"> kursu Web Designer UI/UX</span><img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
+</article><article class="ps-card ">
+  <span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/icon-megafon.svg" alt=""></span>
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Graphic Designer</h3><p class="text-base leading-6">Projektujesz reklamy do internetu i druku, logo i rolki. Piszesz teksty reklamowe z pomocą AI.</p></div>
+    <div class="pt-6"><a href="kurs-graphic-designer.html" class="ps-link">Zobacz program<span class="sr-only"> kursu Graphic Designer</span><img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
 </article></div>
-  <div class="mt-6 flex justify-center gap-3">
-    <button type="button" data-carousel-step="-1" class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-200 text-gray-900 hover:bg-gray-300" aria-label="Poprzednie opinie"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></svg></button>
-    <button type="button" data-carousel-step="1" class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-500 text-white hover:bg-gray-600" aria-label="Następne opinie"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></button>
+</section><section class="container-page py-20">
+  <div class="flex flex-col gap-4 items-center text-center"><p class="eyebrow">Kursy krótkie</p><h2 class="ps-h2">Krótkie kursy — pogłęb konkretną umiejętność</h2><p class="text-lg leading-7 text-ink">Nie potrzebujesz całego roku? Wybierz jeden temat lub narzędzie i zacznij w najbliższym terminie.</p></div>
+  <div class="mt-6 grid grid-cols-2 gap-6">
+    <article class="ps-card ">
+  <span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/icon-printer.svg" alt=""></span>
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Najbliższy kurs: Blender 3D od podstaw</h3><p class="text-base leading-6">Modelowanie, teksturowanie i render — kończysz z gotową sceną do portfolio. 17–24.10.2026 · online · 870 zł.</p></div>
+    <div class="pt-6"><a href="kurs-krotki.html" class="ps-link">Zobacz program<img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
   </div>
-</section><section class="container-page section"><div class="text-center"><h2 class="h2 ">Prace naszych słuchaczy</h2><p class="lead mt-3 mx-auto max-w-2xl">Każdy projekt w portfolio powstał na zajęciach — zobacz, co tworzą osoby kończące Publishing School.</p></div><div data-gallery class="mt-10 flex h-96 overflow-hidden rounded-card border border-gray-400"><button type="button" data-gallery-item aria-expanded="true" style="flex-grow:3" class="relative flex min-w-0 basis-0 flex-col justify-between border-r border-gray-400 bg-gray-100 p-6 text-left transition-[flex-grow] duration-300 last:border-r-0">
-  <span class="text-lg text-gray-900">Grafika 3D</span>
-  <span data-gallery-detail  class="flex items-end justify-between gap-4">
-    <span class="text-xs text-gray-600">Sylwia K. · rocznik 2025/26</span>
-    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-700 text-white"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-  </span>
-</button><button type="button" data-gallery-item aria-expanded="false" style="flex-grow:1" class="relative flex min-w-0 basis-0 flex-col justify-between border-r border-gray-400 bg-gray-100 p-6 text-left transition-[flex-grow] duration-300 last:border-r-0">
-  <span class="text-lg text-gray-900">UX/UI</span>
-  <span data-gallery-detail hidden class="flex items-end justify-between gap-4">
-    <span class="text-xs text-gray-600">Michał P. · rocznik 2025/26</span>
-    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-700 text-white"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-  </span>
-</button><button type="button" data-gallery-item aria-expanded="false" style="flex-grow:1" class="relative flex min-w-0 basis-0 flex-col justify-between border-r border-gray-400 bg-gray-100 p-6 text-left transition-[flex-grow] duration-300 last:border-r-0">
-  <span class="text-lg text-gray-900">UX/UI</span>
-  <span data-gallery-detail hidden class="flex items-end justify-between gap-4">
-    <span class="text-xs text-gray-600">Anna W. · rocznik 2024/25</span>
-    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-700 text-white"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-  </span>
-</button><button type="button" data-gallery-item aria-expanded="false" style="flex-grow:1" class="relative flex min-w-0 basis-0 flex-col justify-between border-r border-gray-400 bg-gray-100 p-6 text-left transition-[flex-grow] duration-300 last:border-r-0">
-  <span class="text-lg text-gray-900">Grafik DTP</span>
-  <span data-gallery-detail hidden class="flex items-end justify-between gap-4">
-    <span class="text-xs text-gray-600">Tomasz L. · rocznik 2024/25</span>
-    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-fuchsia-700 text-white"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
-  </span>
-</button></div>
-<div class="mt-6 text-center"><a href="prace-absolwentow.html" class="btn btn-secondary " >Zobacz wszystkie prace</a></div></section><section class="container-page pb-20">
-  <div class="rounded-card bg-gray-100 px-10 py-10 text-center">
-    <h2 class="text-3xl font-medium text-gray-900">Twój następny zawód zaczyna się tutaj</h2>
-    <p class="mt-3 text-sm font-medium text-gray-900">Sprawdź dostępne kierunki lub porozmawiaj z sekretariatem, jeśli potrzebujesz pomocy w wyborze programu.</p>
-    <p class="mt-3 text-sm text-gray-900">Masz pytania? Zadzwoń: <a href="tel:+48504068626" class="font-semibold hover:underline">+48 504 068 626</a></p>
-    <div class="mt-5 flex justify-center gap-3"><a href="jak-sie-zapisac.html" class="btn btn-primary " >Zapisz się</a><a href="kontakt.html" class="btn btn-secondary " >Zadaj pytanie</a></div>
+</article>
+    <div class="grid grid-cols-2 gap-6">
+      <article class="ps-card ">
+  
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Katalog kursów</h3><p class="text-base leading-6">Skład, typografia i przygotowanie plików do druku — kończysz z portfolio realnych materiałów.</p></div>
+    <div class="pt-6"><a href="kursy-krotkie.html" class="ps-link">Przeglądaj katalog<img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
+</article>
+      <article class="ps-card ">
+  
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-col gap-4"><h3 class="text-2xl leading-8">Kurs na zamówienie</h3><p class="text-base leading-6">Zamów kurs jeśli termin i zakres dopasujemy do Ciebie lub Twojego zespołu.</p></div>
+    <div class="pt-6"><a href="dla-firm.html" class="ps-link">Zamów kurs<img src="assets/figma/chevron-right.svg" alt="" width="24" height="24"></a></div>
+  </div>
+</article>
+    </div>
+  </div>
+</section><section class="container-page py-20" id="dofinansowanie">
+  <div class="flex items-start gap-6">
+    <div class="w-[628px] shrink-0">
+      <div class="max-w-[543px] pb-5"><div class="flex flex-col gap-4 items-start"><p class="eyebrow">Dofinansowania</p><h2 class="ps-h2">Sprawdź, jak sfinansować kurs w Twojej sytuacji</h2><p class="text-base leading-6 text-ink">Jesteśmy w Rejestrze Instytucji Szkoleniowych WUP (nr 2.12/00188/2021), więc za kurs może zapłacić urząd pracy albo KFS. Sekretariat pomoże przygotować dokumenty.</p></div></div>
+      <a href="dofinansowanie.html" class="btn btn-ghost">Zobacz wszystkie opcje dofinansowania<img src="assets/figma/chevron-right-2.svg" alt="" width="24" height="24"></a>
+      <p class="mt-2 text-xs text-black">Informacje ogólne. O przyznaniu dofinansowania decyduje urząd pracy.</p>
+    </div>
+    <div class="flex-1"><details class="group border-t-2 border-ink px-4 py-6" open>
+  <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium leading-6 text-ink [&::-webkit-details-marker]:hidden"><span class="text-base font-medium">Pracuję lub prowadzę działalność</span><img src="assets/figma/icon-a.svg" alt="" width="24" height="24" class="hidden group-open:block"><img src="assets/figma/icon-b.svg" alt="" width="24" height="24" class="group-open:hidden"></summary>
+  <div class="mt-4 max-w-[575px] text-base leading-6 text-ink">Kurs może sfinansować Krajowy Fundusz Szkoleniowy — wniosek składa pracodawca w urzędzie pracy. Jeśli prowadzisz firmę, opłatę za kurs wliczasz w koszty działalności. <a href="dofinansowanie.html" class="text-brand hover:underline">Opcje dla pracujących</a></div>
+</details><details class="group border-t border-ink px-4 py-6">
+  <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium leading-6 text-ink [&::-webkit-details-marker]:hidden"><span class="text-base font-medium">Szukam pracy albo chcę zmienić zawód</span><img src="assets/figma/icon-a.svg" alt="" width="24" height="24" class="hidden group-open:block"><img src="assets/figma/icon-b.svg" alt="" width="24" height="24" class="group-open:hidden"></summary>
+  <div class="mt-4 max-w-[575px] text-base leading-6 text-ink">Jeśli jesteś zarejestrowana/y w urzędzie pracy jako osoba bezrobotna lub poszukująca pracy, urząd może sfinansować kurs albo dać Ci bon szkoleniowy. Możesz też wziąć nieoprocentowaną pożyczkę na kształcenie z możliwością częściowego umorzenia.</div>
+</details><details class="group border-t border-ink px-4 py-6">
+  <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium leading-6 text-ink [&::-webkit-details-marker]:hidden"><span class="text-base font-medium">Szkolę pracowników</span><img src="assets/figma/icon-a.svg" alt="" width="24" height="24" class="hidden group-open:block"><img src="assets/figma/icon-b.svg" alt="" width="24" height="24" class="group-open:hidden"></summary>
+  <div class="mt-4 max-w-[575px] text-base leading-6 text-ink">Szkolenie zespołu możesz sfinansować z Krajowego Funduszu Szkoleniowego. Przygotujemy ofertę i komplet dokumentów do wniosku, a fakturę wystawimy na firmę.</div>
+</details></div>
+  </div>
+</section><section class="container-page py-20">
+  <div class="flex items-center gap-6">
+    <div class="flex flex-1 justify-center">
+      <img src="assets/img/o-szkole-laptop.webp" width="1016" height="884" loading="lazy" alt="Kursant pracuje na laptopie przy biurku z linijką i notatkami" class="w-full max-w-[508px] rounded-3xl">
+    </div>
+    <div class="flex flex-1 flex-col gap-12">
+      <div class="flex flex-col items-start gap-6">
+        <div class="flex flex-col gap-4 items-start"><p class="eyebrow">O szkole</p><h2 class="ps-h2">Uczymy praktycznie, od pierwszych zajęć</h2><p class="text-base leading-6 text-ink">Uczą graficy, projektanci, programiści i poligrafowie, którzy na co dzień pracują w zawodzie. Od 1998 roku prowadzimy zajęcia bez wykładów — każdy kurs kończysz z pracami do portfolio.</p></div>
+        <a href="o-szkole.html" class="btn btn-ghost">Poznaj szkołę<img src="assets/figma/chevron-right-2.svg" alt="" width="24" height="24"></a>
+      </div>
+      <dl class="flex gap-4 text-ink"><div class="flex h-[102px] flex-1 flex-col justify-center gap-2 rounded-2xl"><dt class="order-2 text-base leading-6">uczymy grafiki</dt><dd class="order-1 text-2xl font-semibold leading-8">28 lat</dd></div><div class="flex h-[102px] flex-1 flex-col justify-center gap-2 rounded-2xl"><dt class="order-2 text-base leading-6">praktyki na każdym kierunku</dt><dd class="order-1 text-2xl font-semibold leading-8">200 h</dd></div><div class="flex h-[102px] flex-1 flex-col justify-center gap-2 rounded-2xl"><dt class="order-2 text-base leading-6">roczne i ponad 30 kursów krótkich</dt><dd class="order-1 text-2xl font-semibold leading-8">4 kierunki</dd></div></dl>
+    </div>
+  </div>
+</section><section class="container-page py-20" data-carousel>
+  <p class="eyebrow">Opinie</p>
+  <div class="mt-6 flex items-start justify-between">
+    <h2 class="ps-h2">Opinie słuchaczy w Google</h2>
+    <div class="flex gap-6">
+      <button type="button" data-carousel-step="-1" class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-200 hover:bg-neutral-300" aria-label="Poprzednie opinie"><img src="assets/figma/arrow-left.svg" alt="" width="24" height="24"></button>
+      <button type="button" data-carousel-step="1" class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-500 hover:bg-neutral-600" aria-label="Następne opinie"><img src="assets/figma/arrow-right-white.svg" alt="" width="24" height="24"></button>
+    </div>
+  </div>
+  <div data-carousel-track class="mt-6 flex snap-x gap-6 overflow-x-hidden scroll-smooth"><article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+  <p class="flex" role="img" aria-label="Ocena 5 na 5"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"></p>
+  <blockquote class="text-base leading-6 text-ink">Konkretnie i bez lania wody. Po dwóch weekendach sama przygotowuję grafiki do sklepu.</blockquote>
+  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">Kursantka, Photoshop</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+</article><article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+  <p class="flex" role="img" aria-label="Ocena 5 na 5"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"></p>
+  <blockquote class="text-base leading-6 text-ink">Najbardziej przydało mi się przygotowanie plików do druku. Drukarnia nie odsyła już poprawek.</blockquote>
+  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">Absolwent, Grafika DTP</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+</article><article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+  <p class="flex" role="img" aria-label="Ocena 5 na 5"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"></p>
+  <blockquote class="text-base leading-6 text-ink">Zaczynałam od zera, a na koniec miałam gotowy render do portfolio. Zajęcia online bez problemów.</blockquote>
+  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">Kursantka, Blender 3D</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+</article><article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+  <p class="flex" role="img" aria-label="Ocena 5 na 5"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"></p>
+  <blockquote class="text-base leading-6 text-ink">Po roku miałam portfolio, z którym dostałam pierwszą pracę jako projektantka UI.</blockquote>
+  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">Absolwentka, Web Designer UI/UX</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+</article><article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+  <p class="flex" role="img" aria-label="Ocena 5 na 5"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"><img src="assets/figma/star.svg" alt="" width="24" height="24"></p>
+  <blockquote class="text-base leading-6 text-ink">Małe grupy robią różnicę — prowadzący znał mój projekt i pomagał go dopracować.</blockquote>
+  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">Absolwent, Graphic Designer</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+</article></div>
+  <div class="mt-6 text-center"><a href="o-szkole.html" class="btn btn-ghost">Zobacz wszystkie opinie<img src="assets/figma/chevron-right-2.svg" alt="" width="24" height="24"></a></div>
+</section><section class="container-page py-20">
+  <div class="flex flex-col items-center gap-6 rounded-3xl bg-neutral-200 p-6 text-center font-medium text-ink shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <h2 class="text-4xl leading-10">Nie wiesz, który kurs wybrać?</h2>
+    <p class="max-w-[640px] text-lg leading-7">Nabór na kursy roczne trwa do 30 września. Powiedz, co chcesz robić — sekretariat pomoże dobrać kierunek i sprawdzi, z jakiego dofinansowania możesz skorzystać.</p>
+    <p class="text-lg leading-7">Zadzwoń: <a href="tel:+48504068626" class="hover:underline">504 068 626</a> lub <a href="tel:+48124116566" class="hover:underline">12 411 65 66</a> · codziennie 9:00–20:00</p>
+    <div class="flex gap-2"><a href="kontakt.html" class="btn btn-solid">Zadaj pytanie</a><a href="index.html#kursy-roczne" class="btn btn-ghost">Zobacz kursy roczne</a></div>
   </div>
 </section>
 </main>
-<footer class="bg-gray-500 text-gray-100">
-  <div class="container-page py-14">
+<footer class="bg-stopka text-page">
+  <div class="container-page pb-12 pt-20">
     <div class="flex items-start justify-between">
-      <div><a href="index.html" aria-label="Publishing School, strona główna"><span class="flex items-center gap-1.5" aria-hidden="true"><svg class="h-9 w-10" viewBox="0 0 40 36"><circle cx="11" cy="11" r="10" fill="#a21caf"/><circle cx="27" cy="19" r="7" fill="#a3e635"/><circle cx="13" cy="27" r="6" fill="#22d3ee"/></svg><span class="text-lg font-bold leading-[0.95] text-white">publishing<br>school</span></span></a><p class="mt-2 text-sm">Szkoła grafiki komputerowej</p></div>
-      <a href="https://www.facebook.com/" class="flex h-11 w-11 items-center justify-center text-white" aria-label="Facebook"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21a9 9 0 1 1 2.9 0z"/></svg></a>
+      <div><a href="index.html" aria-label="Publishing School, strona główna"><span class="relative block shrink-0 h-16 w-[214px]" aria-hidden="true"><img src="assets/figma/logo-magenta-footer.svg" alt="" class="absolute block max-w-none" style="top:1.67%;left:0.45%"><img src="assets/figma/logo-lime-footer.svg" alt="" class="absolute block max-w-none" style="top:29.82%;left:17.33%"><img src="assets/figma/logo-cyan-footer.svg" alt="" class="absolute block max-w-none" style="top:62%;left:6.32%"><img src="assets/figma/logo-text-footer.svg" alt="" class="absolute block max-w-none" style="top:14.68%;left:35.65%"></span></a><p class="mt-2 text-base font-medium">Szkoła grafiki komputerowej</p></div>
+      <a href="https://www.facebook.com/" class="flex h-12 w-12 items-center justify-center" aria-label="Facebook"><img src="assets/figma/facebook.svg" alt="" width="24" height="24"></a>
     </div>
-    <div class="mt-8 flex items-center justify-between border-y border-gray-400 py-5">
-      <p class="text-xl text-white">Prowadzisz firmę? Zobacz ofertę szkoleń dla zespołów</p>
-      <a href="dla-firm.html" class="btn btn-on-dark " >Dla firm (B2B)</a>
+    <div class="mt-6 flex items-center justify-between border-y border-gray-400 py-6">
+      <p class="text-2xl leading-8">Szkolisz pracowników? Kurs dopasujemy do Twojego zespołu.</p>
+      <a href="dla-firm.html" class="btn btn-brand " >Oferta dla firm</a>
     </div>
-    <div class="mt-8 grid grid-cols-12 gap-8 text-sm">
-      <address class="col-span-6 space-y-4 not-italic leading-relaxed">
-        <p>„Publishing School” Placówka Kształcenia Ustawicznego<br>31-572 Kraków<br>ul. Kosynierów 15B, II piętro</p>
+    <div class="mt-6 flex items-start justify-between gap-10 text-sm leading-5">
+      <address class="space-y-4 not-italic">
+        <p>„Publishing School”<br>Placówka Kształcenia Ustawicznego</p>
+        <p>Adres:<br>ul. Kosynierów 15B, II piętro<br>31-572 Kraków</p>
         <p>Sekretariat czynny:<br>pon–pt, 12:30–18:30</p>
-        <p><a href="mailto:sekretariat@publishingschool.pl" class="hover:text-white hover:underline">sekretariat@publishingschool.pl</a></p>
+        <p>E-mail: <a href="mailto:sekretariat@publishingschool.pl" class="hover:underline">sekretariat@publishingschool.pl</a></p>
       </address>
-      <div class="col-span-2"><nav aria-label="Kursy"><p class="font-medium text-white">Kursy:</p><ul class="mt-3 space-y-2"><li><a href="kurs-roczny.html" class="hover:text-white hover:underline">Grafika 3D</a></li><li><a href="kurs-roczny.html" class="hover:text-white hover:underline">Web designer UI/UX</a></li><li><a href="kurs-roczny.html" class="hover:text-white hover:underline">Grafika DTP</a></li><li><a href="kurs-roczny.html" class="hover:text-white hover:underline">Grafik reklamy</a></li><li><a href="kursy-krotkie.html" class="hover:text-white hover:underline">Kursy krótkie</a></li></ul></nav></div>
-      <div class="col-span-2"><nav aria-label="Rekrutacja"><p class="font-medium text-white">Rekrutacja:</p><ul class="mt-3 space-y-2"><li><a href="jak-sie-zapisac.html" class="hover:text-white hover:underline">Jak się zapisać</a></li><li><a href="jak-sie-zapisac.html" class="hover:text-white hover:underline">Formularz zapisu</a></li><li><a href="dofinansowanie.html" class="hover:text-white hover:underline">Dofinansowanie kursów</a></li></ul></nav></div>
-      <div class="col-span-2"><nav aria-label="O nas"><p class="font-medium text-white">O nas:</p><ul class="mt-3 space-y-2"><li><a href="o-szkole.html" class="hover:text-white hover:underline">O szkole</a></li><li><a href="kadra.html" class="hover:text-white hover:underline">Kadra</a></li><li><a href="prace-absolwentow.html" class="hover:text-white hover:underline">Prace absolwentów</a></li><li><a href="blog.html" class="hover:text-white hover:underline">Blog</a></li><li><a href="kontakt.html" class="hover:text-white hover:underline">Kontakt</a></li></ul></nav></div>
+      <div class="flex gap-16">
+        <nav aria-label="Kursy"><p class="text-base font-semibold text-page">Kursy</p><ul class="mt-4 space-y-3 text-base font-medium text-page"><li><a href="kurs-grafika-3d.html" class="hover:underline">Grafika 3D</a></li><li><a href="kurs-web-designer.html" class="hover:underline">Web Designer UI/UX</a></li><li><a href="kurs-grafika-dtp.html" class="hover:underline">Grafika DTP</a></li><li><a href="kurs-graphic-designer.html" class="hover:underline">Graphic Designer</a></li><li><a href="kursy-krotkie.html" class="hover:underline">Kursy krótkie</a></li></ul></nav>
+        <nav aria-label="Rekrutacja"><p class="text-base font-semibold text-page">Rekrutacja</p><ul class="mt-4 space-y-3 text-base font-medium text-page"><li><a href="jak-sie-zapisac.html" class="hover:underline">Zapisy</a></li><li><a href="jak-sie-zapisac.html" class="hover:underline">Formularz zapisu</a></li><li><a href="dofinansowanie.html" class="hover:underline">Dofinansowanie kursów</a></li></ul></nav>
+        <nav aria-label="O nas"><p class="text-base font-semibold text-page">O nas</p><ul class="mt-4 space-y-3 text-base font-medium text-page"><li><a href="o-szkole.html" class="hover:underline">O szkole</a></li><li><a href="kadra.html" class="hover:underline">Kadra</a></li><li><a href="prace-absolwentow.html" class="hover:underline">Prace absolwentów</a></li><li><a href="blog.html" class="hover:underline">Blog</a></li><li><a href="kontakt.html" class="hover:underline">Kontakt</a></li></ul></nav>
+      </div>
     </div>
-    <div class="mt-10 flex items-center justify-between border-t border-gray-400 pt-5 text-xs">
+    <div class="mt-10 flex items-center justify-between border-t border-gray-500 pt-5 text-xs">
       <p>© 2026 Publishing School — Wszystkie prawa zastrzeżone</p>
       <ul class="flex gap-6"><li><a href="#" class="hover:text-white hover:underline">Polityka prywatności</a></li><li><a href="#" class="hover:text-white hover:underline">RODO</a></li><li><a href="#" class="hover:text-white hover:underline">Procedura reklamacyjna</a></li></ul>
     </div>
