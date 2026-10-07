@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korekta hero · Publishing School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script src="assets/tailwind.config.js?v=2"></script>
+<style type="text/tailwindcss">
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-7xl px-10; }
+  .btn { @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2; }
+  .btn-brand { @apply min-h-12 bg-brand px-6 text-base text-white shadow-sm hover:bg-brand-dark; }
+  .btn-white { @apply min-h-12 bg-white px-6 text-base text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50; }
+}
+</style>
+</head>
+<body class="min-w-[1280px] bg-page font-sans text-gray-900 antialiased">
+
+<header class="sticky top-0 z-40 bg-page/95 backdrop-blur">
+  <div class="container-page flex h-20 items-center justify-between">
+    <span class="text-lg font-semibold tracking-tight">publishing school</span>
+    <nav class="flex items-center gap-6 text-base font-medium"><a href="#">Kursy</a><a href="#">Zapisy</a><a href="#">Dla firm</a><a href="#">O nas</a><a href="#">Blog</a><a href="#">Kontakt</a></nav>
+    <a href="#" class="btn btn-brand">Zapytaj o kurs</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO · korekta -->
+<section class="relative overflow-hidden">
+  <div class="container-page grid grid-cols-12 items-center gap-x-12 pb-24 pt-16">
+
+    <div class="col-span-7">
+      <a href="#kursy-roczne" class="inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1 text-sm font-medium text-brand-dark ring-1 ring-inset ring-brand/20 hover:ring-brand/40">
+        Nabór na kursy roczne do 30 września · start na koniec miesiąca
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <h1 class="mt-6 max-w-2xl text-6xl font-semibold leading-[1.05] tracking-tight text-gray-900">Zostań grafikiem.<br><span class="text-brand">Od podstaw do portfolio.</span></h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">Kursy roczne z grafiki 3D, DTP, web designu i reklamy. Uczysz się od praktyków i kończysz z portfolio oraz dyplomem polsko-angielskim.</p>
+
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-base text-gray-700">
+        <li class="flex items-center gap-2"><svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>Co drugi weekend</li>
+        <li class="flex items-center gap-2"><svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>Online na żywo lub w Krakowie</li>
+        <li class="flex items-center gap-2"><svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5 1.3 2.2 3 2.5 3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z"/></svg>11 rat 0% lub dofinansowanie KFS</li>
+      </ul>
+
+      <div class="mt-10 flex items-center gap-3">
+        <a href="#kursy-roczne" class="btn btn-brand">Wybierz kierunek</a>
+        <a href="tel:+48504068626" class="btn btn-white">Zadzwoń: 504 068 626</a>
+      </div>
+      <p class="mt-4 text-sm text-gray-600">Wahasz się? Sekretariat pomoże dobrać kurs — codziennie 9:00–20:00. <a href="kursy-krotkie.html" class="font-medium text-brand-dark underline-offset-4 hover:underline">Zobacz też kursy krótkie →</a></p>
+    </div>
+
+    <div class="relative col-span-5">
+      <svg aria-hidden="true" viewBox="0 0 600 600" class="absolute -right-24 top-1/2 h-[640px] w-[640px] -translate-y-1/2 text-brand-soft"><path fill="currentColor" d="M96 150C150 40 330 10 450 70c90 45 160 120 130 230-25 90-120 120-90 200 15 40-40 80-140 85C240 592 70 560 40 430 15 320 40 250 96 150Z"/></svg>
+      <img src="assets/img/hero-probnik-kolorow.webp" width="766" height="1164" alt="Kursantka porównuje próbniki kolorów Pantone" class="relative aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10" fetchpriority="high">
+      <div class="absolute -left-10 bottom-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-lg ring-1 ring-gray-900/5">
+        <span class="text-3xl font-semibold tracking-tight text-brand">1998</span>
+        <span class="text-sm leading-5 text-gray-600">uczymy grafiki<br>Orły Edukacji 2019–2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pasek zaufania · korekta -->
+<section aria-label="Najważniejsze informacje" class="border-y border-gray-200 bg-white">
+  <dl class="container-page grid grid-cols-4 divide-x divide-gray-200">
+    <div class="px-6 py-8 text-center first:pl-0"><dd class="text-xl font-semibold text-gray-900">Orły Edukacji</dd><dt class="mt-1 text-sm text-gray-600">2019–2025</dt></div>
+    <div class="px-6 py-8 text-center"><dd class="text-xl font-semibold text-gray-900">Status słuchacza</dd><dt class="mt-1 text-sm text-gray-600">ZUS, KRUS i UP</dt></div>
+    <div class="px-6 py-8 text-center"><dd class="text-xl font-semibold text-gray-900">RSPO nr 277460</dd><dt class="mt-1 text-sm text-gray-600">rejestr MEN</dt></div>
+    <div class="px-6 py-8 text-center last:pr-0"><dd class="text-xl font-semibold text-gray-900">Rejestr WUP</dd><dt class="mt-1 text-sm text-gray-600">nr 2.12/00188/2021</dt></div>
+  </dl>
+</section>
+</main>
+</body>
+</html>

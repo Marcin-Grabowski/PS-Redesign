@@ -38,6 +38,9 @@ COMPONENT_CSS = """
   .card { @apply rounded-card border border-gray-400 bg-gray-50 p-6; }
   .chip { @apply inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-400 bg-white px-4 text-sm text-gray-900 hover:border-gray-900; }
   .chip-active { @apply border-gray-500 bg-gray-500 text-white hover:border-gray-600; }
+  .seg { @apply inline-flex min-h-11 items-center px-4 text-sm text-brand-dark hover:bg-brand-soft; }
+  .seg + .seg { @apply border-l border-brand; }
+  .seg[aria-selected='true'] { @apply bg-brand text-white hover:bg-brand; }
   .link-arrow { @apply inline-flex min-h-11 items-center gap-2 text-sm font-medium text-gray-900 hover:underline; }
   .ph { background: repeating-linear-gradient(45deg, theme('colors.gray.200') 0 10px, theme('colors.gray.100') 10px 20px); }
   .spy-active { @apply border-gray-900 text-gray-900; }
@@ -171,34 +174,34 @@ def header():
 
 def footer():
     def col(title, links):
-        return ('<nav aria-label="%s"><p class="text-base font-semibold text-page">%s</p><ul class="mt-4 space-y-3 text-base font-medium text-page">%s</ul></nav>'
-                % (title, title, ''.join('<li><a href="%s" class="hover:underline">%s</a></li>' % (h, l) for l, h in links)))
-    return f'''<footer class="bg-stopka text-page">
+        return ('<nav data-name="link-group" aria-label="%s"><p data-name="title" class="text-base font-semibold text-page">%s</p><ul data-name="links" class="mt-4 space-y-3 text-base font-medium text-page">%s</ul></nav>'
+                % (title, title, ''.join('<li><a data-name="link" href="%s" class="hover:underline">%s</a></li>' % (h, l) for l, h in links)))
+    return f'''<footer data-name="footer" class="bg-stopka text-page">
   <div class="container-page pb-12 pt-20">
-    <div class="flex items-start justify-between">
-      <div><a href="index.html" aria-label="Publishing School, strona główna">{logo(light=True)}</a><p class="mt-2 text-base font-medium">Szkoła grafiki komputerowej</p></div>
-      <a href="https://www.facebook.com/" class="flex h-12 w-12 items-center justify-center" aria-label="Facebook"><img src="assets/figma/facebook.svg" alt="" width="24" height="24"></a>
+    <div data-name="top" class="flex items-start justify-between">
+      <div data-name="brand"><a data-name="logo" href="index.html" aria-label="Publishing School, strona główna">{logo(light=True)}</a><p data-name="tagline" class="mt-2 text-base font-medium">Szkoła grafiki komputerowej</p></div>
+      <a data-name="social-link" href="https://www.facebook.com/" class="flex h-12 w-12 items-center justify-center" aria-label="Facebook"><img src="assets/figma/facebook.svg" alt="" width="24" height="24"></a>
     </div>
-    <div class="mt-6 flex items-center justify-between border-y border-gray-400 py-6">
-      <p class="text-2xl leading-8">Szkolisz pracowników? Kurs dopasujemy do Twojego zespołu.</p>
+    <div data-name="cta-band" class="mt-6 flex items-center justify-between border-y border-gray-400 py-6">
+      <p data-name="heading" class="text-2xl leading-8">Szkolisz pracowników? Kurs dopasujemy do Twojego zespołu.</p>
       {btn('Oferta dla firm', 'dla-firm.html', 'brand')}
     </div>
-    <div class="mt-6 flex items-start justify-between gap-10 text-sm leading-5">
-      <address class="space-y-4 not-italic">
-        <p>„Publishing School”<br>Placówka Kształcenia Ustawicznego</p>
-        <p>Adres:<br>ul. Kosynierów 15B, II piętro<br>31-572 Kraków</p>
-        <p>Sekretariat czynny:<br>pon–pt, 12:30–18:30</p>
-        <p>E-mail: <a href="mailto:sekretariat@publishingschool.pl" class="hover:underline">sekretariat@publishingschool.pl</a></p>
+    <div data-name="columns" class="mt-6 flex items-start justify-between gap-10 text-sm leading-5">
+      <address data-name="contact" class="space-y-4 not-italic">
+        <p data-name="org">„Publishing School”<br>Placówka Kształcenia Ustawicznego</p>
+        <p data-name="address">Adres:<br>ul. Kosynierów 15B, II piętro<br>31-572 Kraków</p>
+        <p data-name="hours">Sekretariat czynny:<br>pon–pt, 12:30–18:30</p>
+        <p data-name="email">E-mail: <a href="mailto:sekretariat@publishingschool.pl" class="hover:underline">sekretariat@publishingschool.pl</a></p>
       </address>
-      <div class="flex gap-16">
+      <div data-name="link-columns" class="flex gap-16">
         {col('Kursy', [('Grafika 3D', 'kurs-grafika-3d.html'), ('Web Designer UI/UX', 'kurs-web-designer.html'), ('Grafika DTP', 'kurs-grafika-dtp.html'), ('Graphic Designer', 'kurs-graphic-designer.html'), ('Kursy krótkie', 'kursy-krotkie.html')])}
         {col('Rekrutacja', [('Zapisy', 'jak-sie-zapisac.html'), ('Formularz zapisu', 'jak-sie-zapisac.html'), ('Dofinansowanie kursów', 'dofinansowanie.html')])}
         {col('O nas', [('O szkole', 'o-szkole.html'), ('Kadra', 'kadra.html'), ('Prace absolwentów', 'prace-absolwentow.html'), ('Blog', 'blog.html'), ('Kontakt', 'kontakt.html')])}
       </div>
     </div>
-    <div class="mt-10 flex items-center justify-between border-t border-gray-500 pt-5 text-xs">
-      <p>© 2026 Publishing School — Wszystkie prawa zastrzeżone</p>
-      <ul class="flex gap-6"><li><a href="#" class="hover:text-white hover:underline">Polityka prywatności</a></li><li><a href="#" class="hover:text-white hover:underline">RODO</a></li><li><a href="#" class="hover:text-white hover:underline">Procedura reklamacyjna</a></li></ul>
+    <div data-name="legal" class="mt-10 flex items-center justify-between border-t border-gray-500 pt-5 text-xs">
+      <p data-name="copyright">© 2026 Publishing School — Wszystkie prawa zastrzeżone</p>
+      <ul data-name="legal-links" class="flex gap-6"><li><a data-name="link" href="#" class="hover:text-white hover:underline">Polityka prywatności</a></li><li><a data-name="link" href="#" class="hover:text-white hover:underline">RODO</a></li><li><a data-name="link" href="#" class="hover:text-white hover:underline">Procedura reklamacyjna</a></li></ul>
     </div>
   </div>
 </footer>'''
@@ -504,27 +507,32 @@ def ps_card(title, text, link_label, href, icon='', extra=''):
 
 
 def home():
-    hero = f'''<section class="container-page pb-20 pt-12">
-  <div class="grid min-h-[582px] grid-cols-2 items-center gap-6">
-    <div class="max-w-[543px]">
-      <div class="flex gap-2">
-        <span class="rounded-full bg-info px-2 py-1 text-sm text-white">Nabór na kursy roczne do 30 września</span>
-        <span class="rounded-full border border-brand-dark px-2 py-1 text-sm text-brand-dark">Start: koniec września</span>
-      </div>
-      <h1 class="mt-4 text-5xl font-semibold leading-[3rem] text-ink">Zostań grafikiem. Od podstaw do portfolio</h1>
-      <p class="mt-4 text-base leading-6 text-ink">Kursy roczne przygotowują do pracy w grafice 3D, DTP, web designie i reklamie. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Płacisz w 11 ratach 0% — albo za kurs zapłaci urząd pracy lub KFS.</p>
-      <div class="mt-5 flex gap-2">{btn('Zobacz kierunki roczne', '#kursy-roczne', 'brand')}{btn('Przeglądaj kursy krótkie', 'kursy-krotkie.html', 'brand-outline')}</div>
-      <p class="mt-3 text-sm text-ink">Wahasz się między kierunkami? Zadzwoń: <a href="{PHONE_HREF}" class="font-medium hover:underline">504 068 626</a> <span class="text-neutral-600">(codziennie 9:00–20:00)</span></p>
+    ic = lambda d: f'<svg class="h-5 w-5 text-brand" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="{d}"/></svg>'
+    hero = f'''<section class="relative overflow-hidden">
+  <div class="container-page grid grid-cols-12 items-center gap-x-12 pb-24 pt-16">
+    <div class="col-span-7">
+      <a href="#kursy-roczne" class="inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1 text-sm font-medium text-brand-dark ring-1 ring-inset ring-brand/20 hover:ring-brand/40">Nabór na kursy roczne do 30 września · start na koniec miesiąca<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></a>
+      <h1 class="mt-6 whitespace-nowrap text-[3.5rem] font-semibold leading-[1.08] tracking-tight text-gray-900">Zostań grafikiem.<br><span class="text-brand">Od podstaw do portfolio.</span></h1>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-gray-600">Kursy roczne z grafiki 3D, DTP, web designu i reklamy. Uczysz się od praktyków i kończysz z portfolio oraz dyplomem polsko-angielskim.</p>
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-base text-gray-700">
+        <li class="flex items-center gap-2">{ic('M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z')}Co drugi weekend</li>
+        <li class="flex items-center gap-2">{ic('M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z')}Online na żywo lub w Krakowie</li>
+        <li class="flex items-center gap-2">{ic('M12 6v12M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5 1.3 2.2 3 2.5 3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0Z')}11 rat 0% lub dofinansowanie KFS</li>
+      </ul>
+      <div class="mt-10 flex items-center gap-3"><a href="#kursy-roczne" class="btn btn-brand shadow-sm">Wybierz kierunek</a><a href="{PHONE_HREF}" class="btn btn-brand bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Zadzwoń: 504 068 626</a></div>
+      <p class="mt-4 text-sm text-gray-600">Wahasz się? Sekretariat pomoże dobrać kurs — codziennie 9:00–20:00. <a href="kursy-krotkie.html" class="font-medium text-brand-dark underline-offset-4 hover:underline">Zobacz też kursy krótkie →</a></p>
     </div>
-    <div class="flex h-[582px] justify-center">
-      <img src="assets/img/hero-probnik-kolorow.webp" width="766" height="1164" alt="Kursantka przegląda wzorniki kolorów i katalog druku" class="h-full w-auto rounded-3xl object-cover" fetchpriority="high">
+    <div class="relative col-span-5">
+      <svg aria-hidden="true" viewBox="0 0 600 600" class="absolute -right-24 top-1/2 h-[640px] w-[640px] -translate-y-1/2 text-brand-soft"><path fill="currentColor" d="M96 150C150 40 330 10 450 70c90 45 160 120 130 230-25 90-120 120-90 200 15 40-40 80-140 85C240 592 70 560 40 430 15 320 40 250 96 150Z"/></svg>
+      <img src="assets/img/hero-probnik-kolorow.webp" width="766" height="1164" alt="Kursantka porównuje próbniki kolorów Pantone" class="relative aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10" fetchpriority="high">
+      <div class="absolute -left-10 bottom-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-lg ring-1 ring-gray-900/5"><span class="text-3xl font-semibold tracking-tight text-brand">1998</span><span class="text-sm leading-5 text-gray-600">uczymy grafiki<br>Orły Edukacji 2019–2025</span></div>
     </div>
   </div>
 </section>'''
 
-    stats = ''.join(f'<div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">{b}</dt><dd class="order-1 text-2xl font-semibold leading-8">{a}</dd></div>'
-                    for a, b in PROOF_HOME)
-    proof = f'<section aria-label="Najważniejsze informacje" class="bg-alt py-9"><dl class="container-page flex text-center text-ink">{stats}</dl></section>'
+    stats = ''.join(f'<div class="flex-1 px-6 py-8 text-center"><dd class="text-xl font-semibold text-gray-900">{a}</dd><dt class="mt-1 text-sm text-gray-600">{b}</dt></div>'
+                    for a, b in PROOF_HOME if '1998' not in a)
+    proof = f'<section aria-label="Najważniejsze informacje" class="border-y border-gray-200 bg-white"><dl class="container-page flex divide-x divide-gray-200">{stats}</dl></section>'
 
     router = f'''<section class="container-page py-20" id="kursy-roczne">
   {ps_head('Kursy roczne', 'Kursy roczne — 9 miesięcy przygotowania do pracy w grafice', 'Wybierz specjalizację. 200 godzin zajęć w soboty i niedziele, od końca września do końca czerwca — online na żywo albo w Krakowie. Kończysz z portfolio i dyplomem polsko-angielskim.')}
@@ -543,9 +551,21 @@ def home():
 </section>'''
 
     acc_items = [
-        ('Pracuję lub prowadzę działalność', 'Kurs może sfinansować Krajowy Fundusz Szkoleniowy — wniosek składa pracodawca w urzędzie pracy. Jeśli prowadzisz firmę, opłatę za kurs wliczasz w koszty działalności. <a href="dofinansowanie.html" class="text-brand hover:underline">Opcje dla pracujących</a>'),
-        ('Szukam pracy albo chcę zmienić zawód', 'Jeśli jesteś zarejestrowana/y w urzędzie pracy jako osoba bezrobotna lub poszukująca pracy, urząd może sfinansować kurs albo dać Ci bon szkoleniowy. Możesz też wziąć nieoprocentowaną pożyczkę na kształcenie z możliwością częściowego umorzenia.'),
-        ('Szkolę pracowników', 'Szkolenie zespołu możesz sfinansować z Krajowego Funduszu Szkoleniowego. Przygotujemy ofertę i komplet dokumentów do wniosku, a fakturę wystawimy na firmę.'),
+        ('Pracuję lub prowadzę działalność', ab('Masz dwie drogi, a sekretariat pomoże wybrać lepszą.', [
+            'KFS: wniosek składa pracodawca w urzędzie pracy',
+            'działalność gospodarcza: kurs wliczasz w koszty i dostajesz fakturę',
+            'raty 0%, jeśli wolisz zapłacić sam(a)'],
+            '<a href="dofinansowanie.html" class="text-brand hover:underline">Zobacz opcje dla pracujących</a>')),
+        ('Szukam pracy albo chcę zmienić zawód', ab('Urząd pracy może pomóc Ci zmienić zawód.', [
+            'bon szkoleniowy lub opłacenie kursu przez urząd, jeśli jesteś zarejestrowana/y',
+            'nieoprocentowana pożyczka na kształcenie, częściowo umarzana',
+            'status słuchacza honorowany przez urzędy pracy i ZUS',
+            'pierwszy krok: rozmowa z sekretariatem, który powie, co zrobić po kolei'])),
+        ('Szkolę pracowników', ab('Szkolenie zespołu możesz sfinansować z KFS.', [
+            'przygotujemy ofertę i komplet dokumentów do wniosku',
+            'fakturę wystawimy na firmę',
+            'kurs dopasujemy do poziomu i potrzeb zespołu'],
+            '<a href="dla-firm.html" class="text-brand hover:underline">Zobacz ofertę dla firm</a>')),
     ]
     acc = ps_accordion(acc_items)
     funding = f'''<section class="container-page py-20" id="dofinansowanie">
@@ -678,13 +698,48 @@ COURSES = [
 ]
 COURSE_URL = {c['name']: c['slug'] for c in COURSES}
 
+def ab(intro, bullets, outro=''):
+    li = ''.join('<li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5L20 7"/></svg><span>%s</span></li>' % b for b in bullets)
+    return '<p>%s</p><ul class="mt-3 space-y-2">%s</ul>%s' % (intro, li, ('<p class="mt-3">%s</p>' % outro) if outro else '')
+
+
 FAQ_COURSE = [
-    ('Czy muszę mieć doświadczenie?', 'Nie. Każdy kierunek zaczyna się od podstaw, a prowadzący pokazują każde narzędzie krok po kroku.'),
-    ('Jak wyglądają zajęcia online?', 'Na żywo, z grupą i prowadzącym, w te same weekendy co zajęcia w Krakowie. Formę wybierasz przy zapisie.'),
-    ('Jak działają raty 0%?', 'Cenę kursu dzielisz na 11 rat bez odsetek. Kurs online kosztuje tyle samo co stacjonarny.'),
-    ('Czy urząd pracy może zapłacić za kurs?', 'Tak. Jesteśmy w Rejestrze Instytucji Szkoleniowych WUP (nr 2.12/00188/2021), więc urząd pracy może sfinansować kurs. Pracujący mogą skorzystać z KFS. <a href="dofinansowanie.html" class="text-brand hover:underline">Zobacz wszystkie opcje</a>'),
-    ('Jaki dokument dostanę po kursie?', 'Polsko-angielski dyplom z suplementem i zaświadczenie o ukończeniu kursu zgodne z przepisami MEN.'),
-    ('Co daje status słuchacza?', 'Status słuchacza jest honorowany przez ZUS, KRUS, urzędy pracy i inne instytucje publiczne.'),
+    ('Nigdy nie projektowałem(-am). Czy dam radę?', ab('Tak. Większość kursantów zaczyna od zera.', [
+        'zaczynamy od podstaw każdego programu, krok po kroku',
+        'grupy są małe, więc prowadzący widzi Twoją pracę i pomaga na bieżąco',
+        'pierwszy projekt do portfolio robisz już w pierwszych tygodniach',
+        'nie musisz mieć własnych licencji na start, doradzimy, co zainstalować'])),
+    ('Pracuję. Czy pogodzę kurs z pracą?', ab('Tak, kurs jest układany pod osoby pracujące.', [
+        'zajęcia w soboty i niedziele, dwa razy w miesiącu',
+        'od końca września do końca czerwca, bez zajęć w tygodniu',
+        'projekty robisz we własnym tempie między zjazdami',
+        'jeśli opuścisz zjazd, prowadzący podpowie, jak nadrobić materiał'])),
+    ('Ile płacę i kiedy? Czy są raty?', ab('Cena jest jedna, a Ty wybierasz sposób płatności.', [
+        '11 rat 0% bez odsetek i bez opłat dodatkowych',
+        'albo płatność jednorazowa, wtedy płacisz mniej',
+        'kurs online kosztuje tyle samo co stacjonarny',
+        'faktura na osobę prywatną lub firmę'])),
+    ('Czy ktoś może zapłacić za mój kurs?', ab('Tak. Jesteśmy w Rejestrze Instytucji Szkoleniowych WUP (nr 2.12/00188/2021).', [
+        'urząd pracy może sfinansować kurs osobom bezrobotnym i poszukującym pracy',
+        'KFS pomaga pracującym, a wniosek składa pracodawca',
+        'możesz wziąć nieoprocentowaną pożyczkę na kształcenie',
+        'sekretariat przygotuje z Tobą dokumenty'],
+        '<a href="dofinansowanie.html" class="text-brand hover:underline">Sprawdź, co Ci przysługuje</a>')),
+    ('Online czy w Krakowie, co wybrać?', ab('Ten sam kurs w dwóch formach, a Ty wybierasz przy zapisie.', [
+        'online na żywo: łączysz się z grupą i prowadzącym z domu',
+        'stacjonarnie: pracujesz w pracowni w Krakowie (ul. Kosynierów 15B)',
+        'zajęcia w te same weekendy, z tym samym programem',
+        'cena jest taka sama w obu formach'])),
+    ('Co dostanę po kursie?', ab('Poza wiedzą dostajesz dokumenty i portfolio, które da się pokazać.', [
+        'portfolio z projektami z każdego modułu',
+        'polsko-angielski dyplom z suplementem',
+        'zaświadczenie zgodne z przepisami MEN',
+        'status słuchacza honorowany przez ZUS, KRUS i urzędy pracy'])),
+    ('Do kiedy mogę się zapisać?', ab('Nabór na kursy roczne trwa do 30 września.', [
+        'liczba miejsc w grupach jest ograniczona',
+        'sekretariat potwierdza miejsce i prowadzi przez formalności',
+        'start zajęć pod koniec września'],
+        '<a href="jak-sie-zapisac.html" class="font-medium text-brand hover:underline">Zobacz, jak się zapisać</a>')),
 ]
 
 
@@ -870,7 +925,7 @@ def course_schema(c, hours):
         'hasCourseInstance': [{'@type': 'CourseInstance', 'courseMode': m, 'courseWorkload': 'PT%dH' % hours} for m in ('onsite', 'online')],
     }, {
         '@context': 'https://schema.org', '@type': 'FAQPage',
-        'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', a)}} for q, a in FAQ_COURSE],
+        'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', a)).strip()}} for q, a in FAQ_COURSE],
     }]
     return '<script type="application/ld+json">%s</script>' % json.dumps(data, ensure_ascii=False)
 
@@ -939,11 +994,16 @@ def course_page(c):
   </div>
 </section>'''
 
-    jobs = ''.join(f'<li class="rounded-full border border-neutral-500 px-4 py-2 text-base text-olive">{j}</li>' for j in c['jobs'])
+    jobs = ''.join(check_item(j) for j in c['jobs'])
     body += f'''<section class="container-page scroll-mt-36 py-20" id="po-kursie">
-  {ps_head('Po kursie', 'Gdzie możesz pracować', 'Absolwenci pracują w agencjach, firmach i na własny rachunek. Na koniec kursu masz portfolio, które pokażesz na rozmowie.')}
-  <ul class="mt-8 flex flex-wrap justify-center gap-3">{jobs}</ul>
-  <div class="mt-8 text-center"><a href="prace-absolwentow.html" class="btn btn-ghost">Zobacz prace absolwentów{CHEV_GRAY}</a></div>
+  <div class="flex items-center gap-12">
+    <div class="flex flex-1 flex-col gap-6">
+      {ps_head('Po kursie', 'Gdzie możesz pracować', 'Absolwenci pracują w agencjach, firmach i na własny rachunek. Na koniec kursu masz portfolio, które pokażesz na rozmowie.', center=False)}
+      <ul class="grid grid-cols-2 gap-x-6 gap-y-4 text-base leading-6 text-ink">{jobs}</ul>
+      <div><a href="prace-absolwentow.html" class="btn btn-ghost">Zobacz prace absolwentów{CHEV_GRAY}</a></div>
+    </div>
+    <div class="flex flex-1 justify-center">{photo('programy-adobe.webp', 'Pasek aplikacji na MacBooku: Illustrator, Photoshop, InDesign, After Effects', 1020, 960, 'max-w-[508px]')}</div>
+  </div>
 </section>'''
 
     included = ['Zajęcia na żywo z praktykami', 'Konsultacje portfolio', 'Dyplom polsko-angielski z suplementem',
@@ -989,7 +1049,7 @@ def course_page(c):
     body += f'''<section class="container-page scroll-mt-36 py-20" id="faq">
   <div class="flex items-start gap-6">
     <div class="w-[520px] shrink-0">
-      {ps_head('FAQ', 'Najczęściej zadawane pytania', f'Nie ma tu Twojego pytania? Zadzwoń {PHONE} — odbieramy codziennie 9:00–20:00.', center=False)}
+      {ps_head('FAQ', 'Najczęściej zadawane pytania', f'Nie ma tu Twojego pytania? Zadzwoń {PHONE} (codziennie 9:00–20:00) albo napisz. Odpowiadamy szybko.', center=False)}
       <div class="mt-6"><a href="kontakt.html" class="btn btn-ghost">Zadaj pytanie</a></div>
     </div>
     <div class="flex-1">{ps_accordion(FAQ_COURSE, open_first=False)}</div>
@@ -1018,40 +1078,87 @@ SHORT_COURSES = [
 ]
 
 
-def kursy_krotkie():
-    body = breadcrumbs([('Strona główna', 'index.html'), ('Kursy krótkie', '')])
-    body += '''<section class="container-page flex min-h-[calc(100svh-8.5rem)] flex-col items-center justify-center py-20">
-  <div class="mx-auto flex w-[630px] max-w-full flex-col items-center gap-4 py-6 text-center text-ink">
-    <h1 class="text-5xl font-semibold leading-[3rem]">Kursy krótkie</h1>
-    <p class="text-base leading-6">Jeden temat, kilka dni nauki, certyfikat na koniec. Wybierz kategorię i zacznij w najbliższy weekend.</p>
+def ps_faq(items, lead):
+    return f'''<section class="container-page scroll-mt-36 py-20" id="faq">
+  <div class="flex items-start gap-6">
+    <div class="w-[520px] shrink-0">
+      {ps_head('FAQ', 'Najczęściej zadawane pytania', lead, center=False)}
+      <div class="mt-6"><a href="kontakt.html" class="btn btn-ghost">Zadaj pytanie</a></div>
+    </div>
+    <div class="flex-1">{ps_accordion(items, open_first=False)}</div>
   </div>
 </section>'''
-    fund = ['Kurs może sfinansować urząd pracy (bon szkoleniowy)', 'Pracujący korzystają z KFS — wniosek składa pracodawca',
-            'Dokumenty do wniosku przygotowuje sekretariat', 'Faktura na osobę prywatną lub firmę']
-    body += f'''<section class="container-page py-20">
-  <div class="flex items-center gap-12">
-    <div class="flex flex-1 justify-center">{photo('programy-adobe.webp', 'Pasek aplikacji na MacBooku: Illustrator, Photoshop, InDesign, After Effects', 1020, 960, 'max-w-[508px]')}</div>
-    <div class="flex flex-1 flex-col gap-6">
-      {ps_head('Dofinansowania', 'Kurs może opłacić pracodawca albo urząd pracy', 'Kursy krótkie często finansuje KFS albo bon szkoleniowy z urzędu pracy. Dokumenty do wniosku przygotujemy w ciągu 24 h.', center=False)}
-      <ul class="space-y-3 text-base leading-6 text-ink">{''.join(check_item(i) for i in fund)}</ul>
-      <div>{btn('Sprawdź dofinansowanie', 'dofinansowanie.html', 'brand-outline')}</div>
-      <p class="text-xs text-neutral-600">Informacje ogólne. O przyznaniu dofinansowania decyduje urząd pracy.</p>
+
+
+def price_block(included, lead, monthly=True):
+    return f'''<section class="container-page scroll-mt-36 py-20" id="cena" data-price>
+  {ps_head('Cena', 'Prosta cena', lead)}
+  <div class="mt-8 flex items-center justify-center gap-3 text-base">
+    <span data-price-label="raty">Raty 0%</span>
+    <button type="button" role="switch" aria-checked="false" aria-label="Płatność jednorazowa" class="group relative inline-flex h-7 w-12 items-center rounded-full bg-neutral-300 transition-colors after:absolute after:-inset-2.5 aria-checked:bg-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
+      <span class="ml-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform group-aria-checked:translate-x-5"></span>
+    </button>
+    <span data-price-label="raz">Jednorazowo</span>
+    <span data-price-view="raz" class="rounded-full bg-brand-soft px-3 py-1 text-sm font-medium text-brand">Oszczędzasz [x]%</span>
+  </div>
+  <div class="mt-8 grid grid-cols-2 gap-6">
+    <div class="ps-card">
+      <p data-price-view="raty" class="text-base text-neutral-600">Płatność w ratach</p>
+      <p data-price-view="raz" class="text-base text-neutral-600">Płatność jednorazowa</p>
+      <p data-price-view="raty"><span class="text-5xl font-semibold text-ink">[kwota]</span> <span class="text-base text-neutral-600">zł / mies. · 11 rat 0%</span></p>
+      <p data-price-view="raz"><span class="text-5xl font-semibold text-ink">[kwota]</span> <span class="text-base text-neutral-600">zł za cały kurs</span></p>
+      <p data-price-view="raty" class="text-base leading-6">Bez odsetek i bez opłat dodatkowych.</p>
+      <p data-price-view="raz" class="text-base leading-6">Płacisz raz przed startem. Faktura na osobę prywatną lub firmę.</p>
+      <div class="mt-auto flex gap-2 pt-2">{btn('Zarezerwuj miejsce', 'jak-sie-zapisac.html', 'brand')}{btn('Sprawdź dofinansowanie', 'dofinansowanie.html', 'brand-outline')}</div>
+    </div>
+    <div class="ps-card">
+      <p class="text-base font-medium text-ink">W cenie kursu</p>
+      <ul class="grid grid-cols-2 gap-x-6 gap-y-4 text-base leading-6 text-ink">{''.join(check_item(i) for i in included)}</ul>
     </div>
   </div>
 </section>'''
-    chips = [('all', 'Wszystkie'), ('soon', 'Najbliższe'), ('3d', 'Grafika 3D'), ('adobe', 'Grafika i Adobe'), ('web', 'Web i UX'), ('social', 'Social media'), ('druk', 'Druk i DTP')]
-    chip_html = ''.join('<button type="button" role="tab" data-tab="%s" aria-selected="%s" class="chip">%s</button>' % (k, 'true' if k == 'all' else 'false', l) for k, l in chips)
+
+
+def hero_banner():
+    return ('<section class="mx-auto w-full max-w-7xl px-6 min-[1360px]:px-0">'
+            + photo('o-szkole-laptop.webp', 'Kursant pracuje na laptopie przy biurku', 1016, 884, 'h-[480px]')
+            + '</section>')
+
+
+def center_hero(title, lead, extra=''):
+    return f'''<section class="container-page flex min-h-[calc(100svh-8.5rem)] flex-col items-center justify-center py-20">
+  <div class="mx-auto flex w-[630px] max-w-full flex-col items-center gap-4 py-6 text-center text-ink">
+    <h1 class="text-5xl font-semibold leading-[3rem]">{title}</h1>
+    <p class="text-base leading-6">{lead}</p>
+    {extra}
+  </div>
+</section>'''
+
+
+def kursy_krotkie():
+    body = breadcrumbs([('Strona główna', 'index.html'), ('Kursy', 'index.html#kursy-roczne'), ('Kursy krótkie', '')])
+    body += center_hero('Kursy krótkie', 'Jeden temat, kilka dni nauki, certyfikat na koniec. Wybierz kategorię i zacznij w najbliższy weekend.')
+    body += hero_banner()
+    opts = [('Bon szkoleniowy', 'Urząd pracy może opłacić kurs osobom bezrobotnym i poszukującym pracy.'),
+            ('KFS', 'Krajowy Fundusz Szkoleniowy dla pracujących — wniosek składa pracodawca.'),
+            ('Pracodawca', 'Firma opłaca kurs pracownika. Wystawiamy fakturę i komplet dokumentów.'),
+            ('Pożyczka szkoleniowa', 'Nieoprocentowana pożyczka na kształcenie z możliwością częściowego umorzenia.')]
+    cards = ''.join(f'<article class="ps-card items-center text-center"><img src="assets/figma/icon-printer.svg" alt="" class="h-16"><h3 class="text-xl font-medium leading-7">{a}</h3><p class="text-base leading-6">{b}</p></article>' for a, b in opts)
+    body += f'''<section class="container-page py-20">
+  {ps_head('Dofinansowania', 'Kurs może opłacić pracodawca albo urząd pracy', 'Dokumenty do wniosku przygotujemy w ciągu 24 h.')}
+  <div class="mt-10 grid grid-cols-4 gap-6">{cards}</div>
+  <p class="mt-6 text-center text-xs text-neutral-600">Informacje ogólne. O przyznaniu dofinansowania decyduje urząd pracy.</p>
+</section>'''
+    chips = [('all', 'Wszystkie'), ('soon', 'Najbliższe'), ('3d', 'Grafika 3D'), ('adobe', 'Grafika komputerowa'), ('web', 'Web design'), ('druk', 'Druk i DTP')]
+    chip_html = ''.join('<button type="button" role="tab" data-tab="%s" aria-selected="%s" class="seg">%s</button>' % (k, 'true' if k == 'all' else 'false', l) for k, l in chips)
     cards = ''.join(ps_card(t, f'{d} <span class="mt-2 block text-sm text-neutral-600">{m}</span>', 'Zobacz program', h, 'icon-printer', extra='" data-cat="' + c) for t, d, m, c, h in SHORT_COURSES)
     body += f'''<section class="container-page py-20">
   {ps_head('Katalog', 'Wybierz rodzaj kursu', '6 kategorii, ponad 30 tematów.')}
-  <div role="tablist" aria-label="Kategorie kursów" data-tabs data-tabs-mode="filter" data-tabs-target="#course-grid" class="mt-6 flex flex-wrap justify-center gap-2">{chip_html}</div>
+  <div role="tablist" aria-label="Kategorie kursów" data-tabs data-tabs-mode="filter" data-tabs-target="#course-grid" class="mx-auto mt-6 flex w-fit max-w-full flex-wrap overflow-hidden rounded-full border border-brand">{chip_html}</div>
   <div class="mt-6 border-t border-neutral-400"></div>
   <div id="course-grid" class="mt-8 grid grid-cols-3 gap-6">{cards}</div>
   <div class="mt-8 text-center">{btn('Pokaż kolejne kursy (8)', '#', 'brand-outline')}</div>
 </section>'''
-    body += final_cta('Nie mamy teraz potwierdzonego terminu?',
-                      'Kurs realizujemy też na zamówienie — indywidualnie i dla zespołów. Zostaw kontakt, a damy znać, gdy ruszy najbliższa grupa.',
-                      second=('Sprawdź dofinansowanie', 'dofinansowanie.html'))
     school_stats = [('Zjazdy', 'co 2 weekendy'), ('Wyróżnienie', 'Orły Edukacji'), ('Certyfikat', 'z hologramem')]
     sdl = ''.join(f'<div class="flex flex-1 flex-col justify-center gap-2 rounded-2xl bg-alt p-4"><dt class="order-2 text-base leading-6">{b}</dt><dd class="order-1 text-2xl font-semibold leading-8">{a}</dd></div>' for a, b in school_stats)
     body += f'''<section class="container-page py-20">
@@ -1064,96 +1171,130 @@ def kursy_krotkie():
     </div>
   </div>
 </section>'''
-    body += final_cta('Zarezerwuj miejsce w grupie 2026/27', 'Nabór 2026/27: liczba miejsc w grupach jest ograniczona.')
+    body += final_cta('Nie mamy teraz potwierdzonego terminu', 'Sprawdź możliwe dofinansowania. Sekretariat pomoże przygotować dokumenty.',
+                      second=('Zobacz kursy roczne', 'index.html#kursy-roczne'))
     page('kursy-krotkie.html', 'Kursy krótkie', body, 'Katalog kursów krótkich Publishing School: grafika, 3D, UX, social media i druk.')
 
 
 def kurs_krotki():
-    body = breadcrumbs([('Strona główna', 'index.html'), ('Kursy krótkie', 'kursy-krotkie.html'), ('Blender 3D od podstaw', '')])
-    body += hero_split(
-        'Blender 3D od podstaw',
-        'W trzy dni przejdziesz od pierwszego uruchomienia Blendera do gotowego renderu. Wymodelujesz, oteksturujesz i oświetlisz własną scenę, którą dodasz do portfolio.',
-        badges=badge('Grafika 3D i animacja', 'dark'),
-        badges_after=badge('17, 18 i 24.10.2026') + badge('Online · Jitsi') + badge('9:00–13:30'),
-        actions=btn('Zapisz się na kurs', '#cena'))
-    body += proof_bar(PROOF_4)
-    body += anchor_nav([('Program', 'program'), ('Kadra', 'kadra'), ('Cena', 'cena'), ('Zapisy', 'faq')])
-
-    odb = [('Zaczynasz od zera', 'Nie potrzebujesz doświadczenia w grafice 3D.'), ('Chcesz pokazać produkt w 3D', 'Wizualizacje do sklepu, social mediów i prezentacji.'), ('Myślisz o pracy grafika 3D', 'Kurs to pierwszy krok i pierwsza praca w portfolio.')]
-    kom = [('Modelowanie low poly', 'Budujesz obiekty sceny z prostych brył.'), ('Materiały i światło', 'Teksturujesz modele i oświetlasz scenę.'), ('Kamera i render', 'Ustawiasz kadr i eksportujesz gotową pracę.')]
-    body += f'''<section class="container-page section" id="dla-kogo">
-  {section_head('Dla kogo jest ten kurs i czego się nauczysz', badge_label='Dla kogo')}
-  <p class="mt-6 text-sm text-gray-900">Ten kurs jest dla Ciebie, jeśli:</p>
-  <div class="mt-3 grid grid-cols-3 gap-5">{''.join(info_card(a, b) for a, b in odb)}</div>
-  <p class="mt-8 text-sm text-gray-900">Po kursie potrafisz:</p>
-  <div class="mt-3 grid grid-cols-3 gap-5">{''.join(info_card(a, b) for a, b in kom)}</div>
-</section>'''
-    body += f'''<section class="container-page section" id="program">
-  <div class="grid grid-cols-2 gap-12">
-    <div>{section_head('Program kursu', '3 moduły · 16 godzin dydaktycznych (po 45 min) · zajęcia online przez Jitsi.', 'Program')}<div class="mt-5">{btn('Pobierz program (PDF)', '#', 'secondary')}</div></div>
-    {accordion([('Moduł 1 · Interfejs i modelowanie', 'Poruszanie się po programie i modelowanie low poly.'), ('Moduł 2 · Materiały i światło', 'Teksturowanie, shadery i oświetlenie sceny.'), ('Moduł 3 · Kamera i render', 'Ustawienie kamery, parametry renderu i finalizacja.'), ('Wymagania techniczne', 'Komputer z zainstalowanym Blenderem (program jest darmowy).')])}
+    body = breadcrumbs([('Strona główna', 'index.html'), ('Lista kursów krótkich', 'kursy-krotkie.html'), ('Blender 3D od podstaw', '')])
+    meta = ''.join(f'<span class="rounded-full bg-alt px-3 py-1 text-sm text-ink">{m}</span>' for m in ['17, 18 i 24.10.2026', 'Online · Jitsi', '9:00–13:30'])
+    body += f'''<section class="container-page pb-16 pt-8">
+  <div class="grid min-h-[520px] grid-cols-2 items-center gap-6">
+    <div class="max-w-[560px]">
+      <div class="flex gap-2"><span class="rounded-full bg-info px-2 py-1 text-sm text-white">Grafika 3D</span><span class="rounded-full border border-brand-dark px-2 py-1 text-sm text-brand-dark">Kurs krótki</span></div>
+      <h1 class="mt-4 text-5xl font-semibold leading-[3rem] text-ink">Blender 3D od podstaw</h1>
+      <p class="mt-4 text-base leading-6 text-ink">W trzy dni przejdziesz od pierwszego uruchomienia Blendera do gotowego renderu. Wymodelujesz, oteksturujesz i oświetlisz własną scenę, którą dodasz do portfolio.</p>
+      <div class="mt-4 flex flex-wrap gap-2">{meta}</div>
+      <div class="mt-5 flex gap-2">{btn('Zapisz się na kurs', '#cena', 'brand')}</div>
+    </div>
+    <div class="flex justify-center">{photo('web-designer-kod.webp', 'Dwie osoby pracują przy komputerze nad projektem 3D', 996, 1164, 'h-[520px] w-auto max-w-full', lazy=False)}</div>
   </div>
 </section>'''
-    side = (section_head('mgr Anastasiia Dudina', 'Graficzka 3D, specjalistka Blendera. Absolwentka grafiki 3D w Publishing School, pracuje jako freelancerka i tworzy modele oraz wizualizacje.', 'Prowadząca')
-            + stats([('Specjalizacja', 'Blender 3D'), ('Wyróżnienie', 'Orły Edukacji'), ('Certyfikat', 'Z hologramem')]))
-    body += '<div id="kadra" class="scroll-mt-36">' + works_section([('Grafika 3D', 'Praca z kursu Blender 3D od podstaw')], side) + '</div>'
-    body += pricing(['Terminy: 17, 18 i 24.10.2026', 'Zapisy do 11.10.2026', 'Zostało [X] miejsc w grupie', 'Zajęcia online przez Jitsi', 'Faktura VAT na firmę', 'Dokumenty do KFS w 24 h'],
-                    [('Forma', 'Online · Jitsi'), ('Czas trwania', '3 dni · 16 h'), ('Godziny', '9:00–13:30'), ('Grupa', '10–12 osób')],
-                    ['Materiały do zajęć', 'Nagrania zajęć', 'Certyfikat z hologramem', 'Wysyłka certyfikatu', 'Konsultacje', 'Scena do portfolio', 'Status uczestnika', 'Wsparcie sekretariatu'],
-                    'Kurs opłacasz z góry, przed startem. Możesz też rozłożyć płatność albo skorzystać z dofinansowania KFS.')
-    body += funding_band('Ten kurs może kosztować Cię mniej', 'Sprawdź, czy przysługuje Ci dofinansowanie. Sekretariat pomoże przygotować dokumenty.', FUNDING_ITEMS)
-    body += '<div id="faq" class="scroll-mt-36">' + faq_section([
-        ('Jak działa dofinansowanie z KFS?', 'Krajowy Fundusz Szkoleniowy dla osób zatrudnionych — wniosek składa pracodawca w urzędzie pracy właściwym dla regionu zarejestrowania siedziby firmy. <a href="dofinansowanie.html" class="text-fuchsia-700 hover:underline">Zobacz dofinansowanie ›</a>'),
+    stats = ''.join(f'<div class="flex flex-1 flex-col items-center gap-2 p-4"><dt class="order-2 text-base leading-6">{b}</dt><dd class="order-1 text-2xl font-semibold leading-8">{a}</dd></div>'
+                    for a, b in [('28 lat', 'doświadczenia szkoły'), ('16 godzin', 'zajęć online'), ('3 spotkania', '9:00–13:30'), ('10–12 osób', 'w grupie')])
+    body += f'<section aria-label="Najważniejsze informacje" class="bg-alt py-9"><dl class="container-page flex text-center text-ink">{stats}</dl></section>'
+    body += anchor_nav([('Efekty', 'efekty'), ('Program', 'program'), ('Prowadzący', 'kadra'), ('Cena', 'cena')])
+    odb = [('Zaczynasz od zera', 'Nie potrzebujesz doświadczenia w grafice 3D.'), ('Chcesz pokazać produkt w 3D', 'Wizualizacje do sklepu, social mediów i prezentacji.'),
+           ('Myślisz o pracy grafika 3D', 'Kurs to pierwszy krok i pierwsza praca w portfolio.'), ('Szukasz dofinansowania', 'Kurs może sfinansować urząd pracy albo KFS.')]
+    cards = ''.join(f'<article class="ps-card items-center text-center"><img src="assets/figma/icon-printer.svg" alt="" class="h-16"><h3 class="text-xl font-medium leading-7">{a}</h3><p class="text-base leading-6">{b}</p></article>' for a, b in odb)
+    body += f'''<section class="container-page scroll-mt-36 py-20" id="dla-kogo">
+  {ps_head('Dla kogo', 'Ten kurs jest dla Ciebie, jeśli', 'Nie musisz umieć nic z grafiki 3D.')}
+  <div class="mt-10 grid grid-cols-4 gap-6">{cards}</div>
+</section>'''
+    kom = ['Modelujesz obiekty metodą low poly', 'Teksturujesz modele i ustawiasz materiały', 'Oświetlasz scenę i ustawiasz kamerę', 'Eksportujesz gotowy render do portfolio']
+    body += f'''<section class="container-page scroll-mt-36 py-20" id="efekty">
+  <div class="flex items-center gap-12">
+    <div class="flex flex-1 justify-center">{photo('programy-adobe.webp', 'Pasek aplikacji na MacBooku', 1020, 960, 'max-w-[508px]')}</div>
+    <div class="flex flex-1 flex-col gap-6">
+      {ps_head('Efekty', 'Zyskasz takie umiejętności', 'Każdy moduł kończy się projektem, który trafia do Twojego portfolio.', center=False)}
+      <ul class="space-y-4 text-base leading-6 text-ink">{''.join(check_item(o) for o in kom)}</ul>
+      <p class="text-sm text-neutral-600">Programy: Blender</p>
+    </div>
+  </div>
+</section>'''
+    prog = [('Moduł 1 · Interfejs i modelowanie', 'Poruszasz się po programie i modelujesz obiekty metodą low poly.'),
+            ('Moduł 2 · Materiały i światło', 'Teksturujesz modele, ustawiasz shadery i oświetlasz scenę.'),
+            ('Moduł 3 · Kamera i render', 'Ustawiasz kamerę, parametry renderu i finalizujesz pracę.'),
+            ('Wymagania techniczne', 'Komputer z zainstalowanym Blenderem (program jest darmowy).')]
+    body += f'''<section class="container-page scroll-mt-36 py-20" id="program">
+  <div class="flex items-start gap-12">
+    <div class="sticky top-40 w-[360px] shrink-0">
+      {ps_head('Program', 'Program kursu', 'Zajęcia online przez Jitsi. Każdy moduł kończy się pracą do portfolio.', center=False)}
+      <dl class="mt-6 grid grid-cols-2 gap-4 text-ink">
+        <div class="rounded-2xl bg-alt p-4"><dd class="text-2xl font-semibold">16 godz.</dd><dt class="text-sm text-neutral-600">zajęć</dt></div>
+        <div class="rounded-2xl bg-alt p-4"><dd class="text-2xl font-semibold">3 spotkania</dd><dt class="text-sm text-neutral-600">17, 18 i 24.10</dt></div>
+      </dl>
+      <div class="mt-6">{btn('Pobierz program (PDF)', '#', 'brand-outline')}</div>
+    </div>
+    <div class="flex-1">{ps_accordion(prog, heading=True)}</div>
+  </div>
+</section>'''
+    body += f'''<section class="container-page scroll-mt-36 py-20" id="kadra">
+  <div class="flex items-center gap-12">
+    <div class="flex flex-1 flex-col gap-8">
+      {ps_head('Prowadząca', 'mgr Anastasiia Dudina', 'Graficzka 3D, specjalistka Blendera. Absolwentka grafiki 3D w Publishing School, pracuje jako freelancerka i tworzy modele oraz wizualizacje.', center=False)}
+      <dl class="flex gap-4 text-ink">{''.join(f'<div class="flex flex-1 flex-col justify-center gap-2 rounded-2xl bg-alt p-4"><dt class="order-2 text-base leading-6">{b}</dt><dd class="order-1 text-2xl font-semibold leading-8">{a}</dd></div>' for a, b in [('Blender 3D', 'specjalizacja'), ('Orły Edukacji', 'wyróżnienie szkoły'), ('Z hologramem', 'certyfikat')])}</dl>
+    </div>
+    <div class="flex flex-1 justify-center">{media('Zdjęcie prowadzącej lub praca z kursu', 'aspect-[4/3] w-full')}</div>
+  </div>
+</section>'''
+    body += price_block(['Materiały do zajęć', 'Nagrania zajęć', 'Certyfikat z hologramem', 'Wysyłka certyfikatu', 'Konsultacje', 'Scena do portfolio', 'Status uczestnika', 'Wsparcie sekretariatu'],
+                        'Kurs opłacasz z góry, przed startem. Możesz też rozłożyć płatność albo skorzystać z dofinansowania KFS.')
+    body += final_cta('Zarezerwuj miejsce w grupie 2026/27', 'Nabór 2026/27: liczba miejsc w grupach jest ograniczona.', second=('Zobacz kursy roczne', 'index.html#kursy-roczne'))
+    body += ps_faq([
+        ('Jak działa dofinansowanie z KFS?', 'Krajowy Fundusz Szkoleniowy dla osób zatrudnionych — wniosek składa pracodawca w urzędzie pracy właściwym dla regionu zarejestrowania siedziby firmy. <a href="dofinansowanie.html" class="text-brand hover:underline">Zobacz dofinansowanie</a>'),
         ('Czy potrzebuję własnego laptopa?', 'Tak, z zainstalowanym Blenderem. Program jest darmowy.'),
         ('Jak wyglądają zajęcia online?', 'Łączysz się przez Jitsi i pracujesz w programie razem z prowadzącą. Nie trzeba zakładać konta.'),
         ('Czy dostanę certyfikat?', 'Tak. Po kursie wysyłamy pocztą hologramowany certyfikat w języku polskim.'),
         ('Co jeśli grupa się nie zbierze?', 'Zaproponujemy najbliższy termin tego samego kursu albo zwrot wpłaty.'),
-        ('Czy mogę zrezygnować?', 'Napisz do sekretariatu przed startem kursu. Przeniesiemy Cię na inny termin.'),
         ('Kiedy płacę za kurs?', 'Kurs krótki opłacasz z góry, przed pierwszymi zajęciami.'),
-    ], 'Nie ma tu Twojego pytania? Zadzwoń %s.' % PHONE) + '</div>'
-    body += CTA_2627
+    ], f'Nie ma tu Twojego pytania? Zadzwoń {PHONE}.')
     page('kurs-krotki.html', 'Blender 3D od podstaw', body, 'Kurs Blender 3D od podstaw: 16 h online, certyfikat z hologramem.')
 
 
 def jak_sie_zapisac():
     body = breadcrumbs([('Strona główna', 'index.html'), ('Zapisy', ''), ('Jak się zapisać', '')])
-    body += hero_split(
-        'Jak się zapisać',
-        'Zapis wygląda inaczej na kurs roczny i na kurs krótki. Wybierz, na co się zapisujesz, i sprawdź kolejne kroki.',
-        actions=btn('Kurs roczny — 4 kroki', '#przebieg', attrs='data-open-tab="roczne"') + btn('Kurs krótki — 3 kroki', '#przebieg', 'secondary', attrs='data-open-tab="krotkie"'))
-    body += proof_bar(PROOF_5)
-
-    roczne = accordion([('Krok 1 · Formularz zgłoszeniowy', 'Pobierz formularz dla swojego kierunku i wypełnij go w czytniku PDF.'),
-                        ('Krok 2 · Dokumenty', 'Wyślij formularz i 2 zdjęcia paszportowe na <a href="mailto:krystyna@publishingschool.pl" class="text-fuchsia-700 hover:underline">krystyna@publishingschool.pl</a>.'),
-                        ('Krok 3 · Rozmowa wstępna', 'Umów krótką rozmowę online przez Jitsi, mailowo albo telefonicznie.'),
-                        ('Krok 4 · Pierwsze zajęcia', 'Podpisujesz kontrakt edukacyjny i wnosisz opłatę startową.')], open_first=True, boxed=True)
-    krotkie = accordion([('Krok 1 · Formularz na stronie kursu', 'Wybierasz termin i wypełniasz formularz, ok. 2 minuty.'),
-                         ('Krok 2 · Opłata z góry', 'Opłacasz kurs przed startem. Dopiero wtedy miejsce jest Twoje.'),
-                         ('Krok 3 · Potwierdzenie', 'Dostajesz e-mail z potwierdzeniem, harmonogramem i linkiem do zajęć online.')], open_first=True, boxed=True)
-    body += f'''<section class="container-page section scroll-mt-24" id="przebieg">
-  {section_head('Jak przebiega zapis', 'Na kurs roczny zapisujesz się w 4 krokach, na kurs krótki w 3.', center=True)}
-  <div role="tablist" aria-label="Rodzaj kursu" data-tabs data-tabs-target="#przebieg-panele" class="mt-6 flex justify-center gap-2">
-    <button type="button" role="tab" data-tab="roczne" aria-selected="true" class="chip">Kursy roczne</button>
-    <button type="button" role="tab" data-tab="krotkie" aria-selected="false" class="chip">Kursy krótkie</button>
+    extra = f'''<div class="mt-1 flex gap-2">{btn('Kurs roczny — 4 kroki', '#przebieg', 'brand', attrs='data-open-tab="roczne"')}{btn('Kurs krótki — 3 kroki', '#przebieg', 'brand-outline', attrs='data-open-tab="krotkie"')}</div>
+    <p class="text-sm">Wahasz się między kierunkami? Napisz maila lub zadzwoń: <a href="{PHONE_HREF}" class="font-medium hover:underline">504 068 626</a></p>'''
+    body += center_hero('Jak się zapisać', 'Zapis wygląda inaczej na kurs roczny i na kurs krótki. Wybierz, na co się zapisujesz, i sprawdź kolejne kroki.', extra)
+    body += hero_banner()
+    roczne = ps_accordion([
+        ('Krok 1 · Wypełniasz formularz (5 minut)', ab('Zaczynasz od formularza zgłoszeniowego.', ['pobierz formularz dla swojego kierunku', 'wypełnij go w czytniku PDF', 'nie wiesz, który kierunek wybrać? Zadzwoń, doradzimy bez zobowiązań'])),
+        ('Krok 2 · Wysyłasz dokumenty', ab('Potrzebujemy tylko kilku rzeczy.', ['wypełniony formularz', '2 zdjęcia paszportowe', 'adres do wysyłki: <a href="mailto:krystyna@publishingschool.pl" class="text-brand hover:underline">krystyna@publishingschool.pl</a>'], 'Z dokumentami do dofinansowania pomoże sekretariat.')),
+        ('Krok 3 · Krótka rozmowa', ab('To nie egzamin, tylko spotkanie na start.', ['online przez Jitsi, mailowo albo telefonicznie', 'dopasujemy formę zajęć: online lub Kraków', 'odpowiemy na Twoje pytania o program i raty'])),
+        ('Krok 4 · Zaczynasz kurs', ab('Zostały już tylko formalności.', ['podpisujesz kontrakt edukacyjny', 'wybierasz raty 0% albo płatność jednorazową', 'zaczynasz zajęcia pod koniec września']))], heading=True)
+    krotkie = ps_accordion([
+        ('Krok 1 · Wybierasz termin (2 minuty)', ab('Wszystko robisz na stronie kursu.', ['wybierasz termin zajęć', 'wypełniasz krótki formularz', 'nie potrzebujesz rozmowy wstępnej ani zdjęć'])),
+        ('Krok 2 · Opłacasz miejsce', ab('Opłata z góry rezerwuje Twoje miejsce w grupie.', ['płacisz przed startem kursu', 'możesz poprosić o fakturę na firmę', 'dokumenty do KFS przygotujemy w 24 h'])),
+        ('Krok 3 · Dostajesz potwierdzenie', ab('Zanim zaczniesz, dostaniesz komplet informacji.', ['e-mail z potwierdzeniem zapisu', 'harmonogram zajęć', 'link do zajęć online']))], heading=True)
+    def panel(key, eyebrow, title, text, c1, c2, acc, hidden):
+        return f'''<div data-panel="{key}" role="tabpanel"{' hidden' if hidden else ''} class="flex items-start gap-12">
+      <div class="w-[406px] shrink-0">
+        {ps_head(eyebrow, title, text, center=False)}
+        <dl class="mt-6 grid grid-cols-2 gap-4 text-ink">
+          <div class="rounded-2xl bg-alt p-4"><dd class="text-xl font-semibold">{c1[0]}</dd><dt class="text-sm text-neutral-600">{c1[1]}</dt></div>
+          <div class="rounded-2xl bg-alt p-4"><dd class="text-xl font-semibold">{c2[0]}</dd><dt class="text-sm text-neutral-600">{c2[1]}</dt></div>
+        </dl>
+      </div>
+      <div class="flex-1">{acc}</div>
+    </div>'''
+    body += f'''<section class="container-page scroll-mt-24 pb-20 pt-16" id="przebieg">
+  {ps_head('Zapisy', 'Jak przebiega zapis', 'Na kurs roczny zapisujesz się w 4 krokach, na kurs krótki w 3.')}
+  <div role="tablist" aria-label="Rodzaj kursu" data-tabs data-tabs-target="#przebieg-panele" class="mx-auto mt-6 flex w-fit overflow-hidden rounded-full border border-brand">
+    <button type="button" role="tab" data-tab="roczne" aria-selected="true" class="seg">Kursy roczne</button>
+    <button type="button" role="tab" data-tab="krotkie" aria-selected="false" class="seg">Kursy krótkie</button>
   </div>
-  <div id="przebieg-panele" class="mt-8">
-    <div data-panel="roczne" role="tabpanel" class="grid grid-cols-2 gap-10">
-      <div><h3 class="h3">Kurs roczny</h3><p class="lead mt-2">Dotyczy kursów rocznych. Pobierz formularz dla swojego kierunku, wypełnij go w czytniku PDF i prześlij e-mailem.</p><div class="mt-6">{roczne}</div></div>
-      {media('Grafika / zdjęcie', 'aspect-[6/5]')}
-    </div>
-    <div data-panel="krotkie" role="tabpanel" hidden class="grid grid-cols-2 gap-10">
-      <div><h3 class="h3">Kurs krótki</h3><p class="lead mt-2">Bez zdjęć i rozmowy wstępnej. Miejsce rezerwuje opłata wniesiona z góry.</p><div class="mt-6">{krotkie}</div></div>
-      {media('Grafika / zdjęcie', 'aspect-[6/5]')}
-    </div>
+  <div id="przebieg-panele" class="mt-10">
+    {panel('roczne', 'Kursy roczne', 'Zapisy na kursy roczne', 'Pobierz formularz dla swojego kierunku, wypełnij go i prześlij e-mailem.', ('4 kroki', 'formalności'), ('2 zdjęcia', 'paszportowe'), roczne, False)}
+    {panel('krotkie', 'Kursy krótkie', 'Zapisy na kursy krótkie', 'Bez zdjęć i rozmowy wstępnej. Miejsce rezerwuje opłata wniesiona z góry.', ('3 kroki', 'formalności'), ('Opłata z góry', 'przed startem'), krotkie, True)}
   </div>
+</section>
+<section class="container-page py-20" id="kursy-roczne">
+  {ps_head('Kursy roczne', 'Kursy roczne — 9 miesięcy przygotowania do pracy w grafice', 'Wybierz specjalizację. 200 godzin zajęć w soboty i niedziele, od końca września do końca czerwca — online na żywo albo w Krakowie.')}
+  <div class="mt-10 grid grid-cols-4 gap-6">{''.join(ps_card(c['name'], c['card'], 'Zobacz program', c['slug'], c['icon']) for c in COURSES)}</div>
 </section>'''
-    body += faq_section([
-        ('Jakie dokumenty są potrzebne?', 'Na kurs roczny: formularz i 2 zdjęcia paszportowe. Na kurs krótki wystarczy formularz. <a href="#przebieg" class="text-fuchsia-700 hover:underline">Zobacz kroki ›</a>'),
-        ('Czy mogę zapisać się bez rozmowy?', 'Na kurs krótki tak. Na kurs roczny przeprowadzamy krótką rozmowę wstępną online.'),
-        ('Kiedy płacę za kurs?', 'Za kurs krótki płacisz z góry. Za kurs roczny opłatę startową wnosisz na pierwszych zajęciach, po przyjęciu.'),
-        ('Czy jest limit wieku?', 'Nie. Zajęcia są dla dorosłych w każdym wieku.'),
-    ], 'Sekretariat odpowiada pon–pt 12:30–18:30, telefon codziennie 9:00–20:00.')
-    body += CTA_2627
+    body += final_cta()
     page('jak-sie-zapisac.html', 'Jak się zapisać', body, 'Zapis na kurs roczny w 4 krokach i na kurs krótki w 3 krokach.')
 
 
