@@ -29,6 +29,13 @@
   .ps-h2 { @apply text-4xl font-medium leading-10 text-ink; }
   .ps-card { @apply flex flex-col gap-6 rounded-card border border-neutral-500 p-6 text-olive shadow-[0_1px_1px_rgba(0,0,0,0.05)]; }
   .ps-link { @apply inline-flex min-h-11 items-center gap-3 text-base font-medium text-olive hover:underline; }
+  .ps-card.course-card { @apply relative border-transparent bg-white text-gray-600 shadow-sm ring-1 ring-gray-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-brand/30; }
+  .course-card h3 { @apply font-semibold tracking-tight text-gray-900; }
+  .course-card .ps-link { @apply text-brand-dark no-underline hover:no-underline; }
+  .course-card .ps-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .course-card .ps-link:focus-visible { @apply outline-none; }
+  .course-card:has(.ps-link:focus-visible) { @apply ring-2 ring-brand; }
+  .course-card:hover .ps-link svg, .course-card:hover .ps-link img { @apply translate-x-0.5; }
   .btn-on-dark { @apply border border-white bg-white text-gray-900 hover:bg-gray-100; }
   .badge { @apply inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-700; }
   .badge-dark { @apply bg-gray-500 text-white; }
@@ -174,11 +181,22 @@
 </details></div>
   </div>
 </section><section class="container-page py-20">
-  <div class="flex flex-col items-center gap-6 rounded-3xl bg-neutral-200 p-6 text-center font-medium text-ink shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
-    <h2 class="text-4xl leading-10">Zacznij kurs Grafika DTP pod koniec września</h2>
-    <p class="max-w-[640px] text-lg leading-7">Nabór na kursy roczne trwa do 30 września. Zadzwoń albo napisz — sekretariat odpowie na pytania i sprawdzi, z jakiego dofinansowania możesz skorzystać.</p>
-    <p class="text-lg leading-7">Zadzwoń: <a href="tel:+48504068626" class="hover:underline">504 068 626</a> lub <a href="tel:+48124116566" class="hover:underline">12 411 65 66</a> · codziennie 9:00–20:00</p>
-    <div class="flex gap-2"><a href="kontakt.html" class="btn btn-solid">Zadaj pytanie</a><a href="index.html#kursy-roczne" class="btn btn-ghost">Porównaj kierunki</a></div>
+  <div class="relative overflow-hidden rounded-3xl bg-brand px-6 py-16 text-center text-white sm:px-12">
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-dark"></div>
+      <div class="absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-soft/15"></div>
+      <svg class="absolute inset-0 h-full w-full opacity-[0.08]"><defs><pattern id="cta-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="white" stroke-width=".5"/></pattern></defs><rect width="100%" height="100%" fill="url(#cta-grid)"/></svg>
+    </div>
+    <div class="relative flex flex-col items-center gap-6">
+      <span class="inline-flex items-center rounded-full border border-white/40 px-4 py-1.5 text-sm font-medium">Rekrutacja otwarta</span>
+      <h2 class="text-4xl font-semibold leading-tight sm:text-5xl">Zacznij kurs Grafika DTP pod koniec września</h2>
+      <p class="max-w-[640px] text-lg leading-7">Nabór na kursy roczne trwa do 30 września. Zadzwoń albo napisz — sekretariat odpowie na pytania i sprawdzi, z jakiego dofinansowania możesz skorzystać.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="kontakt.html" class="btn min-h-12 bg-white px-6 text-base font-semibold text-brand-dark hover:bg-brand-soft">Zadaj pytanie</a>
+        <a href="index.html#kursy-roczne" class="btn min-h-12 border border-white px-6 text-base font-medium text-white hover:bg-white/10">Porównaj kierunki</a>
+      </div>
+      <p class="text-base">Zadzwoń: <a href="tel:+48504068626" class="font-semibold underline underline-offset-4">504 068 626</a> lub <a href="tel:+48124116566" class="font-semibold underline underline-offset-4">12 411 65 66</a> · codziennie 9:00–20:00</p>
+    </div>
   </div>
 </section>
 </main>

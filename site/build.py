@@ -31,6 +31,13 @@ COMPONENT_CSS = """
   .ps-h2 { @apply text-4xl font-medium leading-10 text-ink; }
   .ps-card { @apply flex flex-col gap-6 rounded-card border border-neutral-500 p-6 text-olive shadow-[0_1px_1px_rgba(0,0,0,0.05)]; }
   .ps-link { @apply inline-flex min-h-11 items-center gap-3 text-base font-medium text-olive hover:underline; }
+  .ps-card.course-card { @apply relative border-transparent bg-white text-gray-600 shadow-sm ring-1 ring-gray-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-brand/30; }
+  .course-card h3 { @apply font-semibold tracking-tight text-gray-900; }
+  .course-card .ps-link { @apply text-brand-dark no-underline hover:no-underline; }
+  .course-card .ps-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .course-card .ps-link:focus-visible { @apply outline-none; }
+  .course-card:has(.ps-link:focus-visible) { @apply ring-2 ring-brand; }
+  .course-card:hover .ps-link svg, .course-card:hover .ps-link img { @apply translate-x-0.5; }
   .btn-on-dark { @apply border border-white bg-white text-gray-900 hover:bg-gray-100; }
   .badge { @apply inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-700; }
   .badge-dark { @apply bg-gray-500 text-white; }
@@ -497,6 +504,9 @@ def ps_head(eyebrow, title, lead='', center=True):
 
 def ps_card(title, text, link_label, href, icon='', extra=''):
     icon_html = ('<span class="flex h-16 items-center" aria-hidden="true"><img src="assets/figma/%s.svg" alt=""></span>' % icon) if icon else ''
+    if icon and 'course-card' in extra:
+        m = f"url(assets/figma/{icon}.svg) center/contain no-repeat"
+        icon_html = f'<span class="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-soft" aria-hidden="true"><span class="block h-8 w-8 bg-brand" style="-webkit-mask:{m};mask:{m}"></span></span>'
     return f'''<article class="ps-card {extra}">
   {icon_html}
   <div class="flex flex-1 flex-col justify-between">
@@ -536,16 +546,16 @@ def home():
 
     router = f'''<section class="container-page py-20" id="kursy-roczne">
   {ps_head('Kursy roczne', 'Kursy roczne — 9 miesięcy przygotowania do pracy w grafice', 'Wybierz specjalizację. 200 godzin zajęć w soboty i niedziele, od końca września do końca czerwca — online na żywo albo w Krakowie. Kończysz z portfolio i dyplomem polsko-angielskim.')}
-  <div class="mt-10 grid grid-cols-2 gap-6">{''.join(ps_card(c['name'], c['card'], 'Zobacz program<span class="sr-only"> kursu ' + c['name'] + '</span>', c['slug'], c['icon']) for c in COURSES)}</div>
+  <div class="mt-10 grid grid-cols-2 gap-6">{''.join(ps_card(c['name'], c['card'], 'Zobacz program<span class="sr-only"> kursu ' + c['name'] + '</span>', c['slug'], c['icon'], extra='course-card') for c in COURSES)}</div>
 </section>'''
 
     short = f'''<section class="container-page py-20">
   {ps_head('Kursy krótkie', 'Krótkie kursy — pogłęb konkretną umiejętność', 'Nie potrzebujesz całego roku? Wybierz jeden temat lub narzędzie i zacznij w najbliższym terminie.')}
   <div class="mt-6 grid grid-cols-2 gap-6">
-    {ps_card('Najbliższy kurs: Blender 3D od podstaw', 'Modelowanie, teksturowanie i render — kończysz z gotową sceną do portfolio. 17–24.10.2026 · online · 870 zł.', 'Zobacz program', 'kurs-krotki.html', 'icon-printer')}
+    {ps_card('Blender 3D od podstaw', 'Modelujesz, teksturujesz i renderujesz własną scenę do portfolio. Najbliższy termin: 17, 18 i 24.10.2026, online, 9:00–13:30 · 870 zł.', 'Zobacz program i termin<span class="sr-only"> kursu Blender 3D od podstaw</span>', 'kurs-krotki.html', 'icon-printer', extra='course-card')}
     <div class="grid grid-cols-2 gap-6">
-      {ps_card('Katalog kursów', 'Skład, typografia i przygotowanie plików do druku — kończysz z portfolio realnych materiałów.', 'Przeglądaj katalog', 'kursy-krotkie.html')}
-      {ps_card('Kurs na zamówienie', 'Zamów kurs jeśli termin i zakres dopasujemy do Ciebie lub Twojego zespołu.', 'Zamów kurs', 'dla-firm.html')}
+      {ps_card('Wszystkie kursy krótkie', 'Nie potrzebujesz całego roku? Wybierz jedno narzędzie lub temat i porównaj terminy oraz ceny.', 'Zobacz katalog kursów', 'kursy-krotkie.html', 'icon-printer', extra='course-card')}
+      {ps_card('Szkolenie dla zespołu', 'Dopasujemy zakres, termin i miejsce do potrzeb Twojej firmy. Wycenę dostajesz w 2 dni robocze.', 'Zamów wycenę', 'dla-firm.html#wycena', 'icon-printer', extra='course-card')}
     </div>
   </div>
 </section>'''
@@ -633,7 +643,7 @@ COMMON_BADGES = ('<span class="rounded-full bg-info px-2 py-1 text-sm text-white
 COURSES = [
     dict(
         slug='kurs-grafika-3d.html', name='Grafika 3D', icon='icon-printer',
-        card='Modelujesz, animujesz i renderujesz w Blenderze, Cinema 4D, Mai i ZBrushu — pod gry, reklamę i wizualizacje.',
+        card='Modelujesz i renderujesz w Blenderze, Cinema 4D i ZBrushu. Kończysz z portfolio 3D pod gry, reklamę i wizualizacje.',
         h1='Grafika 3D — kurs roczny od podstaw do portfolio',
         lead='Modelujesz, animujesz i renderujesz sceny w Blenderze, Cinema 4D, Mai i ZBrushu. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Kończysz z portfolio pod gry, reklamę i wizualizacje.',
         hero=None, hero_label='Zdjęcie: render 3D kursanta',
@@ -649,7 +659,7 @@ COURSES = [
         tools='Blender, Cinema 4D, Maya, ZBrush, Unity, After Effects, Photoshop'),
     dict(
         slug='kurs-grafika-dtp.html', name='Grafika DTP', icon='icon-printer',
-        card='Składasz książki, katalogi i opakowania w InDesignie i przygotowujesz pliki, które drukarnia przyjmie bez poprawek.',
+        card='Składasz książki, katalogi i opakowania w InDesignie. Uczysz się przygotowywać pliki, które drukarnia przyjmie bez poprawek.',
         h1='Grafika DTP — kurs roczny: publikacje do druku',
         lead='Projektujesz i składasz książki, katalogi, opakowania i plakaty w InDesignie, Photoshopie i Illustratorze. Uczysz się też druku i papieru, więc Twoje pliki drukarnia przyjmie bez poprawek. 200 godzin praktyki, online albo w Krakowie.',
         hero=('hero-probnik-kolorow.webp', 'Kursantka przegląda wzorniki kolorów i katalog druku', 766, 1164),
@@ -665,7 +675,7 @@ COURSES = [
         tools='InDesign, Photoshop, Illustrator'),
     dict(
         slug='kurs-web-designer.html', name='Web Designer UI/UX', icon='icon-uxui',
-        card='Projektujesz strony i aplikacje w Figmie, budujesz je w WordPressie i Webflow, kodujesz w HTML i CSS.',
+        card='Projektujesz w Figmie, budujesz strony w WordPressie i Webflow, kodujesz w HTML i CSS. Nie potrzebujesz doświadczenia.',
         h1='Web Designer UI/UX — kurs roczny od podstaw do portfolio',
         lead='Projektujesz strony i aplikacje w Figmie, budujesz je w WordPressie i Webflow, a layout kodujesz w HTML i CSS. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Kończysz z portfolio i dyplomem polsko-angielskim.',
         hero=('web-designer-kod.webp', 'Dwie osoby analizują kod strony na ekranie laptopa', 996, 1164),
@@ -681,7 +691,7 @@ COURSES = [
         tools='Figma, WordPress, Webflow, HTML, CSS, Photoshop, Illustrator, After Effects'),
     dict(
         slug='kurs-graphic-designer.html', name='Graphic Designer', icon='icon-megafon',
-        card='Projektujesz reklamy do internetu i druku, logo i rolki. Piszesz teksty reklamowe z pomocą AI.',
+        card='Projektujesz kampanie, logo i rolki do internetu i druku, a teksty reklamowe piszesz z pomocą AI.',
         h1='Graphic Designer — kurs roczny: reklama do internetu i druku',
         lead='Projektujesz kampanie, logo, posty i plakaty w Photoshopie, Illustratorze i InDesignie, montujesz rolki i krótkie filmy reklamowe, piszesz teksty z pomocą AI. 200 godzin praktyki, online albo w Krakowie.',
         hero=('o-szkole-laptop.webp', 'Kursant projektuje na laptopie przy biurku z notatkami', 1016, 884),
@@ -760,11 +770,22 @@ def final_cta(title='Nie wiesz, który kurs wybrać?',
               text='Nabór na kursy roczne trwa do 30 września. Powiedz, co chcesz robić — sekretariat pomoże dobrać kierunek i sprawdzi, z jakiego dofinansowania możesz skorzystać.',
               second=('Zobacz kursy roczne', 'index.html#kursy-roczne')):
     return f'''<section class="container-page py-20">
-  <div class="flex flex-col items-center gap-6 rounded-3xl bg-neutral-200 p-6 text-center font-medium text-ink shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
-    <h2 class="text-4xl leading-10">{title}</h2>
-    <p class="max-w-[640px] text-lg leading-7">{text}</p>
-    <p class="text-lg leading-7">Zadzwoń: <a href="{PHONE_HREF}" class="hover:underline">504 068 626</a> lub <a href="tel:+48124116566" class="hover:underline">12 411 65 66</a> · codziennie 9:00–20:00</p>
-    <div class="flex gap-2"><a href="kontakt.html" class="btn btn-solid">Zadaj pytanie</a><a href="{second[1]}" class="btn btn-ghost">{second[0]}</a></div>
+  <div class="relative overflow-hidden rounded-3xl bg-brand px-6 py-16 text-center text-white sm:px-12">
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-dark"></div>
+      <div class="absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-soft/15"></div>
+      <svg class="absolute inset-0 h-full w-full opacity-[0.08]"><defs><pattern id="cta-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="white" stroke-width=".5"/></pattern></defs><rect width="100%" height="100%" fill="url(#cta-grid)"/></svg>
+    </div>
+    <div class="relative flex flex-col items-center gap-6">
+      <span class="inline-flex items-center rounded-full border border-white/40 px-4 py-1.5 text-sm font-medium">Rekrutacja otwarta</span>
+      <h2 class="text-4xl font-semibold leading-tight sm:text-5xl">{title}</h2>
+      <p class="max-w-[640px] text-lg leading-7">{text}</p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="kontakt.html" class="btn min-h-12 bg-white px-6 text-base font-semibold text-brand-dark hover:bg-brand-soft">Zadaj pytanie</a>
+        <a href="{second[1]}" class="btn min-h-12 border border-white px-6 text-base font-medium text-white hover:bg-white/10">{second[0]}</a>
+      </div>
+      <p class="text-base">Zadzwoń: <a href="{PHONE_HREF}" class="font-semibold underline underline-offset-4">504 068 626</a> lub <a href="tel:+48124116566" class="font-semibold underline underline-offset-4">12 411 65 66</a> · codziennie 9:00–20:00</p>
+    </div>
   </div>
 </section>'''
 
@@ -1069,7 +1090,7 @@ def kursy_roczne():
 
 
 SHORT_COURSES = [
-    ('Blender 3D od podstaw', 'Modelowanie, teksturowanie i render — kończysz z gotową sceną do portfolio.', '17–24.10.2026 · online · 870 zł', '3d soon', 'kurs-krotki.html'),
+    ('Blender 3D od podstaw', 'Modelowanie, teksturowanie i render — kończysz z gotową sceną do portfolio.', '17, 18 i 24.10.2026 · online · 870 zł', '3d soon', 'kurs-krotki.html'),
     ('InDesign dla początkujących', 'Skład publikacji, style i eksport do PDF — przygotujesz pliki gotowe do druku.', '17–28.10.2026 · online · 760 zł', 'adobe soon', 'kurs-krotki.html'),
     ('Kurs UX — User Experience', 'Heurystyki, badania i wireframing — zaprojektujesz lepszą ścieżkę użytkownika.', 'Zapytaj o termin · 530 zł', 'web', 'kurs-krotki.html'),
     ('Photoshop dla początkujących', 'Retusz, maski i warstwy — przygotujesz grafiki do sklepu i social mediów.', '02–05.10.2026 · online', 'adobe soon', 'kurs-krotki.html'),

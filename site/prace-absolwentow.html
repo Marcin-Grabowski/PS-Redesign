@@ -29,6 +29,13 @@
   .ps-h2 { @apply text-4xl font-medium leading-10 text-ink; }
   .ps-card { @apply flex flex-col gap-6 rounded-card border border-neutral-500 p-6 text-olive shadow-[0_1px_1px_rgba(0,0,0,0.05)]; }
   .ps-link { @apply inline-flex min-h-11 items-center gap-3 text-base font-medium text-olive hover:underline; }
+  .ps-card.course-card { @apply relative border-transparent bg-white text-gray-600 shadow-sm ring-1 ring-gray-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-brand/30; }
+  .course-card h3 { @apply font-semibold tracking-tight text-gray-900; }
+  .course-card .ps-link { @apply text-brand-dark no-underline hover:no-underline; }
+  .course-card .ps-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .course-card .ps-link:focus-visible { @apply outline-none; }
+  .course-card:has(.ps-link:focus-visible) { @apply ring-2 ring-brand; }
+  .course-card:hover .ps-link svg, .course-card:hover .ps-link img { @apply translate-x-0.5; }
   .btn-on-dark { @apply border border-white bg-white text-gray-900 hover:bg-gray-100; }
   .badge { @apply inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-700; }
   .badge-dark { @apply bg-gray-500 text-white; }
