@@ -3,5 +3,17 @@
 # python
 __pycache__/
 *.pyc
+# node / next.js
+node_modules/
+.next/
+*.tsbuildinfo
+next-env.d.ts
+.env*
 # ustawienia lokalne Claude Code (launch.json zostaje w repo)
 .claude/settings.local.json
+# skille instalowane z skills-lock.json (odtwarzalne)
+.agents/
+.claude/skills/
+# stan robocze narzędzi i kopie zapasowe
+.impeccable/
+.backup/
