@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warianty chipa · Publishing School</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind.config.js"></script>
+<style>
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 24s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .spin-slow { animation: none; } }
+</style>
+</head>
+<body class="bg-page p-12 font-sans text-gray-900 antialiased">
+<h1 class="text-2xl font-semibold">Chip na zdjęciu hero: trzy warianty</h1>
+<div class="mt-10 grid grid-cols-3 gap-16">
+
+  <!-- A: pieczęć -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <div class="absolute -left-8 bottom-12 flex h-32 w-32 items-center justify-center rounded-full bg-brand text-white shadow-xl ring-4 ring-white">
+        <svg viewBox="0 0 120 120" class="spin-slow absolute inset-0 h-full w-full" aria-hidden="true">
+          <defs><path id="c" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs>
+          <text font-size="10.5" font-weight="600" fill="currentColor"><textPath href="#c" textLength="292" lengthAdjust="spacing">PUBLISHING SCHOOL · SZKOŁA GRAFIKI · </textPath></text>
+        </svg>
+        <span class="text-center leading-none"><span class="block text-xs font-medium">od</span><span class="block text-3xl font-semibold tracking-tight">1998</span></span>
+      </div>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">A. Pieczęć „od 1998”</b><br>Ta sama informacja, ale jako element graficzny. Powoli się obraca.</figcaption>
+  </figure>
+
+  <!-- B: korzyść -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <div class="absolute -left-8 bottom-12 rounded-2xl bg-white px-5 py-4 shadow-lg ring-1 ring-gray-900/5">
+        <p class="text-3xl font-semibold leading-none tracking-tight text-brand">9 miesięcy</p>
+        <p class="mt-1.5 text-sm font-medium text-gray-900">do własnego portfolio</p>
+      </div>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">B. Obietnica zamiast stażu</b><br>Mówi, co kursant dostanie, i spina się z nagłówkiem „od podstaw do portfolio”.</figcaption>
+  </figure>
+
+  <!-- C: Google -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <a href="#" class="absolute -left-8 bottom-12 flex items-center gap-3 rounded-full bg-white py-3 pl-5 pr-6 shadow-lg ring-1 ring-gray-900/5">
+        <span class="flex gap-0.5 text-amber-400" aria-hidden="true">
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.5l-5.2 2.9L6 11.6 1.6 7.6l5.9-.7L10 1.5Z"/></svg><svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.5l-5.2 2.9L6 11.6 1.6 7.6l5.9-.7L10 1.5Z"/></svg><svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.5l-5.2 2.9L6 11.6 1.6 7.6l5.9-.7L10 1.5Z"/></svg><svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.5l-5.2 2.9L6 11.6 1.6 7.6l5.9-.7L10 1.5Z"/></svg><svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.5l-5.2 2.9L6 11.6 1.6 7.6l5.9-.7L10 1.5Z"/></svg>
+        </span>
+        <span class="whitespace-nowrap text-base font-semibold">Opinie w Google</span>
+      </a>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">C. Dowód społeczny</b><br>Link do opinii. Pokaż tylko z realną oceną i liczbą opinii.</figcaption>
+  </figure>
+
+</div>
+
+<h2 class="mt-20 text-2xl font-semibold">Inne kierunki</h2>
+<div class="mt-10 grid grid-cols-3 gap-16">
+
+  <!-- D: podpis pod zdjęciem / próbniki -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <div class="absolute -left-6 bottom-14 -rotate-3 rounded-xl bg-white px-4 py-3 shadow-xl ring-1 ring-gray-900/5">
+        <span class="flex items-center gap-1.5" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-[#A4488D]"></span><span class="h-3 w-3 rounded-full bg-[#B1B63E]"></span><span class="h-3 w-3 rounded-full bg-[#4EACC8]"></span></span>
+        <p class="mt-2 text-base font-semibold leading-5">Na zajęciach:<br>dobór kolorów do druku</p>
+      </div>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">D. Podpis do zdjęcia</b><br>Mówi, co dzieje się na fotografii. Tekst jak karteczka przyklejona do kadru.</figcaption>
+  </figure>
+
+  <!-- E: forma -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <div class="absolute -left-6 bottom-14 flex items-center gap-3 rounded-2xl bg-white p-2 pr-5 shadow-xl ring-1 ring-gray-900/5">
+        <span class="flex overflow-hidden rounded-xl text-sm font-semibold"><span class="bg-brand px-3 py-2 text-white">Online</span><span class="bg-brand-soft px-3 py-2 text-brand-dark">Kraków</span></span>
+        <span class="text-sm font-medium text-gray-900">ta sama grupa</span>
+      </div>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">E. Forma zajęć</b><br>Online lub stacjonarnie. Usuwa barierę dojazdu. (Treść do potwierdzenia: czy to naprawdę jedna grupa?)</figcaption>
+  </figure>
+
+  <!-- F: dofinansowanie -->
+  <figure>
+    <div class="relative">
+      <img src="assets/img/hero-probnik-kolorow.webp" alt="" class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10">
+      <div class="absolute -left-6 bottom-14 flex items-center gap-3 rounded-2xl bg-gray-900 py-3 pl-4 pr-6 text-white shadow-xl">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#B1B63E] text-lg font-bold text-gray-900" aria-hidden="true">0</span>
+        <span><span class="block text-base font-semibold leading-5">Kurs może opłacić</span><span class="block text-sm text-gray-300">urząd pracy lub KFS</span></span>
+      </div>
+    </div>
+    <figcaption class="mt-4 text-sm text-gray-600"><b class="text-gray-900">F. Dofinansowanie</b><br>Obiekcja cenowa rozwiązana na pierwszym ekranie. Ciemny chip mocno odcina się od zdjęcia.</figcaption>
+  </figure>
+</div>
+</body>
+</html>

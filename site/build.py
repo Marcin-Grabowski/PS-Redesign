@@ -535,7 +535,7 @@ def home():
     <div class="relative col-span-5">
       <svg aria-hidden="true" viewBox="0 0 600 600" class="absolute -right-24 top-1/2 h-[640px] w-[640px] -translate-y-1/2 text-brand-soft"><path fill="currentColor" d="M96 150C150 40 330 10 450 70c90 45 160 120 130 230-25 90-120 120-90 200 15 40-40 80-140 85C240 592 70 560 40 430 15 320 40 250 96 150Z"/></svg>
       <img src="assets/img/hero-probnik-kolorow.webp" width="766" height="1164" alt="Kursantka porównuje próbniki kolorów Pantone" class="relative aspect-[4/5] w-full rounded-3xl object-cover shadow-xl ring-1 ring-gray-900/10" fetchpriority="high">
-      <div class="absolute -left-10 bottom-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-lg ring-1 ring-gray-900/5"><span class="text-3xl font-semibold tracking-tight text-brand">1998</span><span class="text-sm leading-5 text-gray-600">uczymy grafiki<br>Orły Edukacji 2019–2025</span></div>
+      <p class="absolute -left-10 bottom-10 rounded-2xl bg-white px-7 py-4 text-center shadow-lg ring-1 ring-gray-900/5"><span class="block text-lg leading-6 text-gray-900">Uczymy grafiki od</span><span class="block text-4xl font-semibold leading-tight tracking-tight text-brand">1998 roku</span></p>
     </div>
   </div>
 </section>'''
@@ -554,8 +554,8 @@ def home():
   <div class="mt-6 grid grid-cols-2 gap-6">
     {ps_card('Blender 3D od podstaw', 'Modelujesz, teksturujesz i renderujesz własną scenę do portfolio. Najbliższy termin: 17, 18 i 24.10.2026, online, 9:00–13:30 · 870 zł.', 'Zobacz program i termin<span class="sr-only"> kursu Blender 3D od podstaw</span>', 'kurs-krotki.html', 'icon-printer', extra='course-card')}
     <div class="grid grid-cols-2 gap-6">
-      {ps_card('Wszystkie kursy krótkie', 'Nie potrzebujesz całego roku? Wybierz jedno narzędzie lub temat i porównaj terminy oraz ceny.', 'Zobacz katalog kursów', 'kursy-krotkie.html', 'icon-printer', extra='course-card')}
-      {ps_card('Szkolenie dla zespołu', 'Dopasujemy zakres, termin i miejsce do potrzeb Twojej firmy. Wycenę dostajesz w 2 dni robocze.', 'Zamów wycenę', 'dla-firm.html#wycena', 'icon-printer', extra='course-card')}
+      {ps_card('Wszystkie kursy krótkie', 'Nie potrzebujesz całego roku? Wybierz jedno narzędzie lub temat i porównaj terminy oraz ceny.', 'Zobacz katalog kursów', 'kursy-krotkie.html', extra='course-card')}
+      {ps_card('Szkolenie dla zespołu', 'Dopasujemy zakres, termin i miejsce do potrzeb Twojej firmy. Wycenę dostajesz w 2 dni robocze.', 'Zamów wycenę', 'dla-firm.html#wycena', extra='course-card')}
     </div>
   </div>
 </section>'''
@@ -612,11 +612,11 @@ def home():
                 ('Zaczynałam od zera, a na koniec miałam gotowy render do portfolio. Zajęcia online bez problemów.', 'Kursantka, Blender 3D'),
                 ('Po roku miałam portfolio, z którym dostałam pierwszą pracę jako projektantka UI.', 'Absolwentka, Web Designer UI/UX'),
                 ('Małe grupy robią różnicę — prowadzący znał mój projekt i pomagał go dopracować.', 'Absolwent, Graphic Designer')]
-    stars = ''.join('<img src="assets/figma/star.svg" alt="" width="24" height="24">' for _ in range(5))
-    cards = ''.join(f'''<article class="flex w-[411px] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-black bg-alt p-6 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
-  <p class="flex" role="img" aria-label="Ocena 5 na 5">{stars}</p>
-  <blockquote class="text-base leading-6 text-ink">{t}</blockquote>
-  <div class="flex items-center justify-between gap-4"><p class="text-sm text-neutral-600">{n}</p><span class="flex h-8 items-center rounded-full border border-[#053339] px-2 text-sm font-medium text-olive">Google</span></div>
+    stars = ''.join(svg(STAR, 'h-5 w-5 text-amber-400', stroke=False) for _ in range(5))
+    cards = ''.join(f'''<article class="flex w-[411px] shrink-0 snap-start flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5">
+  <p class="flex gap-0.5" role="img" aria-label="Ocena 5 na 5">{stars}</p>
+  <blockquote class="mt-4 flex-1 text-lg leading-7 text-gray-800">„{t}”</blockquote>
+  <div class="mt-6 flex items-center justify-between gap-4 border-t border-gray-100 pt-4"><p class="text-sm font-medium text-gray-900">{n}</p><span class="text-xs text-gray-500">Opinia z Google</span></div>
 </article>''' for t, n in opinions)
     reviews_html = f'''<section class="container-page py-20" data-carousel>
   <p class="eyebrow">Opinie</p>
@@ -647,10 +647,10 @@ COURSES = [
         h1='Grafika 3D — kurs roczny od podstaw do portfolio',
         lead='Modelujesz, animujesz i renderujesz sceny w Blenderze, Cinema 4D, Mai i ZBrushu. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Kończysz z portfolio pod gry, reklamę i wizualizacje.',
         hero=None, hero_label='Zdjęcie: render 3D kursanta',
-        dla=[('Zaczynasz od zera', 'Marzysz o pracy w 3D, ale nie wiesz, od czego zacząć', 'Zaczynamy od interfejsu Blendera i pierwszej bryły. Po 200 godzinach masz modele, animację i render w portfolio.'),
+        dla=[('Zaczynasz od zera', 'Chcesz zacząć pracę z 3D i szukasz dobrego startu', 'Zaczynamy od interfejsu Blendera i pierwszej bryły. Po 200 godzinach masz modele, animację i render w portfolio.'),
              ('Zmieniasz zawód', 'Chcesz przejść do branży gier, reklamy lub wizualizacji', 'Uczysz się w weekendy, więc nie rezygnujesz z obecnej pracy. Kończysz z portfolio, które pokażesz studiu.'),
-             ('Pracujesz w kreatywnej branży', 'Jesteś grafikiem, architektem lub filmowcem i chcesz dodać 3D', 'Dołożysz modelowanie, światło i animację do tego, co już robisz, i weźmiesz droższe zlecenia.'),
-             ('Szukasz dofinansowania', 'Zależy Ci, żeby kurs nie obciążył budżetu', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
+             ('Pracujesz w kreatywnej branży', 'Jesteś grafikiem, architektem lub filmowcem i chcesz dodać 3D', 'Dołożysz modelowanie, światło i animację do tego, co już robisz, i poszerzysz swoją ofertę.'),
+             ('Szukasz dofinansowania', 'Chcesz sprawdzić, czy kurs można dofinansować', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
         outcomes=['Modelujesz obiekty i postacie — od bryły po detal w ZBrushu',
                   'Ustawiasz światło i materiały, renderujesz sceny w Blenderze i Cinema 4D',
                   'Przygotowujesz modele do gier i uruchamiasz je w Unity',
@@ -665,8 +665,8 @@ COURSES = [
         hero=('hero-probnik-kolorow.webp', 'Kursantka przegląda wzorniki kolorów i katalog druku', 766, 1164),
         dla=[('Zaczynasz od zera', 'Chcesz projektować książki, katalogi i opakowania', 'Uczysz się InDesigna, Photoshopa i Illustratora od podstaw. Każdy moduł kończy się projektem do portfolio.'),
              ('Zmieniasz zawód', 'Szukasz stabilnego zawodu w agencji, wydawnictwie lub drukarni', 'Po kursie składasz publikacje i przygotowujesz pliki do druku. Umiesz też dobrać papier i technikę.'),
-             ('Składasz materiały w pracy', 'Pliki wracają z drukarni do poprawki', 'Poznasz prepress: spady, profile kolorów i formaty. Twoje pliki będą przechodzić za pierwszym razem.'),
-             ('Szukasz dofinansowania', 'Zależy Ci, żeby kurs nie obciążył budżetu', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
+             ('Składasz materiały w pracy', 'Chcesz, żeby Twoje pliki do druku przechodziły sprawnie', 'Poznasz prepress: spady, profile kolorów i formaty. Dowiesz się, jak przygotować pliki, które drukarnia przyjmie bez poprawek.'),
+             ('Szukasz dofinansowania', 'Chcesz sprawdzić, czy kurs można dofinansować', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
         outcomes=['Składasz książki, katalogi i ulotki w InDesignie',
                   'Retuszujesz zdjęcia w Photoshopie i rysujesz logotypy w Illustratorze',
                   'Przygotowujesz pliki do druku (prepress), które drukarnia przyjmie bez poprawek',
@@ -679,10 +679,10 @@ COURSES = [
         h1='Web Designer UI/UX — kurs roczny od podstaw do portfolio',
         lead='Projektujesz strony i aplikacje w Figmie, budujesz je w WordPressie i Webflow, a layout kodujesz w HTML i CSS. 200 godzin praktyki co drugi weekend, online na żywo albo w Krakowie. Kończysz z portfolio i dyplomem polsko-angielskim.',
         hero=('web-designer-kod.webp', 'Dwie osoby analizują kod strony na ekranie laptopa', 996, 1164),
-        dla=[('Zaczynasz od zera', 'Chcesz projektować strony, ale nie znasz Figmy ani kodu', 'Nie potrzebujesz doświadczenia. Od projektu w Figmie po stronę w WordPressie i Webflow prowadzimy Cię krok po kroku.'),
-             ('Zmieniasz zawód', 'Chcesz wejść do IT bez studiów informatycznych', 'W 200 godzin budujesz portfolio z responsywnymi projektami i stronami. Uczysz się w weekendy, obok pracy.'),
-             ('Pracujesz w marketingu, e-commerce lub grafice', 'Czekasz tygodniami na stronę od agencji lub programisty', 'Sam(a) zaprojektujesz landing page, postawisz go i zoptymalizujesz pod SEO.'),
-             ('Szukasz dofinansowania', 'Zależy Ci, żeby kurs nie obciążył budżetu', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
+        dla=[('Zaczynasz od zera', 'Zaczynasz projektować strony', 'Nie potrzebujesz doświadczenia. Prowadzimy Cię od Figmy po gotową stronę.'),
+             ('Zmieniasz zawód', 'Chcesz wejść do branży IT', 'W 200 godzin zbudujesz portfolio. Zajęcia w weekendy, obok pracy.'),
+             ('Pracujesz w marketingu, e-commerce lub grafice', 'Chcesz tworzyć strony samodzielnie', 'Zaprojektujesz landing page, postawisz go i zoptymalizujesz pod SEO.'),
+             ('Szukasz dofinansowania', 'Chcesz sprawdzić dofinansowanie', 'Urząd pracy lub KFS może opłacić kurs. Sekretariat pomoże z dokumentami.')],
         outcomes=['Projektujesz responsywne strony i aplikacje w Figmie — z design systemem i prototypem',
                   'Budujesz stronę w WordPressie lub Webflow i optymalizujesz ją pod SEO',
                   'Kodujesz layout w HTML5 i CSS3',
@@ -697,8 +697,8 @@ COURSES = [
         hero=('o-szkole-laptop.webp', 'Kursant projektuje na laptopie przy biurku z notatkami', 1016, 884),
         dla=[('Zaczynasz od zera', 'Chcesz projektować reklamy, logo i posty jak profesjonalista', 'Uczysz się Photoshopa, Illustratora i InDesigna od podstaw. Po kursie masz kampanię i identyfikację marki w portfolio.'),
              ('Zmieniasz zawód', 'Szukasz pracy w agencji reklamowej lub dziale marketingu', 'Portfolio z kampaniami, logo i filmem reklamowym pokażesz na rozmowie kwalifikacyjnej.'),
-             ('Prowadzisz social media lub firmę', 'Twoje grafiki wyglądają amatorsko', 'Nauczysz się kompozycji, typografii i montażu rolek. Teksty reklamowe napiszesz z pomocą AI.'),
-             ('Szukasz dofinansowania', 'Zależy Ci, żeby kurs nie obciążył budżetu', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
+             ('Prowadzisz social media lub firmę', 'Chcesz, żeby Twoje grafiki wyglądały bardziej profesjonalnie', 'Nauczysz się kompozycji, typografii i montażu rolek. Teksty reklamowe napiszesz z pomocą AI.'),
+             ('Szukasz dofinansowania', 'Chcesz sprawdzić, czy kurs można dofinansować', 'Urząd pracy może opłacić kurs osobom bezrobotnym, a KFS pracującym. Sekretariat pomoże z dokumentami.')],
         outcomes=['Projektujesz kampanię reklamową do social mediów i druku',
                   'Tworzysz logo i identyfikację wizualną marki',
                   'Piszesz teksty reklamowe i opisy produktów z pomocą AI',
@@ -767,24 +767,24 @@ def check_item(text):
 
 
 def final_cta(title='Nie wiesz, który kurs wybrać?',
-              text='Nabór na kursy roczne trwa do 30 września. Powiedz, co chcesz robić — sekretariat pomoże dobrać kierunek i sprawdzi, z jakiego dofinansowania możesz skorzystać.',
+              text='Nabór na kursy roczne trwa do 30 września. Sekretariat pomoże wybrać kurs i sprawdzi, z jakiego dofinansowania możesz skorzystać.',
               second=('Zobacz kursy roczne', 'index.html#kursy-roczne')):
     return f'''<section class="container-page py-20">
-  <div class="relative overflow-hidden rounded-3xl bg-brand px-6 py-16 text-center text-white sm:px-12">
+  <div class="relative py-12">
     <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-dark"></div>
-      <div class="absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-soft/15"></div>
-      <svg class="absolute inset-0 h-full w-full opacity-[0.08]"><defs><pattern id="cta-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="white" stroke-width=".5"/></pattern></defs><rect width="100%" height="100%" fill="url(#cta-grid)"/></svg>
+      <div class="absolute -left-8 -top-2 h-44 w-44 rounded-full bg-[#A4488D]"></div>
+      <div class="absolute right-24 -top-2 h-36 w-36 rounded-full bg-[#A4488D]"></div>
+      <div class="absolute bottom-0 left-28 h-28 w-28 rounded-full bg-[#B1B63E]"></div>
+      <div class="absolute -bottom-2 right-28 h-36 w-36 rounded-full bg-[#4EACC8]"></div>
     </div>
-    <div class="relative flex flex-col items-center gap-6">
-      <span class="inline-flex items-center rounded-full border border-white/40 px-4 py-1.5 text-sm font-medium">Rekrutacja otwarta</span>
-      <h2 class="text-4xl font-semibold leading-tight sm:text-5xl">{title}</h2>
-      <p class="max-w-[640px] text-lg leading-7">{text}</p>
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href="kontakt.html" class="btn min-h-12 bg-white px-6 text-base font-semibold text-brand-dark hover:bg-brand-soft">Zadaj pytanie</a>
-        <a href="{second[1]}" class="btn min-h-12 border border-white px-6 text-base font-medium text-white hover:bg-white/10">{second[0]}</a>
+    <div class="relative mx-auto max-w-4xl rounded-3xl bg-white px-12 py-12 text-center shadow-sm">
+      <h2 class="text-4xl font-medium tracking-tight text-gray-900">{title}</h2>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-6 text-gray-800">{text}</p>
+      <p class="mt-5 text-base font-medium text-gray-900">Zadzwoń: <a href="{PHONE_HREF}" class="hover:underline">504 068 626</a> lub <a href="tel:+48124116566" class="hover:underline">12 411 65 66</a> <span class="font-normal text-neutral-600">(codziennie 9:00–20:00)</span></p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a href="kontakt.html" class="btn btn-brand">Zadaj pytanie</a>
+        <a href="{second[1]}" class="btn btn-brand-outline">{second[0]}</a>
       </div>
-      <p class="text-base">Zadzwoń: <a href="{PHONE_HREF}" class="font-semibold underline underline-offset-4">504 068 626</a> lub <a href="tel:+48124116566" class="font-semibold underline underline-offset-4">12 411 65 66</a> · codziennie 9:00–20:00</p>
     </div>
   </div>
 </section>'''
@@ -792,117 +792,91 @@ def final_cta(title='Nie wiesz, który kurs wybrać?',
 
 # ---------------------------------------------------------------- programy kursów rocznych (tematy: publishingschool.pl, plan 2025/26)
 # moduł: (tytuł, godziny, wstęp, tematy, efekt do portfolio)
+# Program kursów rocznych 2025/26: teksty skopiowane z publishingschool.pl (tytuły modułów, zakres, godziny).
+# (tytuł modułu, godziny, wstęp, tematy, efekt) — wstęp i efekt zostają puste, bo strona szkoły ich nie podaje.
 PROGRAMS = {
     'kurs-grafika-3d.html': [
-        ('Grafika 3D w Blenderze i Cinema 4D', 50,
-         'Najdłuższy moduł kursu. Zaczynasz od prostych brył, a kończysz na modelu samochodu i kompletnym wnętrzu — w Blenderze, najpopularniejszym darmowym programie do grafiki 3D, z przeglądem możliwości Cinema 4D.',
-         ['narzędzia i budowa sceny', 'modelowanie obiektów o złożonej strukturze, np. samochodu', 'modelowanie mebli i całych wnętrz', 'oświetlenie sceny', 'animacja zbudowanych obiektów', 'rendering'],
-         'animowana wizualizacja wnętrza i model pojazdu'),
-        ('Grafika 3D w Mai', 28,
-         'Maya to standard w studiach filmowych i gamedevie. Uczysz się jej interfejsu i przenosisz umiejętności z Blendera do programu, którego wymagają pracodawcy.',
-         ['interfejs, narzędzia i scena', 'modelowanie elementów architektury i zieleni', 'tworzenie i animacja postaci', 'animacja obiektów, np. samochodu', 'rendering i compositing klipu 3D'],
-         'wizualizacja architektury z otoczeniem i animowany klip 3D'),
-        ('Modele 3D do gier: ZBrush lub Blender, Unity', 40,
-         'Moduł dla osób, które chcą pracować w gamedevie. Rzeźbisz postać zgodnie z anatomią, przygotowujesz ją technicznie do gry i uruchamiasz w silniku Unity.',
-         ['rzeźbienie cyfrowe w ZBrushu', 'modele organiczne i nieorganiczne, rośliny', 'postać zgodna z anatomią, ubranie i wyposażenie', 'retopologia, rigging i teksturowanie', 'import modeli do silnika Unity'],
-         'postać do gry gotowa do użycia w Unity'),
-        ('Scenariusz, storyboard i animatic z AI', 22,
-         'Zanim zaczniesz animować, planujesz — tak jak w prawdziwym studiu. Wymyślasz fabułę z pomocą AI, rysujesz storyboard i składasz animatic w Photoshopie i After Effects.',
-         ['scenariusz i fabuła z pomocą AI', 'storyboard', 'montaż czołówki, treści i tyłówki', 'udźwiękowienie i korekty', 'prezentacja projektu'],
-         'animatic Twojego filmu animowanego'),
-        ('Postprodukcja w After Effects', 42,
-         'After Effects zamienia rendery w gotowy film. Uczysz się kompozycji, kamery, światła i dźwięku, a na koniec montujesz własny showreel.',
-         ['warstwy, klatki kluczowe i timing', 'prekompozycje i maski', 'światło i animacja kamery', 'praca z wideo i dźwiękiem', 'rendering'],
-         'showreel — film z Twoimi pracami 3D'),
-        ('Projekt 3D i portfolio', 18,
-         'Na koniec wybierasz program i temat, a prowadzący pomagają Ci złożyć portfolio, które pokażesz studiu lub klientowi.',
-         ['kompozycje statyczne i animowane w wybranym programie 3D', 'konsultacje i korekty portfolio', 'recenzowana prezentacja projektów'],
-         'kompletne portfolio grafika 3D'),
+        ('Grafika 3D w Blender i prezentacja możliwości Cinema 4D', 50, '',
+         ['Narzędzia', 'Budowanie sceny i generowanie na niej prostych obiektów geometrycznych', 'Oświetlanie obiektów', 'Budowanie przedmiotów codziennego użytku o skomplikowanej strukturze np. samochodu', 'Oświetlanie', 'Modelowanie mebli', 'Modelowanie kompleksowe wnętrz np. pokoju', 'Animowanie zbudowanych przedmiotów', 'Renderowanie', 'Animacja grafiki 3D'],
+         ''),
+        ('Grafika 3D na Maya', 28, '',
+         ['Interface', 'Narzędzia', 'Scena', 'Brył y proste i ich oświetlanie', 'Modelowanie bardziej zaawansowane elementów budynku', 'Architektury i zieleni wokół budynku', 'Renderowanie', 'Tworzenie i animowanie postaci oraz przedmiotów martwych np. samochodu', 'Compositing clipu 3D'],
+         ''),
+        ('Tworzenie modeli 3D do gier komputerowych – ZBrush lub Blender, Unity', 40, '',
+         ['Interface i narzędzia ZBrush', 'Projektowanie cyfrowych modeli obiektów nieorganicznych oraz organicznych', 'Modelowanie roślin. Rzeźbienie postaci zgodnie z anatomią', 'Modelowanie elementów ubrania i wyposażenia postaci. Retopologia', 'Riggowanie oraz teksturowanie postaci z przeznaczeniem do projektów gamingowych', 'Podstawy pracy w silniku Unity pod kątem grafiki 3D oraz implementacja gotowych modeli do silnika Unity'],
+         ''),
+        ('Scenariusz, storyboard i animatic clipu 3D z wykorzystaniem AI, Photoshop i After Effects', 22, '',
+         ['Generowanie pomysłów na fabułę i scenariusz własnego filmu animowanego', 'Rozrysowanie storyboardu', 'Pozyskanie i edycja materiałów', 'Timeline', 'Montaż czołówki', 'Body i tyłówki animaticu', 'Udźwiękowienie', 'Korekty', 'Prezentacja'],
+         ''),
+        ('Postprodukcja w After Effects', 42, '',
+         ['Interface', 'Import materiałów graficznych i tworzenie nowych materiałów do kompozycji animowanych', 'Warstwy i klatki kluczowe', 'Timing', 'Montaż prekompozycji', 'Renderowanie', 'Maski', 'Światło', 'Animacja kamery', 'Trakowanie video', 'Praca z audio', 'Końcowy montaż własnego portfolio'],
+         ''),
+        ('Projektowanie 3D, w tym wykonanie portfolio grafika 3D', 18, '',
+         ['Kompozycje statyczne i animowane w dowolnie wybranych aplikacjach 3D + konsultacje i korekty zawartości oraz struktury portfolio', 'Recenzowana prezentacja projektów i portfolio'],
+         ''),
     ],
     'kurs-grafika-dtp.html': [
-        ('Projektowanie druków', 28,
-         'Zanim otworzysz program, uczysz się, jak projektować publikacje: dobór fontów, układ strony i struktura książki. To wiedza, która odróżnia grafika od operatora programu.',
-         ['typografia i dobór fontów', 'układy graficzne i wyróżnienia', 'struktura książki, także niekonwencjonalnej', 'opakowania, plakaty, ulotki, wizytówki i outdoor', 'redakcja techniczna, skład i korekta'],
-         'makiety publikacji do dalszego składu'),
-        ('DTP: Photoshop, Illustrator i InDesign', 140,
-         'Serce kursu — 140 godzin przy komputerze w trzech programach Adobe, których wymaga każda agencja i drukarnia. Każde ćwiczenie to realny druk: od naklejki po katalog w twardej okładce.',
-         ['Photoshop: retusz, kolaż, ulotka, etykieta, aplikacja na T-shirt, pudełko do druku cyfrowego i offsetowego',
-          'Illustrator: logotypy, ikony, kompozycje liternicze, baner, opakowanie do druku fleksograficznego, wykrojnik',
-          'InDesign: plakat, kolorowy katalog, okładka miękka i twarda, dokumenty wielostronicowe',
-          'kontrola plików pod wymagania drukarni (preflight)', 'próbna praca graficzna dla klienta'],
-         'identyfikacja wizualna, opakowanie i katalog gotowe do druku'),
-        ('Drukowanie i wykańczanie druków', 16,
-         'Poznajesz techniki druku, więc wiesz, jak przygotować plik pod offset, druk cyfrowy czy sitodruk — i rozmawiasz z drukarnią jak fachowiec.',
-         ['rastry, CMYK i RGB', 'offset, druk cyfrowy, sitodruk, fleksografia, rotograwiura', 'hot-stamping, termotransfer, druk UV, solwent i lateks', 'znakowanie gadżetów', 'wykończenie introligatorskie (finishing)'],
-         'specyfikacja techniczna druku do Twojego projektu'),
-        ('Dobór materiałów do druku', 11,
-         'Ten sam projekt wygląda zupełnie inaczej na innym papierze. Uczysz się dobierać podłoża, farby i uszlachetnienia do projektu i budżetu.',
-         ['papiery i podłoża niepapierowe', 'farby i tonery', 'materiały introligatorskie', 'uszlachetnienia i zabezpieczenia opakowań przed podróbkami'],
-         'dobór materiałów do projektu dyplomowego'),
-        ('Autorski katalog i portfolio', 5,
-         'Projekt dyplomowy: składasz własny katalog, a prowadzący konsultują typografię i redakcję. Najlepsze prace trafiają do galerii szkoły.',
-         ['konsultacje typograficzne i redakcyjne', 'korekty indywidualne', 'prezentacja projektu'],
-         'autorski katalog i portfolio grafika DTP'),
+        ('Projektowanie druków', 28, '',
+         ['Fonty', 'Układy graficzne', 'Wyróżnienia', 'Planowanie zawartości publikacji', 'Typografia książek', 'Struktura książki niekonwencjonalnej', 'Opakowań', 'Plakatów', 'Ulotek', 'Wizytówek', 'Outdoorów', 'Profesjonalna redakcja techniczna', 'Zasady składania i montażu publikacji', 'Korekta'],
+         ''),
+        ('DTP – przygotowanie plików do drukowania', 140, '',
+         ['Photoshop: narzędzia, kolor, retusz ilustracji, kolaż, wizytówka, ulotka, naklejka, aplikacja na T-shirt, własna identyfikacja wizualna, etykieta, metka, pudełko z reklamą do druku cyfrowego i offsetowego, projekty graficzne i krótkie animacje do internetu', 'Illustrator: narzędzia, kompozycje liternicze, efekty specjalne w kolorze, logotypy, ikonki, widokówka, baner do druku i internetu, opakowanie z reklamą do druku flekso, wykrojnik do zdobienia wydruków', 'InDesign: narzędzia, praca z tekstem i kolorem, edycja plików plakatu, kolorowego katalogu, okładki miękkiej i twardej, dokumentów wielostronicowych, nafarbienie, inspekcja plików pod kątem wymagań drukarni, próba pracy graficznej dla klienta'],
+         ''),
+        ('Drukowanie i wykańczanie druków', 16, '',
+         ['Techniki drukowania', 'Rastry', 'CMYK + RGB', 'Offset', 'Cyfra', 'Sitodruk', 'Hot-stamping', 'Fleksografia', 'Termotransfer', 'Rotograwiura', 'Indigo', 'Nanotechnologia', 'Znakowanie gadżetów', 'Druk UV', 'Solwent', 'Lateks', 'Techniki finishingu i wykończenia introligatorskiego'],
+         ''),
+        ('Dobór materiałów do druku', 11, '',
+         ['Papiery', 'Podłoża niepapierowe', 'Farby', 'Tonery', 'Materiały introligatorskie', 'Zdobienie oraz zabezpieczanie opakowań produktów przed fałszowaniem marki'],
+         ''),
+        ('Wykonanie autorskiego katalogu oraz portfolio', 5, '',
+         ['konsultacje i korekty indywidualne: typograficzne, redakcyjne, prezentacja projektu'],
+         ''),
     ],
     'kurs-web-designer.html': [
-        ('UI i UX z wykorzystaniem AI', 38,
-         'Uczysz się myśleć jak projektant produktu: kim jest użytkownik, czego szuka i jak ułatwić mu drogę do celu. AI pomaga szybciej analizować i generować pomysły.',
-         ['responsive i adaptive web design, mobile first', 'breakpointy i projektowanie pod dotyk', 'architektura informacji i wireframe', 'persona i mapa doświadczeń użytkownika', 'badania UX jakościowe i ilościowe'],
-         'persona, mapa doświadczeń i makiety serwisu'),
-        ('Figma — interfejsy z pomocą AI', 33,
-         'Figma to dziś podstawowe narzędzie web designera. Budujesz design system, komponenty i responsywne layouty, a na koniec projektujesz własną stronę.',
-         ['narzędzia, kształty, maski i pluginy', 'design system: kolory, gradienty, style tekstu', 'komponenty i biblioteki', 'responsywne layouty', 'wstęp do prototypowania'],
-         'projekt responsywnej strony internetowej w Figmie'),
-        ('WordPress z elementami SEO', 37,
-         'Na WordPressie działa większość stron w internecie. Stawiasz od zera kilka serwisów i uczysz się, jak sprawić, żeby Google je znalazł.',
-         ['hosting, domena, motywy i wtyczki', 'edytory Gutenberg i Elementor, szablony blokowe', 'menu, slidery, formularz kontaktowy, mapa Google, blog', 'animacje i elementy responsywne', 'SEO z wtyczką Yoast i podstawy WooCommerce'],
-         'strony pizzerii, agencji interaktywnej i studia foto'),
-        ('Grafika i wideo na strony: Photoshop, Illustrator, After Effects', 38,
-         'Strona potrzebuje grafik. Przygotowujesz banery, ikony, logotypy i krótkie animacje — tak, żeby nie zależeć od grafika.',
-         ['Photoshop: retusz, banery w RGB, slider, animacja', 'Illustrator: ikony, logotypy, wykresy', 'After Effects: krótki film, kamera, światło, dźwięk'],
-         'zestaw banerów, ikon i animacja na stronę'),
-        ('Webflow — podstawy z AI', 20,
-         'Webflow pozwala budować profesjonalne strony bez pisania kodu. Poznajesz jego mocne i słabe strony, żeby wiedzieć, kiedy go wybrać.',
-         ['możliwości i ograniczenia no-code', 'szablony i edytor „przeciągnij i upuść”', 'elementy statyczne i interaktywne', 'SEO w Webflow'],
-         'strona zbudowana w Webflow'),
-        ('HTML5 i CSS3', 32,
-         'Znając kod, lepiej projektujesz i dogadujesz się z programistami. Kodujesz layout od zera, łącznie z responsywnością i animacjami.',
-         ['struktura dokumentu, linki, tabele i formularze', 'selektory, box model i pozycjonowanie', 'elementy blokowe i liniowe', 'media queries (RWD)', 'animacje i transformacje CSS'],
-         'zakodowana responsywna strona'),
-        ('Portfolio web designera', 2,
-         'Prowadzący pomagają wybrać najlepsze projekty i przygotować prezentację, z którą pójdziesz na rozmowę.',
-         ['konsultacje projektów', 'prezentacja portfolio'],
-         'portfolio web designera'),
+        ('User Interface (UI) + User Experience (UX) z wykorzystaniem AI', 38, '',
+         ['UI: proces tworzenia produktów interaktywnych, responsive web design, adaptive web design, mobile first, breakpoint, projektowanie pod dotyk, architektura informacji, wireframe, tworzenie interaktywnego prototypu w Adobe XD', 'UX: projektowanie pod użytkownika, tworzenie persony, mapa doświadczeń użytkownika, charakterystyka badań UX jakościowych i ilościowych'],
+         ''),
+        ('Figma – generowanie dynamicznych interfejsów uwzględniające AI', 33, '',
+         ['Interface aplikacji', 'Narzędzia tekstowe', 'Kształty', 'Obrysy', 'Importowanie ilustracji rastrowych', 'Maski', 'Pluginy', 'Tworzenie design systemów', 'Biblioteki kolorów', 'Gradientów i stylów tekstowych', 'Komponenty', 'Projektowanie interfejsów z dostarczonych materiałów', 'Responsywne layouty', 'Wstęp do prototypowania', 'Własny projekt responsywnej strony internetowej'],
+         ''),
+        ('WordPress z elementami SEO', 37, '',
+         ['CMS', 'Hosting', 'Domena', 'Kokpit', 'Motywy i wtyczki', 'Edytory tekstowe Gutenberg', 'Elementor', 'Szablony blokowe', 'Projekt strony pizzerii', 'Header', 'Menu', 'Generowanie tekstu', 'Slidery', 'Kotwice', 'Linki', 'Stopka', 'Widgety', 'Dodawanie mediów', 'Elementy animacji', 'Projekt stron agencji interaktywnej i studia foto', 'Blog', 'Mapa Google', 'Elementy responsywne', 'Formularz kontaktowy', 'Wtyczka YoastSEO', 'Podstawy WooCommerce'],
+         ''),
+        ('Grafika i wideo www (Photoshop, Illustrator, After Effects)', 38, '',
+         ['Photoshop (11 godz.): elementy, warstwy, selekcje, przycinanie, kolor, przezroczystość, retusz, banery internetowe w RGB, slajder, animacja internetowa', 'Illustrator (11 godz.): narzędzia, edycja wektorowych ikonek, logotypów, wykresów, rysunków, modyfikowanie grafiki, dodawanie tekstu, kolor, gradienty, edycja plików w RGB', 'After Effects (16 godz.): import materiałów graficznych i tworzenie nowych do krótkiego filmu, warstwy, klatki kluczowe, timing, montaż prekompozycji, renderowanie, maski, światło, animacja kamery, dodanie video, udźwiękowienie'],
+         ''),
+        ('Podstawy Webflow z zastosowaniem AI', 20, '',
+         ['Dla kogo projektowanie no-code', 'Możliwości', 'Zalety i wady tej platformy', 'Szablony', 'Funkcje', 'Posługiwanie się edytorem “Przeciągnij i puść”', 'SEO w Webflow', 'Ćwiczenia w edytowaniu obiektów statycznych i interaktywnych'],
+         ''),
+        ('Podstawy pracy w HTML5 i CSS3', 32, '',
+         ['Tworzenie tekstu', 'Umieszczanie multimediów', 'Stosowanie odnośników', 'Kotwic', 'Tabel', 'Formularzy', 'Tagów', 'Podstawy CSS', 'Atrybuty', 'Układ', 'Struktura', 'Elementy blokowe i liniowe', 'Pozycjonowanie', 'Box model', 'Selektory CSS', 'Responsive web design z wykorzystaniem media queries', 'Animacje', 'Transformacje'],
+         ''),
+        ('Wykonanie portfolio web designera', 2, '',
+         ['Konsultacje i prezentacja projektu'],
+         ''),
     ],
     'kurs-graphic-designer.html': [
-        ('Grafika do internetu i narzędzia AI', 44,
-         'Projektujesz wszystko, czego marka potrzebuje w sieci — od posta na Facebooka po e-katalog — i uczysz się pracować szybciej z generatorami AI.',
-         ['Photoshop: animowane reklamy, posty, banery', 'Illustrator: ikony, logo, infografiki, identyfikacja do internetu', 'InDesign: e-wizytówki, interaktywne plakaty, e-katalogi', 'AI: ChatGPT, DALL-E, GetImg, OpenArt, DreamStudio', 'montaż rolek w CapCut lub Edits'],
-         'pakiet reklamowy do social mediów'),
-        ('Grafika do druku', 86,
-         'Największy moduł kursu. Projektujesz materiały, które naprawdę trafiają do drukarni: od naklejki po katalog z okładką.',
-         ['Photoshop: kolaż, identyfikacja do druku, T-shirt, banery outdoorowe, naklejki, etykiety', 'Illustrator: logo, wizytówki, metki, wykrojniki', 'InDesign: plakaty, dokumenty wielostronicowe, katalogi z okładką', 'próbna praca dla klienta'],
-         'identyfikacja wizualna i katalog gotowe do druku'),
-        ('Trening kreatywności w reklamie', 11,
-         'Dobry grafik reklamowy ma pomysły na zawołanie. Ćwiczysz myślenie kombinacyjne i lateralne, żeby nie utknąć przed pustą kartką.',
-         ['analiza własnych predyspozycji', 'myślenie twórcze i kombinacyjne', 'rozwiązywanie problemów kreatywnych'],
-         'koncepcje kampanii reklamowych'),
-        ('Warsztaty copywritingu z AI', 15,
-         'Reklama to obraz i słowo. Uczysz się pisać teksty, które sprzedają — i używać AI, żeby robić to szybciej.',
-         ['oferty sprzedażowe i opisy produktów', 'posty, treści na bloga i stronę', 'kampanie e-mailowe', 'slogany i teksty sponsorowane'],
-         'teksty do Twojej kampanii'),
-        ('Krótki film reklamowy w After Effects', 23,
-         'Wideo to dziś najskuteczniejsza forma reklamy. Tworzysz animowany spot od importu materiałów po dźwięk.',
-         ['warstwy, klatki kluczowe i timing', 'maski, światło i animacja kamery', 'praca z wideo', 'udźwiękowienie i rendering'],
-         'animowany spot reklamowy'),
-        ('Typografia, kompozycja, kolor i druk', 17,
-         'Fundamenty, które sprawiają, że projekt wygląda profesjonalnie i dobrze się drukuje.',
-         ['fonty i typografia', 'CMYK, RGB i rastry', 'techniki druku', 'papiery, podłoża, farby i uszlachetnienia'],
-         'projekty poprawione pod kątem typografii i druku'),
-        ('Portfolio — pakiet reklamowy', 4,
-         'Składasz kampanię reklamową do portfolio, a prowadzący konsultują ją indywidualnie.',
-         ['konsultacje indywidualne', 'prezentacja projektów'],
-         'kompletny pakiet reklamowy w portfolio'),
+        ('Grafika do mediów cyfrowych + wybrane narzędzia AI', 44, '',
+         ['Photoshop: prosta animacja reklamowa na www, post na FB, baner na www', 'Illustrator: zastaw piktogramów, kompozycja literniczo-graficzna na bloga lub www, zestaw identyfikacji wizualnej do internetu, logotyp, infografika, wektorowy baner internetowy', 'InDesign: wizytówka cyfrowa, plakat interaktywny, e-katalog reklamowy', 'AI: wykorzystanie wybranych generatorów, np. ChatGPT, GetImg, DALL-E, OpenArt, beta.dreamstudio.ai', 'CapCut lub Edits: montaż reelsów'],
+         ''),
+        ('Grafika do mediów drukowanych', 86, '',
+         ['Photoshop: narzędzia programu, kolaż, wykonanie własnej identyfikacji wizualnej do druku, aplikacji na T-shirt, baneru outdoorowego, naklejki, etykiety', 'Illustrator: narzędzia, reklamowe kompozycje liternicze, projekty logotypów, wizytówka, metka, naklejki, wykrojniki do zdobienia wydruków', 'InDesign: narzędzia, praca z tekstem i kolorem, przygotowanie do druku plakatu, dokumentów kilkustronicowych i kolorowego katalogu z okładką, próba graficznej pracy dla klienta'],
+         ''),
+        ('Trening kreatywności reklamowej', 11, '',
+         ['Analiza własnych predyspozycji i możliwości', 'Zadania typu “cokolwiek myślisz', 'Pomyśl odwrotnie”', 'Ćwiczenia twórczej ekspresji', 'Myślenie kombinacyjne i łączenie idei', 'Twórcze podejście do rozwiązywania problemów'],
+         ''),
+        ('Warsztaty copywritingowe z wykorzystaniem AI', 15, '',
+         ['Budowanie ofert sprzedażowych', 'Postów na FB', 'Treści na blogi', 'Www', 'Do social mediów', 'Mailingów', 'Kreowanie sloganów', 'Opisów produktów', 'Tekstów poradnikowych', 'Preclowych', 'Artykułów sponsorowanych'],
+         ''),
+        ('Krótki film reklamowy w After Effects', 23, '',
+         ['Interface', 'Import materiałów graficznych i tworzenie nowych do krótkiego filmu animowanego', 'Warstwy i klatki kluczowe', 'Timing', 'Montaż prekompozycji', 'Renderowanie', 'Maski', 'Światło', 'Animacja kamery', 'Dodawanie video', 'Udźwiękowienie'],
+         ''),
+        ('Typografia, kompozycja, kolor, druk', 17, '',
+         ['Fonty', 'Teksty', 'Typografia', 'Techniki druku', 'CMYK + RGB', 'Rastry', 'Papier', 'Podłoża niepapierowe', 'Farby', 'Zdobienie i zabezpieczanie wydruków przed fałszowaniem marki'],
+         ''),
+        ('Wykonanie pakietu reklamowego do social mediów oraz zbudowanie własnego portfolio', 4, '',
+         ['Konsultacje indywidualne i prezentacja projektu'],
+         ''),
     ],
 }
 
@@ -927,11 +901,18 @@ SEO_TEXT = {
 }
 
 
+PROGRAM_NOTE = {
+    'kurs-grafika-3d.html': 'Wszystkie zajęcia są praktyczne – komputerowo-warsztatowe.',
+    'kurs-grafika-dtp.html': 'Wszystkie zajęcia są praktyczne – komputerowe, ćwiczeniowe lub warsztatowe.',
+    'kurs-web-designer.html': 'Wejście do świata programowania www.',
+    'kurs-graphic-designer.html': 'Wszystkie zajęcia są praktyczne.',
+}
+
 def program_body(intro, topics, effect):
     items = ''.join('<li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true"></span><span>%s</span></li>' % t for t in topics)
-    return ('<p>%s</p><p class="mt-4 font-medium">Czego się uczysz</p><ul class="mt-2 space-y-1.5">%s</ul>'
-            '<p class="mt-4 rounded-2xl bg-brand-soft px-4 py-3 text-olive"><strong class="font-semibold">Do portfolio:</strong> %s</p>'
-            % (intro, items, effect))
+    head = '<p>%s</p>' % intro if intro else ''
+    tail = ('<p class="mt-4 rounded-2xl bg-brand-soft px-4 py-3 text-olive"><strong class="font-semibold">Do portfolio:</strong> %s</p>' % effect) if effect else ''
+    return '%s<ul class="%s space-y-1.5">%s</ul>%s' % (head, 'mt-2' if intro else '', items, tail)
 
 
 def course_schema(c, hours):
@@ -942,7 +923,7 @@ def course_schema(c, hours):
         'provider': {'@type': 'EducationalOrganization', 'name': 'Publishing School', 'sameAs': 'https://publishingschool.pl',
                      'address': {'@type': 'PostalAddress', 'streetAddress': 'ul. Kosynierów 15B', 'postalCode': '31-572', 'addressLocality': 'Kraków', 'addressCountry': 'PL'}},
         'educationalCredentialAwarded': 'Dyplom polsko-angielski z suplementem, zaświadczenie zgodne z przepisami MEN',
-        'syllabusSections': [{'@type': 'Syllabus', 'name': t, 'description': i, 'timeRequired': 'PT%dH' % h} for t, h, i, _, _ in PROGRAMS[c['slug']]],
+        'syllabusSections': [{'@type': 'Syllabus', 'name': t, 'description': i or '; '.join(tp), 'timeRequired': 'PT%dH' % h} for t, h, i, tp, _ in PROGRAMS[c['slug']]],
         'hasCourseInstance': [{'@type': 'CourseInstance', 'courseMode': m, 'courseWorkload': 'PT%dH' % hours} for m in ('onsite', 'online')],
     }, {
         '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -1001,10 +982,10 @@ def course_page(c):
   <div class="flex items-start gap-12">
     <div class="sticky top-40 w-[360px] shrink-0">
       {ps_head('Program', f'Program kursu {c["name"]}', center=False)}
-      <p class="mt-4 text-base leading-6 text-ink">Uczysz się w soboty i niedziele, dwa razy w miesiącu. Każdy moduł kończy się projektem do portfolio.</p>
+      <p class="mt-4 text-base leading-6 text-ink">Uczysz się w soboty i niedziele, dwa razy w miesiącu. {PROGRAM_NOTE.get(c['slug'], 'Wszystkie zajęcia są praktyczne.')}</p>
       <dl class="mt-6 grid grid-cols-2 gap-4 text-ink">
         <div class="rounded-2xl bg-alt p-4"><dd class="text-2xl font-semibold">{hours} godz.</dd><dt class="text-sm text-neutral-600">praktyki</dt></div>
-        <div class="rounded-2xl bg-alt p-4"><dd class="text-2xl font-semibold">{len(program)} {'moduły' if len(program) in (2, 3, 4) else 'modułów'}</dd><dt class="text-sm text-neutral-600">z projektem</dt></div>
+        <div class="rounded-2xl bg-alt p-4"><dd class="text-2xl font-semibold">{len(program)} {'moduły' if len(program) in (2, 3, 4) else 'modułów'}</dd><dt class="text-sm text-neutral-600">w programie</dt></div>
       </dl>
       <div class="mt-6">{btn('Zarezerwuj miejsce', '#zapisy', 'brand')}</div>
     </div>
